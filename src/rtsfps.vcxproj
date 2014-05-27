@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\conf.h" />
+    <ClInclude Include="src\engine\drawfont.h" />
+    <ClInclude Include="src\engine\freecam.h" />
+    <ClInclude Include="src\engine\geometry.h" />
+    <ClInclude Include="src\Engine\GLgraph.h" />
+    <ClInclude Include="src\engine\GLstuff.h" />
+    <ClInclude Include="src\engine\INIparser.h" />
+    <ClInclude Include="src\engine\keys.h" />
+    <ClInclude Include="src\engine\OBJparser.h" />
+    <ClInclude Include="src\Engine\SDLgraph.h" />
+    <ClInclude Include="src\engine\shader.h" />
+    <ClInclude Include="src\engine\skybox.h" />
+    <ClInclude Include="src\Gameplay\test.h" />
+    <ClInclude Include="src\main.h" />
+    <ClInclude Include="src\tools.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\conf.cpp" />
+    <ClCompile Include="src\engine\drawfont.cpp" />
+    <ClCompile Include="src\engine\freecam.cpp" />
+    <ClCompile Include="src\engine\geometry.cpp" />
+    <ClCompile Include="src\Engine\GLgraph.cpp" />
+    <ClCompile Include="src\engine\GLstuff.cpp" />
+    <ClCompile Include="src\engine\INIparser.cpp" />
+    <ClCompile Include="src\engine\keys.cpp" />
+    <ClCompile Include="src\engine\OBJparser.cpp" />
+    <ClCompile Include="src\Engine\SDLgraph.cpp" />
+    <ClCompile Include="src\engine\shader.cpp" />
+    <ClCompile Include="src\engine\skybox.cpp" />
+    <ClCompile Include="src\Gameplay\test.cpp" />
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\tools.cpp" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{5AD500C2-84A5-4E92-B49B-C3E01D91172D}</ProjectGuid>
+    <RootNamespace>rtsfps</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>src\Frameworks\SDL2\include;src\Frameworks\glm;src\Frameworks\GLew\include;$(IncludePath)</IncludePath>
+    <LibraryPath>src\Frameworks\SDL2\lib;src\Frameworks\GLew\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>OpenGL32.lib;GLu32.lib;GLew32.lib;SDL2main.lib;SDL2.lib;SDL2_image.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
