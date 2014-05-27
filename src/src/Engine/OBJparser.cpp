@@ -1,14 +1,36 @@
-#pragma once
+/* $Id: OBJparser.cpp 
+   Copyright (C) 2013 Kirill Kranz
 
+  This source is free software; you can redistribute it and/or modify it under
+  the terms of the GNU General Public License as published by the Free
+  Software Foundation; either version 2 of the License, or (at your option)
+  any later version.
+
+  This code is distributed in the hope that it will be useful, but WITHOUT ANY
+  WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+  FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
+  details.
+
+  A copy of the GNU General Public License is available on the World Wide Web
+  at <http://www.gnu.org/copyleft/gpl.html>. You can also obtain it by writing
+  to the Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,
+  MA 02111-1307, USA.
+*/
+
+
+#define NO_SDL_GLEXT
 
 #include <Windows.h>
+#include <glew.h>
 #include <gl/GL.h>
+#include <gl/GLU.h>
 #include <string>
+#include <stdlib.h>
 #include <fstream>
 #include <vector>
 
 
-#include "../Tools.h"
+#include "../tools.h"
 
 
 #include "OBJparser.h"
@@ -18,22 +40,13 @@
 
 using namespace std;
 
-OBJparser::OBJparser()
-{
-	vertexCount = 0;
-	textureCount = 0;
-	normalCount = 0;
-	faceCount = 0;
-}
 
 
 OBJparser::OBJparser(string filename)
+:Faces(NULL), numFaces(0), Vertices(NULL), numVertex(0), PositionBuffer(NULL), numPositions(0), TextureCoordBuffer(NULL), numTextureCoords(0),
+ NormalsBuffer(NULL), numNormals(0), scenename(""), vertexCount(0), textureCount(0), normalCount(0), faceCount(0), vertices(NULL), normals(NULL),
+ texcoords(NULL), faces(NULL), filesize(0), filepos(0), theFile(NULL)
 {
-	vertexCount = 0;
-	textureCount = 0;
-	normalCount = 0;
-	faceCount = 0;
-
 	LoadOBJfile(filename);
 }
 
@@ -43,6 +56,9 @@ OBJparser::~OBJparser()
 {
 	delete [] Faces;
 	delete [] Vertices;
+	delete [] PositionBuffer;
+	delete [] TextureCoordBuffer;
+	delete [] NormalsBuffer;
 }
 
 
@@ -101,29 +117,27 @@ bool OBJparser::LoadOBJfile(string filename)
 	normalCount = 0;
 	faceCount = 0;
 
-	ifstream file;
+	ifstream myfile(filename.c_str(),ios::binary);
 
 	
-	file.open(filename,ios::binary);
-
-		if(!file.good())
+		if(!myfile.good())
 		{
-			file.close();
+			myfile.close();
 			error("OBJ: File "+filename+" could not be opened.");
 		}
 
-		file.seekg(0);
-		int filebeginning= (int) file.tellg();
-		file.seekg(0,ios::end);
-		int fileending= (int) file.tellg();
-		file.seekg(0);
+		myfile.seekg(0);
+		int filebeginning= (int) myfile.tellg();
+		myfile.seekg(0,ios::end);
+		int fileending= (int) myfile.tellg();
+		myfile.seekg(0);
 
 		filesize=fileending-filebeginning;
 
 		theFile = new char[filesize+1];
-		file.read(theFile,filesize);
+		myfile.read(theFile,filesize);
 
-		file.close();
+		myfile.close();
 		filepos=0;
 
 
@@ -250,10 +264,10 @@ bool OBJparser::LoadOBJfile(string filename)
 
 
 
-	vertexCount = VerticesList.size();
-	textureCount = TextcoordsList.size();
-	normalCount = NormalsList.size();
-	faceCount = FacesList.size();
+	vertexCount = (unsigned int) VerticesList.size();
+	textureCount = (unsigned int) TextcoordsList.size();
+	normalCount = (unsigned int) NormalsList.size();
+	faceCount = (unsigned int) FacesList.size();
 
 
 
@@ -377,6 +391,40 @@ bool OBJparser::LoadOBJfile(string filename)
 	TextcoordsList.clear();
 	NormalsList.clear();
 	FacesList.clear();
+
+
+
+
+
+	numPositions=numVertex*3;
+	PositionBuffer = new float[numPositions];
+	unsigned int index=0;
+	for (unsigned int i=0; i<numVertex;i++)
+	{
+		PositionBuffer[index++] = Vertices[i].x;
+		PositionBuffer[index++] = Vertices[i].y;
+		PositionBuffer[index++] = Vertices[i].z;
+	}
+
+	numTextureCoords=numVertex*2;
+	TextureCoordBuffer = new float[numTextureCoords];
+	index=0;
+	for (unsigned int i=0; i<numVertex;i++)
+	{
+		TextureCoordBuffer[index++] = Vertices[i].u;
+		TextureCoordBuffer[index++] = Vertices[i].v;
+	}
+
+
+	numNormals=numVertex*3;
+	NormalsBuffer = new float[numNormals];
+	index=0;
+	for (unsigned int i=0; i<numVertex;i++)
+	{
+		NormalsBuffer[index++] = Vertices[i].nx;
+		NormalsBuffer[index++] = Vertices[i].ny;
+		NormalsBuffer[index++] = Vertices[i].nz;
+	}
 
 	return true;
 }

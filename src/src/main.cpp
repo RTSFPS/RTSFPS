@@ -33,9 +33,9 @@ using namespace glm;
 #include "engine/shader.h"
 #include "engine/GLstuff.h"
 #include "Engine/GLgraph.h"
-#include "Engine\SDLgraph.h"
+#include "Engine/SDLgraph.h"
 
-
+#include "Gameplay/test.h"
 
 
 bool showMouse = true;
@@ -64,7 +64,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     if ( SDL_Init(SDL_INIT_VIDEO) != 0 ) error("Unable to initialize SDL2: " + (string) SDL_GetError());
 	
 	
-	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION,4);
+	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION,3);
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION,2);
 	//SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_COMPATIBILITY);
@@ -121,19 +121,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 	//////////////////////////////////////////////////////////////////////////////////////
 
-		SDL_Surface* tempImg=LoadIMG(DATAfolder+"graph/music.jpg");
-		if(!tempImg) error("music.jpg");
-		
-		glImage imgMusic;
-		CreateImage(1280,720,imgMusic);
-		FlipFromSDL(tempImg,imgMusic);
-
-			glTexturedImage tx;
-			tx.createSprite(imgMusic);
-
-			FreeImage(imgMusic);
-
-		SDL_FreeSurface(tempImg);
+		Test* myTest = new Test();
 
 	//////////////////////////////////////////////////////////////////////////////////////
 
@@ -203,8 +191,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		
 	//////////////////////////////////////////////////////////////////////////////////////		
 	
-		glUseProgram(0);
-		tx.putSprite(0,0);
+	
+		myTest->Draw();
 
 
 
@@ -236,7 +224,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 	//////////////////////////////////////////////////////////////////////////////////////	
 
-		tx.KillTexture();
+		myTest->~Test();
 		
 
 	//////////////////////////////////////////////////////////////////////////////////////	
