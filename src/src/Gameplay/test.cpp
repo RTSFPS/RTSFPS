@@ -56,7 +56,7 @@ Test::Test()
    // OBJ 
 
 		myObj = new OBJparser(DATAfolder+"scene/cube.obj");
-		textureID = loadTexture(DATAfolder+"graph/green.jpg");
+		textureID = loadTexture(DATAfolder+"graph/checker.jpg");
 
 
 
@@ -75,11 +75,10 @@ Test::~Test()
 void Test::Draw()
 {
 	glUseProgram(0);
-	//tx.putSprite(0,0);
 
 	  glMatrixMode( GL_PROJECTION );
     glLoadIdentity();
-	gluPerspective(45.0f,screenwidth / screenheight, 0.001, 10000);
+	gluPerspective(45.0f,screenwidth / screenheight, 0.1, 1000);
 
 	 glMatrixMode( GL_MODELVIEW );
 	 glLoadIdentity();
@@ -109,8 +108,12 @@ void Test::Draw()
 	
 
 	glBindTexture(GL_TEXTURE_2D,textureID);
+	glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,GL_LINEAR_MIPMAP_NEAREST );
+glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR );
+ glGenerateMipmap(GL_TEXTURE_2D);
 
 	glBegin(GL_TRIANGLES);
+
 
 		for (unsigned int i=0;i<myObj->numVertex;i+=3)
 		{
@@ -134,5 +137,5 @@ void Test::Draw()
 
 	glEnd();
 
-
+		glBindTexture(GL_TEXTURE_2D,0);
 }

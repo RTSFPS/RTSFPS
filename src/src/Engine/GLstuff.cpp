@@ -1,4 +1,4 @@
-#define NO_SDL_GLEXT
+﻿#define NO_SDL_GLEXT
 
 #include <Windows.h>
 #include <glew.h>
@@ -13,9 +13,10 @@
 #include <glm.hpp>
 #include <ext.hpp>
 
+
 #include "../tools.h"
 #include "../main.h"
-
+#include "GLstuff.h"
 
 
 using namespace std;
@@ -61,14 +62,15 @@ unsigned int loadTexture(string filename)
    if (!img2) error("[loadTexture] file "+filename+" convertion failed!");
 
    
-
+   glEnable(GL_TEXTURE_2D);
    
    glGenTextures(1,&num);
 
    glBindTexture(GL_TEXTURE_2D,num);
 
    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
-   glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
+  glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
+   
 
 
    //glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_CLAMP_TO_EDGE);
@@ -79,9 +81,14 @@ unsigned int loadTexture(string filename)
    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_REPEAT);
    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,GL_REPEAT);
 
+   
 
    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, img2->w, img2->h, 0, GL_RGBA, GL_UNSIGNED_BYTE, img2->pixels);
 
+
+
+
+  glBindTexture(GL_TEXTURE_2D,0);
    SDL_FreeSurface(img);
    SDL_FreeSurface(img2);
 
