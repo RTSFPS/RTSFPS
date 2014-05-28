@@ -1,0 +1,10 @@
+Commiting:
+
+1)git add --all
+2)git commit -m "message"
+3)git push origin master
+
+Init:
+1)git config --global user.email "mail@mail.ru"
+2)git config --global user.name "Key-Real"
+
