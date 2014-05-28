@@ -43,7 +43,7 @@ freecam::freecam()
 	camYaw=0;
 	camPitch=0;
 
-	keyvel=5;
+	keyvel=1;
 	
 	mousevel=0.02f;
 }

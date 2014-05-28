@@ -12,9 +12,6 @@
     <ClInclude Include="src\engine\freecam.h">
       <Filter>Engine</Filter>
     </ClInclude>
-    <ClInclude Include="src\engine\geometry.h">
-      <Filter>Engine</Filter>
-    </ClInclude>
     <ClInclude Include="src\engine\GLstuff.h">
       <Filter>Engine</Filter>
     </ClInclude>
@@ -50,9 +47,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\engine\geometry.cpp">
-      <Filter>Engine</Filter>
-    </ClCompile>
     <ClCompile Include="src\engine\GLstuff.cpp">
       <Filter>Engine</Filter>
     </ClCompile>

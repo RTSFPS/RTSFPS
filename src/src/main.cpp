@@ -34,7 +34,7 @@ using namespace glm;
 #include "engine/GLstuff.h"
 #include "Engine/GLgraph.h"
 #include "Engine/SDLgraph.h"
-
+#include "Engine/keys.h"
 #include "Gameplay/test.h"
 
 
@@ -159,6 +159,11 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 						switch (event.key.keysym.sym)
 						{
 							case SDLK_ESCAPE: {quit = true;} break;
+							case SDLK_RIGHT: { keys::RIGHTpressed = true;} break;
+							case SDLK_LEFT: { keys::LEFTpressed = true; } break;	
+							case SDLK_UP: { keys::UPpressed = true; } break;	
+							case SDLK_DOWN: { keys::DOWNpressed = true; } break;	
+							case SDLK_SPACE: { keys::SPACEpressed = true; } break;	
 							default: break;
 						}
 					} break;
@@ -166,6 +171,11 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 					{
 						switch (event.key.keysym.sym)
 						{
+							case SDLK_RIGHT: { keys::RIGHTpressed = false;} break;
+							case SDLK_LEFT: { keys::LEFTpressed = false; } break;	
+							case SDLK_UP: { keys::UPpressed = false; } break;	
+							case SDLK_DOWN: { keys::DOWNpressed = false; } break;	
+							case SDLK_SPACE: { keys::SPACEpressed = false; } break;	
 							default: break;
 						}
 					} break;
@@ -191,7 +201,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		
 	//////////////////////////////////////////////////////////////////////////////////////		
 	
-	
+	SDL_WarpMouseInWindow(SDLwindow,screenwidth / 2,screenheight / 2);
 		myTest->Draw();
 
 

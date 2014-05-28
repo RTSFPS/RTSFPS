@@ -4,6 +4,8 @@
 #include <string>
 
 #include "../Engine/OBJparser.h"
+#include "../Engine/skybox.h"
+#include "../Engine/freecam.h"
 
 using namespace std;
 
@@ -19,11 +21,13 @@ public:
 
    void Draw();
 
-   	glTexturedImage tx;
+
+    freecam* myFreecam;
+
+	skybox* mySkybox;
 
 	OBJparser* myObj;
 	unsigned int textureID;
 
 
-	float r;
 };

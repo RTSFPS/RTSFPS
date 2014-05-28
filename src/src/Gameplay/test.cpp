@@ -30,6 +30,8 @@ using namespace glm;
 #include "../Engine/GLgraph.h"
 #include "../Engine/SDLgraph.h"
 #include "../Engine/OBJparser.h"
+#include "../Engine/skybox.h"
+#include "../Engine/freecam.h"
 #include "../tools.h"
 #include "test.h"
 
@@ -41,38 +43,31 @@ using namespace std;
 
 Test::Test()
 {
-	// MUSIC PICTURE
-		SDL_Surface* tempImg=LoadIMG(DATAfolder+"graph/music.jpg");
-		if(!tempImg) error("music.jpg");
-		
-		glImage imgMusic;
-		CreateImage(1280,720,imgMusic);
-		FlipFromSDL(tempImg,imgMusic);
+	
+	myFreecam = new freecam();
 
-			tx.createSprite(imgMusic);
 
-		FreeImage(imgMusic);
-		SDL_FreeSurface(tempImg);
+
+	mySkybox = new skybox();
+	mySkybox->initSkyBox();
 
 
 
    // OBJ 
-
-
 
 		myObj = new OBJparser(DATAfolder+"scene/cube.obj");
 		textureID = loadTexture(DATAfolder+"graph/green.jpg");
 
 
 
-		r=0;
 }
 
 
 Test::~Test()
 {
-
-	tx.KillTexture();
+	delete myFreecam;
+	mySkybox->closeSkyBox();
+	delete mySkybox;
 	delete myObj;
 }
 
@@ -80,30 +75,38 @@ Test::~Test()
 void Test::Draw()
 {
 	glUseProgram(0);
-	tx.putSprite(0,0);
+	//tx.putSprite(0,0);
 
-
-
-
-    glMatrixMode( GL_PROJECTION );
+	  glMatrixMode( GL_PROJECTION );
     glLoadIdentity();
 	gluPerspective(45.0f,screenwidth / screenheight, 0.001, 10000);
-
-
 
 	 glMatrixMode( GL_MODELVIEW );
 	 glLoadIdentity();
 
-	 gluLookAt(0,0,-10,0,0,0,0,1,0);
 
-	 r++;
-	 glRotatef(r,r,r,r);
+		myFreecam->CameraControl();
+			 mySkybox->renderSkyBox(10);
+		myFreecam->CameraTranslate();
 
 
-	glColor4f(1.0,1.0,1.0,1.0);
+		gluLookAt(myFreecam->getCameraLookAt().x,myFreecam->getCameraLookAt().y,myFreecam->getCameraLookAt().z,
+			      myFreecam->getCameraDirection().x,myFreecam->getCameraDirection().y,myFreecam->getCameraDirection().z,
+				  0,1,0);
+
+
+
+
+
+
+
+	// glColor4f(1.0,1.0,1.0,1.0);
 
 	glDisable(GL_LIGHTING);
 	glEnable(GL_TEXTURE_2D);
+
+
+	
 
 	glBindTexture(GL_TEXTURE_2D,textureID);
 

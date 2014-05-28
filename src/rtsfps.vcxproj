@@ -14,7 +14,6 @@
     <ClInclude Include="src\conf.h" />
     <ClInclude Include="src\engine\drawfont.h" />
     <ClInclude Include="src\engine\freecam.h" />
-    <ClInclude Include="src\engine\geometry.h" />
     <ClInclude Include="src\Engine\GLgraph.h" />
     <ClInclude Include="src\engine\GLstuff.h" />
     <ClInclude Include="src\engine\INIparser.h" />
@@ -31,7 +30,6 @@
     <ClCompile Include="src\conf.cpp" />
     <ClCompile Include="src\engine\drawfont.cpp" />
     <ClCompile Include="src\engine\freecam.cpp" />
-    <ClCompile Include="src\engine\geometry.cpp" />
     <ClCompile Include="src\Engine\GLgraph.cpp" />
     <ClCompile Include="src\engine\GLstuff.cpp" />
     <ClCompile Include="src\engine\INIparser.cpp" />
