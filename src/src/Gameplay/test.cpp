@@ -2,10 +2,14 @@
 
 #include "../conf.h"
 
+#ifdef OS_WIN
 #include <Windows.h>
+#endif
 #include <glew.h>
+#ifdef OS_WIN
 #include <gl/GL.h>
 #include <gl/GLU.h>
+#endif
 #include <string>
 #include <stdlib.h>
 #include <time.h>
@@ -49,7 +53,7 @@ Test::Test()
 
 
 	mySkybox = new skybox();
-	mySkybox->initSkyBox();
+	mySkybox->initSkyBox(10);
 
 
 
@@ -76,23 +80,18 @@ void Test::Draw()
 {
 	glUseProgram(0);
 
-	  glMatrixMode( GL_PROJECTION );
-    glLoadIdentity();
-	gluPerspective(45.0f,screenwidth / screenheight, 0.1, 1000);
-
-	 glMatrixMode( GL_MODELVIEW );
-	 glLoadIdentity();
 
 
-		myFreecam->CameraControl();
-			 mySkybox->renderSkyBox(10);
+	myFreecam->cameraMatrix = mat4(1);
+    myFreecam->CameraControl();
+			 mySkybox->renderSkyBox();
 		myFreecam->CameraTranslate();
 
-
+/*
 		gluLookAt(myFreecam->getCameraLookAt().x,myFreecam->getCameraLookAt().y,myFreecam->getCameraLookAt().z,
 			      myFreecam->getCameraDirection().x,myFreecam->getCameraDirection().y,myFreecam->getCameraDirection().z,
 				  0,1,0);
-
+*/
 
 
 
@@ -111,7 +110,12 @@ void Test::Draw()
 	glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,GL_LINEAR_MIPMAP_NEAREST );
 glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR );
  glGenerateMipmap(GL_TEXTURE_2D);
-
+    
+    
+    
+    
+    
+/*
 	glBegin(GL_TRIANGLES);
 
 
@@ -138,4 +142,5 @@ glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR );
 	glEnd();
 
 		glBindTexture(GL_TEXTURE_2D,0);
-}
+*/
+ }

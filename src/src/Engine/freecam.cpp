@@ -1,11 +1,40 @@
-﻿#define NO_SDL_GLEXT
+﻿/* $Id: freecam.cpp
+   Copyright (C) 2013 Kirill Kranz
 
-#include "../conf.h"
+  This source is free software; you can redistribute it and/or modify it under
+  the terms of the GNU General Public License as published by the Free
+  Software Foundation; either version 2 of the License, or (at your option)
+  any later version.
 
+  This code is distributed in the hope that it will be useful, but WITHOUT ANY
+  WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+  FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
+  details.
+
+  A copy of the GNU General Public License is available on the World Wide Web
+  at <http://www.gnu.org/copyleft/gpl.html>. You can also obtain it by writing
+  to the Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,
+  MA 02111-1307, USA.
+*/
+
+
+
+
+#define NO_SDL_GLEXT
+
+#include "../osSetup.h"
+#ifdef OS_WIN
 #include <Windows.h>
+#endif
+
 #include <glew.h>
+#ifdef OS_OSX
+#include <OpenGL/OpenGL.h>
+#endif
+#ifdef OS_WIN
 #include <gl/GL.h>
 #include <gl/GLU.h>
+#endif
 #include <string>
 #include <stdlib.h>
 #include <list>
@@ -22,10 +51,11 @@
 #include <ext.hpp>
 
 
-#include "../Tools.h"
+#include "../core/Tools.h"
 #include "freecam.h"
-#include "../main.h"
-#include "keys.h"
+#include "../core/main.h"
+#include "../input/keys.h"
+#include "../utils/setup.h"
 
 
 using namespace std;
@@ -34,18 +64,19 @@ using namespace glm;
 freecam::freecam()
 {
 
-	fly=true;
-
-	camX=100;
-	camY=10;
-	camZ=200;
+	camX=15;
+	camY=215;
+	camZ=422;
 
 	camYaw=0;
 	camPitch=0;
 
-	keyvel=1;
+	keyvel=5;
 	
 	mousevel=0.02f;
+
+
+	cameraMatrix = mat4(1);
 }
 
 vec3 freecam::getCameraLookAt()
@@ -107,7 +138,7 @@ void freecam::CameraControl()
 			if ((camPitch!=90) && (camPitch!=-90))
 			{
 				moveCamera(keyvel,0);
-				if(fly) moveCameraUp(keyvel,0);
+				moveCameraUp(keyvel,0);
 			}
 		}
 		if (keys::DOWNpressed)
@@ -115,7 +146,7 @@ void freecam::CameraControl()
 			if ((camPitch!=90) && (camPitch!=-90))
 			{
 				moveCamera(keyvel,180);
-                if(fly) moveCameraUp(keyvel,180);
+                moveCameraUp(keyvel,180);
 			}
 		}
 		if (keys::LEFTpressed)
@@ -126,14 +157,16 @@ void freecam::CameraControl()
 		{
 			moveCamera(keyvel,270);
 		}
-	glRotatef(-camPitch,1,0,0);
-	glRotatef(-camYaw,0,1,0);
+	
+		cameraMatrix = rotate(cameraMatrix, -camPitch, vec3(1.0f, 0.0f, 0.0f));
+		cameraMatrix = rotate(cameraMatrix, -camYaw, vec3(0.0f, 1.0f, 0.0f));
+	
 }
 
 
 void freecam::CameraTranslate()
 {
-	glTranslatef(-camX,-camY, -camZ);
+	cameraMatrix = translate(cameraMatrix,vec3(-camX,-camY, -camZ));
 }
 
 

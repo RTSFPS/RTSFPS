@@ -1,6 +1,10 @@
+#define NO_SDL_GLEXT
+
+
 #include "conf.h"
 #include "tools.h"
-#include "Engine\INIparser.h"
+#include "main.h"
+#include "Engine/INIparser.h"
 
 using namespace std;
 
@@ -22,7 +26,7 @@ bool screenFullScreen=false;
 void GetEngineStartupConfig()
 {
 	INIparser myINI;
-	if (!myINI.loadINI("engine.ini")) error("Unable to load 'engine.ini' !");
+	if (!myINI.loadINI(absoluteExecutablePath+"engine.ini")) error("Unable to load 'engine.ini' !");
 
 	screenwidth = strnum(myINI.getKeyValue("CORE","width"));
 	screenheight = strnum(myINI.getKeyValue("CORE","height"));

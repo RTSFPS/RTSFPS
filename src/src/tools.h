@@ -27,6 +27,7 @@
 
 
 #pragma once
+#define NO_SDL_GLEXT
 
 #include <string>
 
@@ -95,7 +96,10 @@ string GetDigitNumber10(int dig);
  */
 string GetDigitNumber100(int dig);
 
-
+/**
+ * @brief   convert a string to a char pointer <p/> <br/> 
+ */
+char* stringchar(string s);
 
 /**
  * @brief   extracts the path from a path+filename string without the last slash <p/> <br/> 
@@ -120,11 +124,7 @@ void CreateLogFile();
  * @details <p/> <br/> 	 it will make a logger.log if it does not exist, otherwise the logger.log will be created
  */
 void log(string Text);
-/**
- * @brief   writes a string into the existing LOGGER file and on the console<p/> <br/>
- * @details <p/> <br/> 	 it will make a logger.log if it does not exist, otherwise the logger.log will be created
- */
-void logwrite(string Text);
+
 
 /**
  * @brief   generates a random float value<p/> <br/> 

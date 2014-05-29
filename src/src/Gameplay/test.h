@@ -1,4 +1,5 @@
 #pragma once
+#define NO_SDL_GLEXT
 
 
 #include <string>

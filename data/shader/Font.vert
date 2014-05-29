@@ -1,14 +1,15 @@
-#version 430 core
-
-layout(location = 0) in vec3 vertex_position;
-layout(location = 1) in vec2 vertex_uv;
+#version 150 core
 
 uniform mat4 matrix;
+
+
+in vec3 inVertex;
+in vec2 inTextCoords;
 
 out vec2 texture_coordinates;
 
 void main () 
 {
-	texture_coordinates = vertex_uv;
-	gl_Position = matrix * vec4 (vertex_position, 1.0);
+	texture_coordinates = inTextCoords;
+	gl_Position = matrix * vec4(inVertex,1.0);
 }

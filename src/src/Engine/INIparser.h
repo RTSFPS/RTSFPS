@@ -1,3 +1,4 @@
+#define NO_SDL_GLEXT
 
 
 // ver 1.0

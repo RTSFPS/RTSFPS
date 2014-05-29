@@ -27,6 +27,7 @@
 
 
 #pragma once
+#define NO_SDL_GLEXT
 
 #include <SDL.h>
 #include <string>

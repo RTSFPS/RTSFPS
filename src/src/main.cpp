@@ -2,10 +2,17 @@
 
 #include "conf.h"
 
+#ifdef OS_WIN
 #include <Windows.h>
+#endif
 #include <glew.h>
+#ifdef OS_OSX
+#include <OpenGL/OpenGL.h>
+#endif
+#ifdef OS_WIN
 #include <gl/GL.h>
 #include <gl/GLU.h>
+#endif
 #include <string>
 #include <stdlib.h>
 #include <time.h>
@@ -47,27 +54,33 @@ drawfont* exStandartFont;
 unsigned int curTimeStamp=0;
 
 
+string absoluteExecutablePath="";
 
-
-
+#ifdef OS_WIN
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int iCmdShow)
+#endif
+#ifdef OS_OSX
+int main(int argc, char** argv)
+#endif
 {
-
-	CreateLogFile();
+    absoluteExecutablePath = getPathFromFullFileName(pcharstring(argv[0]))+"/";
+    
+    
+    CreateLogFile();
 
 	GetEngineStartupConfig();
 	
 	srand((unsigned int) time(NULL));
-	time_t start = time(0);
+	
 
 	
     if ( SDL_Init(SDL_INIT_VIDEO) != 0 ) error("Unable to initialize SDL2: " + (string) SDL_GetError());
 	
 	
-	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION,4);
+	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION,3);
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION,2);
-	//SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
-	SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_COMPATIBILITY);
+	SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
+	//SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_COMPATIBILITY);
 	
 	
 
@@ -86,13 +99,15 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	
     SDL_GLContext SDLopenGLcontext = SDL_GL_CreateContext(SDLwindow);
 	
-
+  
 	glewExperimental = GL_TRUE;
-	GLenum glewError = glewInit(); 
+	GLenum glewError = glewInit();
+        log("ok");
 	if( glewError != GLEW_OK ) error("Unable to init GLew: "+constpcharstr(glewGetErrorString(glewError)));
+
+
 	glGetError();
-
-
+ 
 	const GLubyte* glRenderer = glGetString (GL_RENDERER); 
 	const GLubyte *glVersion= glGetString(GL_VERSION);
 	log("OpenGL renderer "+pcharstr((unsigned char*)glRenderer));
@@ -137,7 +152,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 	bool quit=false;
 	SDL_Event event;
-	progEnterTime=GetTickCount();
+	progEnterTime=SDL_GetTicks();
 	while (!quit)
 	{
 
@@ -183,7 +198,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 			}
 		}
 		
-		curTimeStamp=GetTickCount()-progEnterTime;
+		curTimeStamp=SDL_GetTicks()-progEnterTime;
 
 		// Update
 
@@ -209,7 +224,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	//////////////////////////////////////////////////////////////////////////////////////		
 
 		dwFrames++;
-		dwCurrentTime = GetTickCount(); 
+		dwCurrentTime = SDL_GetTicks();
 		dwElapsedTime = dwCurrentTime - dwLastUpdateTime;
 		
 		if(dwElapsedTime >= 1000)
@@ -223,7 +238,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 		
 
-		if (how2showFPS==0) exStandartFont->glTextOut(10, 10 , theFPS, 0xffffffff);
+		if ((how2showFPS==0)&&(theFPS!="")) exStandartFont->glTextOut(10, 10 , theFPS, 0xffffffff);
 		if (how2showFPS==1) SDL_SetWindowTitle(SDLwindow,theFPS.c_str());
 
 

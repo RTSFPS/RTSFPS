@@ -1,15 +1,25 @@
-#pragma once
+#define NO_SDL_GLEXT
 
 #include "../conf.h"
+#ifdef OS_WIN
 #include <windows.h>
-#include <malloc.h>
-#include "mmsystem.h"
-#include "mmreg.h"
-#include "math.h"
 #include <GL/gl.h>
 #include <GL/glu.h>
+#include "mmsystem.h"
+#include "mmreg.h"
+#endif
+#ifdef OS_OSX
+#include <OpenGL/OpenGL.h>
+#include <OpenGL/glu.h>
+#endif
+
+//#include <malloc.h>
+
+#include "math.h"
+
 #include <SDL.h>
 #include <SDL_image.h>
+#include <SDL_OpenGL.h>
 #include "../tools.h"
 #include "../main.h"
 #include "glGraph.h"

@@ -16,6 +16,7 @@
   to the Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,
   MA 02111-1307, USA.
 */
+#define NO_SDL_GLEXT
 
 #include "conf.h"
 
@@ -176,6 +177,23 @@ string floatstr(float f)
 
 
 
+char* stringchar(string s)
+{
+	unsigned long len=s.length();
+
+	char *c;
+
+	c=new char [len+1];
+	
+	for (unsigned long i=0;i<s.length();i++)
+	{
+		c[i]=s[i];
+	}
+
+	c[len]=0;
+
+	return c;
+}
 
 
 #ifdef OS_WIN
@@ -214,11 +232,7 @@ void log(string Text)
 }
 
 
-void logwrite(string Text)
-{
-    log(Text);
-    printf("%s",Text.c_str());
-}
+
 
 
 
@@ -288,11 +302,6 @@ int randomRange( int low, int high )
 
 void error(string thetext)
 {
-#ifdef OS_iOS
-    string s="[ERROR] "+thetext;
-    printf("%s",s.c_str());
-#endif
-    
 	log("[ERROR] "+thetext);
 
 #ifdef OS_WIN
@@ -334,11 +343,6 @@ void error(string thetext)
 
 void makeMessage(string thetext)
 {
-#ifdef OS_iOS
-    string s="[MESSAGE] "+thetext;
-    printf("%s",s.c_str());
-#endif
-    
 	log("[MESSAGE] "+thetext);
 #ifdef OS_WIN
 	wstring stemp = s2ws(thetext);
@@ -403,9 +407,6 @@ unsigned long strlength(string s)
 #endif
 #ifdef OS_WIN
     return s.length();
-#endif
-#ifdef OS_iOS
-    if (s.length()==0) return 0; else return s.length()-1;
 #endif
 }
 

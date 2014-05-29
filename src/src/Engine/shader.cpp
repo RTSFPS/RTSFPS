@@ -1,9 +1,15 @@
 #define NO_SDL_GLEXT
 
+#include "../conf.h"
+
+#ifdef OS_WIN
 #include <Windows.h>
+#endif
 #include <GLew.h>
+#ifdef OS_WIN
 #include <gl/GL.h>
 #include <gl/GLU.h>
+#endif
 #include <string>
 #include <stdlib.h>
 #include <fstream>

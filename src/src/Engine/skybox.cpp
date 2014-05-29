@@ -2,10 +2,15 @@
 
 #include "../conf.h"
 
+#ifdef OS_WIN
 #include <Windows.h>
+#endif
 #include <glew.h>
+#ifdef OS_WIN
 #include <gl/GL.h>
 #include <gl/GLU.h>
+#endif
+
 #include <string>
 #include <stdlib.h>
 #include <list>
@@ -17,7 +22,10 @@
 
 #include <SDL_opengl.h>
 
+#include <glm.hpp>
+#include <ext.hpp>
 
+using namespace glm;
 using namespace std;
 
 
@@ -95,7 +103,7 @@ unsigned int skybox::loadTexture(string filename)
 
 
 
-void skybox::initSkyBox()
+void skybox::initSkyBox(float size)
 {
 	skyboxtextures[SKY_LEFT] = skybox::loadTexture(DATAfolder+"graph/skybox/left.bmp");
 	skyboxtextures[SKY_BACK] = skybox::loadTexture(DATAfolder+"graph/skybox/back.bmp");
@@ -103,6 +111,9 @@ void skybox::initSkyBox()
 	skyboxtextures[SKY_FRONT] = skybox::loadTexture(DATAfolder+"graph/skybox/front.bmp");
 	skyboxtextures[SKY_TOP] = skybox::loadTexture(DATAfolder+"graph/skybox/top.bmp");
 	skyboxtextures[SKY_BOTTOM] = skybox::loadTexture(DATAfolder+"graph/skybox/bottom.bmp");
+
+    this->size = size;
+
 }
 
 
@@ -112,7 +123,7 @@ void skybox::closeSkyBox()
 }
 
 
-void skybox::renderSkyBox(float size)
+void skybox::renderSkyBox()
 {
 	glDisable(GL_LIGHTING);
 	glDisable(GL_DEPTH_TEST);
