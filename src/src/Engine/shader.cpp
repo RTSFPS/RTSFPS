@@ -5,7 +5,7 @@
 #ifdef OS_WIN
 #include <Windows.h>
 #endif
-#include <GLew.h>
+#include <glew.h>
 #ifdef OS_WIN
 #include <gl/GL.h>
 #include <gl/GLU.h>

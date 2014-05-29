@@ -12,20 +12,26 @@
 #include <OpenGL/OpenGL.h>
 #include <OpenGL/glu.h>
 #endif
+#ifdef OS_LIN
+#include <GL/gl.h>
+#include <GL/glu.h>
+#endif
 
-//#include <malloc.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 #include "math.h"
 
 #include <SDL.h>
 #include <SDL_image.h>
-#include <SDL_OpenGL.h>
+#include <SDL_opengl.h>
 #include "../tools.h"
 #include "../main.h"
-#include "glGraph.h"
+#include "GLgraph.h"
 #include "SDLgraph.h"
 
-
+using namespace std;
 
 
 bool CreateImage(int ww, int hh, glImage &myImage)

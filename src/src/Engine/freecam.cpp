@@ -22,7 +22,7 @@
 
 #define NO_SDL_GLEXT
 
-#include "../osSetup.h"
+#include "../conf.h"
 #ifdef OS_WIN
 #include <Windows.h>
 #endif
@@ -51,11 +51,10 @@
 #include <ext.hpp>
 
 
-#include "../core/Tools.h"
+#include "../tools.h"
 #include "freecam.h"
-#include "../core/main.h"
-#include "../input/keys.h"
-#include "../utils/setup.h"
+#include "../main.h"
+#include "../Engine/keys.h"
 
 
 using namespace std;

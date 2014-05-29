@@ -29,7 +29,7 @@ using namespace glm;
 using namespace std;
 
 
-#include "../Tools.h"
+#include "../tools.h"
 #include "skybox.h"
 #include "../main.h"
 

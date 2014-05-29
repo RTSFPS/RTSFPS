@@ -31,19 +31,18 @@
 
 #include "main.h"
 
-
-using namespace std;
-using namespace glm;
-
 #include "tools.h"
-#include "engine/drawfont.h"
-#include "engine/shader.h"
-#include "engine/GLstuff.h"
+#include "Engine/drawfont.h"
+#include "Engine/shader.h"
+#include "Engine/GLstuff.h"
 #include "Engine/GLgraph.h"
 #include "Engine/SDLgraph.h"
 #include "Engine/keys.h"
 #include "Gameplay/test.h"
 
+
+using namespace std;
+using namespace glm;
 
 bool showMouse = true;
 int MouseX=0;
@@ -60,6 +59,9 @@ string absoluteExecutablePath="";
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int iCmdShow)
 #endif
 #ifdef OS_OSX
+int main(int argc, char** argv)
+#endif
+#ifdef OS_LIN
 int main(int argc, char** argv)
 #endif
 {
@@ -80,7 +82,7 @@ int main(int argc, char** argv)
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION,3);
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION,2);
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
-	//SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_COMPATIBILITY);
+//	SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_COMPATIBILITY);
 	
 	
 

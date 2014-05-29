@@ -29,8 +29,8 @@
 using namespace std;
 using namespace glm;
 
-#include "../engine/shader.h"
-#include "../engine/GLstuff.h"
+#include "../Engine/shader.h"
+#include "../Engine/GLstuff.h"
 #include "../Engine/GLgraph.h"
 #include "../Engine/SDLgraph.h"
 #include "../Engine/OBJparser.h"
@@ -78,6 +78,8 @@ Test::~Test()
 
 void Test::Draw()
 {
+
+/*
 	glUseProgram(0);
 
 
@@ -87,11 +89,11 @@ void Test::Draw()
 			 mySkybox->renderSkyBox();
 		myFreecam->CameraTranslate();
 
-/*
+
 		gluLookAt(myFreecam->getCameraLookAt().x,myFreecam->getCameraLookAt().y,myFreecam->getCameraLookAt().z,
 			      myFreecam->getCameraDirection().x,myFreecam->getCameraDirection().y,myFreecam->getCameraDirection().z,
 				  0,1,0);
-*/
+
 
 
 
@@ -115,7 +117,7 @@ glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR );
     
     
     
-/*
+
 	glBegin(GL_TRIANGLES);
 
 
