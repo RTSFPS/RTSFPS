@@ -11,7 +11,6 @@
 #endif
 #ifdef OS_WIN
 #include <gl/GL.h>
-#include <gl/GLU.h>
 #endif
 #include <string>
 #include <stdlib.h>
@@ -35,7 +34,6 @@
 #include "Engine/drawfont.h"
 #include "Engine/shader.h"
 #include "Engine/GLstuff.h"
-#include "Engine/GLgraph.h"
 #include "Engine/SDLgraph.h"
 #include "Engine/keys.h"
 #include "Gameplay/test.h"

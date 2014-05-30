@@ -27,7 +27,6 @@
 #include <glew.h>
 #ifdef OS_WIN
 #include <gl/GL.h>
-#include <gl/GLU.h>
 #endif
 #include <string>
 #include <stdlib.h>

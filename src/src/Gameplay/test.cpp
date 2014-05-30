@@ -8,7 +8,6 @@
 #include <glew.h>
 #ifdef OS_WIN
 #include <gl/GL.h>
-#include <gl/GLU.h>
 #endif
 #include <string>
 #include <stdlib.h>
@@ -31,7 +30,6 @@ using namespace glm;
 
 #include "../Engine/shader.h"
 #include "../Engine/GLstuff.h"
-#include "../Engine/GLgraph.h"
 #include "../Engine/SDLgraph.h"
 #include "../Engine/OBJparser.h"
 #include "../Engine/skybox.h"
@@ -51,10 +49,7 @@ Test::Test()
 	
 	myFreecam = new freecam();
 
-
-
-	mySkybox = new skybox();
-	mySkybox->initSkyBox(10);
+	mySkybox = new skybox(10);
 
 
 
@@ -62,15 +57,8 @@ Test::Test()
 
 		myObj = new OBJparser(DATAfolder+"scene/cube.obj");
 		textureID = loadTexture(DATAfolder+"graph/checker.jpg");
-
-
-
-   // Setup OpenGL
-
 		myShader = new shader(DATAfolder+"shader/texture.vert", DATAfolder+"shader/texture.frag");
-
 		myRenderer = new renderer(GL_STATIC_DRAW, GL_TRIANGLES, myShader->prog);
-
 		myRenderer->setNumVertex(myObj->numVertex);
 		myRenderer->LoadPoints(myObj->PositionBuffer,myObj->numPositions);
 		myRenderer->LoadTextCoords(myObj->TextureCoordBuffer,myObj->numTextureCoords);
@@ -81,7 +69,6 @@ Test::Test()
 Test::~Test()
 {
 	delete myFreecam;
-	mySkybox->closeSkyBox();
 	delete mySkybox;
 	delete myObj;
 }

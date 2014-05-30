@@ -39,9 +39,6 @@
       <Filter>Gameplay</Filter>
     </ClInclude>
     <ClInclude Include="src\conf.h" />
-    <ClInclude Include="src\Engine\GLgraph.h">
-      <Filter>Engine</Filter>
-    </ClInclude>
     <ClInclude Include="src\Engine\SDLgraph.h">
       <Filter>Engine</Filter>
     </ClInclude>
@@ -80,9 +77,6 @@
       <Filter>Gameplay</Filter>
     </ClCompile>
     <ClCompile Include="src\conf.cpp" />
-    <ClCompile Include="src\Engine\GLgraph.cpp">
-      <Filter>Engine</Filter>
-    </ClCompile>
     <ClCompile Include="src\Engine\SDLgraph.cpp">
       <Filter>Engine</Filter>
     </ClCompile>

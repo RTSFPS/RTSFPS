@@ -31,9 +31,6 @@ public:
 	unsigned int h;
 
 
-//	void BuidFontSprite(const char *c, int numchars, int relativesize);
-
-
 	void KillTexture();
 	
 

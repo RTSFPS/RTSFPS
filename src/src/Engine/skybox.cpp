@@ -8,7 +8,6 @@
 #include <glew.h>
 #ifdef OS_WIN
 #include <gl/GL.h>
-#include <gl/GLU.h>
 #endif
 
 #include <string>
@@ -103,7 +102,7 @@ unsigned int skybox::loadTexture(string filename)
 
 
 
-void skybox::initSkyBox(float size)
+skybox::skybox(float size)
 {
 	skyboxtextures[SKY_LEFT] = skybox::loadTexture(DATAfolder+"graph/skybox/left.bmp");
 	skyboxtextures[SKY_BACK] = skybox::loadTexture(DATAfolder+"graph/skybox/back.bmp");
@@ -334,7 +333,7 @@ void skybox::initSkyBox(float size)
 }
 
 
-void skybox::closeSkyBox()
+skybox::~skybox()
 {
 	glDeleteTextures(6,&skyboxtextures[0]);
 

@@ -17,8 +17,8 @@ class skybox
 {
 public:
 
-	void initSkyBox(float size);
-	void closeSkyBox();
+	 skybox(float size);
+	~skybox();
 
 	void renderSkyBox(mat4x4 m);
 

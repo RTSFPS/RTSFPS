@@ -8,7 +8,6 @@
 #include <glew.h>
 #ifdef OS_WIN
 #include <gl/GL.h>
-#include <gl/GLU.h>
 #endif
 #ifdef OS_OSX
 #include <OpenGL/OpenGL.h>
