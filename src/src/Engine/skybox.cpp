@@ -114,95 +114,277 @@ void skybox::initSkyBox(float size)
 
     this->size = size;
 
+	SkyShader = new shader(DATAfolder+"shader/texture.vert", DATAfolder+"shader/texture.frag");
+
+	vert_back[0] = size / 2;
+	vert_back[1] = size / 2;
+	vert_back[2] = size / 2;
+
+	vert_back[3] = -size / 2;
+	vert_back[4] = size / 2;
+	vert_back[5] = size / 2;
+
+	vert_back[6] = -size / 2;
+	vert_back[7] = -size / 2;
+	vert_back[8] = size / 2;
+
+	vert_back[9] = size / 2;
+	vert_back[10] = -size / 2;
+	vert_back[11] = size / 2;
+
+	text_back[0] = 0;
+	text_back[1] = 0;
+
+	text_back[2] = 1;
+	text_back[3] = 0;
+
+	text_back[4] = 1;
+	text_back[5] = 1;
+
+	text_back[6] = 0;
+	text_back[7] = 1;
+
+	back = new renderer(GL_STATIC_DRAW, GL_TRIANGLE_FAN, SkyShader->prog);
+	back->setNumVertex(4);
+	back->LoadPoints(vert_back,12);
+	back->LoadTextCoords(text_back,8);
+
+
+
+	vert_left[0] = -size / 2;
+	vert_left[1] = size / 2;
+	vert_left[2] = size / 2;
+
+	vert_left[3] = -size / 2;
+	vert_left[4] = size / 2;
+	vert_left[5] = -size / 2;
+
+	vert_left[6] = -size / 2;
+	vert_left[7] = -size / 2;
+	vert_left[8] = -size / 2;
+
+	vert_left[9] = -size / 2;
+	vert_left[10] = -size / 2;
+	vert_left[11] = size / 2;
+
+	text_left[0] = 0;
+	text_left[1] = 0;
+
+	text_left[2] = 1;
+	text_left[3] = 0;
+
+	text_left[4] = 1;
+	text_left[5] = 1;
+
+	text_left[6] = 0;
+	text_left[7] = 1;
+
+	left = new renderer(GL_STATIC_DRAW, GL_TRIANGLE_FAN, SkyShader->prog);
+	left->setNumVertex(4);
+	left->LoadPoints(vert_left,12);
+	left->LoadTextCoords(text_left,8);
+
+
+
+	vert_front[0] = size / 2;
+	vert_front[1] = size / 2;
+	vert_front[2] = -size / 2;
+
+	vert_front[3] = -size / 2;
+	vert_front[4] = size / 2;
+	vert_front[5] = -size / 2;
+
+	vert_front[6] = -size / 2;
+	vert_front[7] = -size / 2;
+	vert_front[8] = -size / 2;
+
+	vert_front[9] = size / 2;
+	vert_front[10] = -size / 2;
+	vert_front[11] = -size / 2;
+
+	text_front[0] = 1;
+	text_front[1] = 0;
+
+	text_front[2] = 0;
+	text_front[3] = 0;
+
+	text_front[4] = 0;
+	text_front[5] = 1;
+
+	text_front[6] = 1;
+	text_front[7] = 1;
+
+
+	front = new renderer(GL_STATIC_DRAW, GL_TRIANGLE_FAN, SkyShader->prog);
+	front->setNumVertex(4);
+	front->LoadPoints(vert_front,12);
+	front->LoadTextCoords(text_front,8);
+
+
+
+
+	vert_right[0] = size / 2;
+	vert_right[1] = size / 2;
+	vert_right[2] = -size / 2;
+
+	vert_right[3] = size / 2;
+	vert_right[4] = size / 2;
+	vert_right[5] = size / 2;
+
+	vert_right[6] = size / 2;
+	vert_right[7] = -size / 2;
+	vert_right[8] = size / 2;
+
+	vert_right[9] = size / 2;
+	vert_right[10] = -size / 2;
+	vert_right[11] = -size / 2;
+
+	text_right[0] = 0;
+	text_right[1] = 0;
+
+	text_right[2] = 1;
+	text_right[3] = 0;
+
+	text_right[4] = 1;
+	text_right[5] = 1;
+
+	text_right[6] = 0;
+	text_right[7] = 1;
+
+	right = new renderer(GL_STATIC_DRAW, GL_TRIANGLE_FAN, SkyShader->prog);
+	right->setNumVertex(4);
+	right->LoadPoints(vert_right,12);
+	right->LoadTextCoords(text_right,8);
+
+
+
+	
+
+	vert_top[0] = size / 2;
+	vert_top[1] = size / 2;
+	vert_top[2] = size / 2;
+
+	vert_top[3] = -size / 2;
+	vert_top[4] = size / 2;
+	vert_top[5] = size / 2;
+
+	vert_top[6] = -size / 2;
+	vert_top[7] = size / 2;
+	vert_top[8] = -size / 2;
+
+	vert_top[9] = size / 2;
+	vert_top[10] = size / 2;
+	vert_top[11] = -size / 2;
+
+	text_top[0] = 1;
+	text_top[1] = 0;
+
+	text_top[2] = 0;
+	text_top[3] = 0;
+
+	text_top[4] = 0;
+	text_top[5] = 1;
+
+	text_top[6] = 1;
+	text_top[7] = 1;
+
+	top = new renderer(GL_STATIC_DRAW, GL_TRIANGLE_FAN, SkyShader->prog);
+	top->setNumVertex(4);
+	top->LoadPoints(vert_top,12);
+	top->LoadTextCoords(text_top,8);
+
+
+
+	
+
+	vert_bottom[0] = size / 2;
+	vert_bottom[1] = -size / 2;
+	vert_bottom[2] = size / 2;
+
+	vert_bottom[3] = -size / 2;
+	vert_bottom[4] = -size / 2;
+	vert_bottom[5] = size / 2;
+
+	vert_bottom[6] = -size / 2;
+	vert_bottom[7] = -size / 2;
+	vert_bottom[8] = -size / 2;
+
+	vert_bottom[9] = size / 2;
+	vert_bottom[10] = -size / 2;
+	vert_bottom[11] = -size / 2;
+
+	text_bottom[0] = 1;
+	text_bottom[1] = 1;
+
+	text_bottom[2] = 0;
+	text_bottom[3] = 1;
+
+	text_bottom[4] = 0;
+	text_bottom[5] = 0;
+
+	text_bottom[6] = 1;
+	text_bottom[7] = 0;
+
+	bottom = new renderer(GL_STATIC_DRAW, GL_TRIANGLE_FAN, SkyShader->prog);
+	bottom->setNumVertex(4);
+	bottom->LoadPoints(vert_bottom,12);
+	bottom->LoadTextCoords(text_bottom,8);
+
+
 }
 
 
 void skybox::closeSkyBox()
 {
 	glDeleteTextures(6,&skyboxtextures[0]);
+
+	delete SkyShader;
+	delete back;
+	delete left;
+	delete front;
+	delete right;
+	delete top;
+	delete bottom;
 }
 
 
-void skybox::renderSkyBox()
+void skybox::renderSkyBox(mat4x4 m)
 {
+	
+	glUseProgram(SkyShader->prog);
+
+		int matrix_location = glGetUniformLocation (SkyShader->prog, "matrix");
+		glUniformMatrix4fv (matrix_location, 1, GL_FALSE, value_ptr(m));
+
+
 	glDisable(GL_LIGHTING);
 	glDisable(GL_DEPTH_TEST);
 	glEnable(GL_TEXTURE_2D);
 
+	
 	glBindTexture(GL_TEXTURE_2D,skyboxtextures[SKY_BACK]);
-
-	glColor4f(1.0,1.0,1.0,1.0);
-
-	glBegin(GL_QUADS);
-		glTexCoord2f(0,0);
-		glVertex3f(size/2,size/2,size/2);
-		glTexCoord2f(1,0);
-		glVertex3f(-size/2,size/2,size/2);
-		glTexCoord2f(1,1);
-		glVertex3f(-size/2,-size/2,size/2);
-		glTexCoord2f(0,1);
-		glVertex3f(size/2,-size/2,size/2);
-	glEnd();
+	back->Render();
 
 	glBindTexture(GL_TEXTURE_2D,skyboxtextures[SKY_LEFT]);
-	glBegin(GL_QUADS);
-		glTexCoord2f(0,0);
-		glVertex3f(-size/2,size/2,size/2);
-		glTexCoord2f(1,0);
-		glVertex3f(-size/2,size/2,-size/2);
-		glTexCoord2f(1,1);
-		glVertex3f(-size/2,-size/2,-size/2);
-		glTexCoord2f(0,1);
-		glVertex3f(-size/2,-size/2,size/2);
-	glEnd();
+	left->Render();
 
+	
 	glBindTexture(GL_TEXTURE_2D,skyboxtextures[SKY_FRONT]);
-	glBegin(GL_QUADS);
-		glTexCoord2f(1,0);
-		glVertex3f(size/2,size/2,-size/2);
-		glTexCoord2f(0,0);
-		glVertex3f(-size/2,size/2,-size/2);
-		glTexCoord2f(0,1);
-		glVertex3f(-size/2,-size/2,-size/2);
-		glTexCoord2f(1,1);
-		glVertex3f(size/2,-size/2,-size/2);
-	glEnd();
+	front->Render();
+
 
 	glBindTexture(GL_TEXTURE_2D,skyboxtextures[SKY_RIGHT]);
-	glBegin(GL_QUADS);
-		glTexCoord2f(0,0);
-		glVertex3f(size/2,size/2,-size/2);
-		glTexCoord2f(1,0);
-		glVertex3f(size/2,size/2,size/2);
-		glTexCoord2f(1,1);
-		glVertex3f(size/2,-size/2,size/2);
-		glTexCoord2f(0,1);
-		glVertex3f(size/2,-size/2,-size/2);
-	glEnd();
+	right->Render();
 
+
+		
 	glBindTexture(GL_TEXTURE_2D,skyboxtextures[SKY_TOP]);
-	glBegin(GL_QUADS);
-		glTexCoord2f(1,0);
-		glVertex3f(size/2,size/2,size/2);
-		glTexCoord2f(0,0);
-		glVertex3f(-size/2,size/2,size/2);
-		glTexCoord2f(0,1);
-		glVertex3f(-size/2,size/2,-size/2);
-		glTexCoord2f(1,1);
-		glVertex3f(size/2,size/2,-size/2);
-	glEnd();
+	top->Render();
+
+
 
 	glBindTexture(GL_TEXTURE_2D,skyboxtextures[SKY_BOTTOM]);
-	glBegin(GL_QUADS);
-		glTexCoord2f(1,1);
-		glVertex3f(size/2,-size/2,size/2);
-		glTexCoord2f(0,1);
-		glVertex3f(-size/2,-size/2,size/2);
-		glTexCoord2f(0,0);
-		glVertex3f(-size/2,-size/2,-size/2);
-		glTexCoord2f(1,0);
-		glVertex3f(size/2,-size/2,-size/2);
-	glEnd();
+	bottom->Render();
 
 	glEnable(GL_LIGHTING);
 	glEnable(GL_DEPTH_TEST);

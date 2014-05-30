@@ -20,7 +20,9 @@ public:
 	void initSkyBox(float size);
 	void closeSkyBox();
 
-	void renderSkyBox();
+	void renderSkyBox(mat4x4 m);
+
+	
 
 private:
 	enum {SKY_LEFT=0,SKY_BACK=1,SKY_RIGHT=2,SKY_FRONT=3,SKY_TOP=4,SKY_BOTTOM=5};
@@ -29,9 +31,9 @@ private:
     
     float size;
     
-    shader* SkyShader;
+	shader* SkyShader;
     int matrix_location;
-    mat4 matrix;
+
     
     
     float vert_left[12];
@@ -50,4 +52,9 @@ private:
     
 	
 	renderer* back;
+	renderer* left;
+	renderer* front;
+	renderer* right;
+	renderer* top;
+	renderer* bottom;
 };

@@ -90,45 +90,38 @@ Test::~Test()
 void Test::Draw()
 {
 
+		mat4 ProjMatrix = mat4(1);
+		ProjMatrix = perspective(45.0f, (float) screenwidth / screenheight, 0.01f, 10000.0f);
+
 	
-	glUseProgram(0);
-
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
-	gluPerspective(45,screenwidth / screenheight, 0.01, 10000);
 
 
-		glMatrixMode(GL_MODELVIEW);
-		glLoadIdentity();
 
-	myFreecam->cameraMatrix = mat4(1);
-    myFreecam->CameraControl();
+			myFreecam->cameraMatrix = mat4(1);
+			myFreecam->CameraControl();
 
-		glLoadMatrixf(value_ptr(myFreecam->cameraMatrix));
-
-			 mySkybox->renderSkyBox();
-
+		 mySkybox->renderSkyBox(ProjMatrix*myFreecam->cameraMatrix);
+		
 		myFreecam->CameraTranslate();
 
 
 
 
-		
-		glLoadMatrixf(value_ptr(myFreecam->cameraMatrix));
 
 
 
 
-		
+
 	glUseProgram(myShader->prog);
 
 	
-		mat4 ProjMatrix = mat4(1);
+		ProjMatrix = mat4(1);
 		ProjMatrix = perspective(45.0f, (float) screenwidth / screenheight, 0.01f, 10000.0f);
 
 
-		mat4 matrix = ProjMatrix*myFreecam->cameraMatrix;
-		int matrix_location = glGetUniformLocation (myShader->prog, "matrix");
+		mat4x4 matrix = ProjMatrix*myFreecam->cameraMatrix;
+		
+		uint		 matrix_location = glGetUniformLocation (myShader->prog, "matrix");
 		glUniformMatrix4fv (matrix_location, 1, GL_FALSE, value_ptr(matrix));
 
 
