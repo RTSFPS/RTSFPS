@@ -12,4 +12,5 @@ void main ()
 {
 	texture_coordinates = inTextCoords;
 	gl_Position = matrix * vec4(inVertex,1.0);
+	
 }

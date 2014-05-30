@@ -7,6 +7,8 @@
 #include "../Engine/OBJparser.h"
 #include "../Engine/skybox.h"
 #include "../Engine/freecam.h"
+#include "../Engine/renderer.h"
+#include "../Engine/shader.h"
 
 using namespace std;
 
@@ -29,6 +31,9 @@ public:
 
 	OBJparser* myObj;
 	unsigned int textureID;
+
+	shader* myShader;
+	renderer* myRenderer;
 
 
 };

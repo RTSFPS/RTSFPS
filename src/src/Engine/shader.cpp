@@ -117,7 +117,9 @@ shader::shader(string filenameVertexShader, string filenameFragmentShader)
 		glAttachShader(prog,vsID);
 		glAttachShader(prog,fsID);
 
-		
+//		    glBindAttribLocation(prog, 0, "inVertex");
+//			glBindAttribLocation(prog, 1, "inTextCoords");
+
 		glLinkProgram(prog);
 
 	

@@ -36,6 +36,7 @@ using namespace glm;
 #include "../Engine/OBJparser.h"
 #include "../Engine/skybox.h"
 #include "../Engine/freecam.h"
+#include "../Engine/renderer.h"
 #include "../tools.h"
 #include "test.h"
 
@@ -53,7 +54,7 @@ Test::Test()
 
 
 	mySkybox = new skybox();
-	mySkybox->initSkyBox(1000);
+	mySkybox->initSkyBox(10);
 
 
 
@@ -63,6 +64,16 @@ Test::Test()
 		textureID = loadTexture(DATAfolder+"graph/checker.jpg");
 
 
+
+   // Setup OpenGL
+
+		myShader = new shader(DATAfolder+"shader/texture.vert", DATAfolder+"shader/texture.frag");
+
+		myRenderer = new renderer(GL_STATIC_DRAW, GL_TRIANGLES, myShader->prog);
+
+		myRenderer->setNumVertex(myObj->numVertex);
+		myRenderer->LoadPoints(myObj->PositionBuffer,myObj->numPositions);
+		myRenderer->LoadTextCoords(myObj->TextureCoordBuffer,myObj->numTextureCoords);
 
 }
 
@@ -79,6 +90,7 @@ Test::~Test()
 void Test::Draw()
 {
 
+	
 	glUseProgram(0);
 
 	glMatrixMode(GL_PROJECTION);
@@ -91,6 +103,7 @@ void Test::Draw()
 
 	myFreecam->cameraMatrix = mat4(1);
     myFreecam->CameraControl();
+
 		glLoadMatrixf(value_ptr(myFreecam->cameraMatrix));
 
 			 mySkybox->renderSkyBox();
@@ -106,10 +119,18 @@ void Test::Draw()
 
 
 
+		
+	glUseProgram(myShader->prog);
+
+	
+		mat4 ProjMatrix = mat4(1);
+		ProjMatrix = perspective(45.0f, (float) screenwidth / screenheight, 0.01f, 10000.0f);
 
 
+		mat4 matrix = ProjMatrix*myFreecam->cameraMatrix;
+		int matrix_location = glGetUniformLocation (myShader->prog, "matrix");
+		glUniformMatrix4fv (matrix_location, 1, GL_FALSE, value_ptr(matrix));
 
-	glColor4f(1.0,1.0,1.0,1.0);
 
 	glDisable(GL_LIGHTING);
 	glEnable(GL_TEXTURE_2D);
@@ -123,34 +144,9 @@ void Test::Draw()
 	glGenerateMipmap(GL_TEXTURE_2D);
     
     
-    
-    
-    
+   
 
-	glBegin(GL_TRIANGLES);
-
-
-		for (unsigned int i=0;i<myObj->numVertex;i+=3)
-		{
-
-			glTexCoord2f(myObj->Vertices[i+0].u, myObj->Vertices[i+0].v);
-			glNormal3f(myObj->Vertices[i+0].nx, myObj->Vertices[i+0].ny,myObj->Vertices[i+0].nz);
-			glVertex3f(myObj->Vertices[i+0].x, myObj->Vertices[i+0].y,myObj->Vertices[i+0].z);
-		
-			glTexCoord2f(myObj->Vertices[i+1].u, myObj->Vertices[i+1].v);
-			glNormal3f(myObj->Vertices[i+1].nx, myObj->Vertices[i+1].ny,myObj->Vertices[i+1].nz);
-			glVertex3f(myObj->Vertices[i+1].x, myObj->Vertices[i+1].y,myObj->Vertices[i+1].z);
-			
-			glTexCoord2f(myObj->Vertices[i+2].u, myObj->Vertices[i+2].v);
-			glNormal3f(myObj->Vertices[i+2].nx, myObj->Vertices[i+2].ny,myObj->Vertices[i+2].nz);
-			glVertex3f(myObj->Vertices[i+2].x, myObj->Vertices[i+2].y,myObj->Vertices[i+2].z);
-			
-			
-		}
-
-
-
-	glEnd();
+	myRenderer->Render();
 
 		glBindTexture(GL_TEXTURE_2D,0);
 

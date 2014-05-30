@@ -19,6 +19,7 @@
     <ClInclude Include="src\engine\INIparser.h" />
     <ClInclude Include="src\engine\keys.h" />
     <ClInclude Include="src\engine\OBJparser.h" />
+    <ClInclude Include="src\Engine\renderer.h" />
     <ClInclude Include="src\Engine\SDLgraph.h" />
     <ClInclude Include="src\engine\shader.h" />
     <ClInclude Include="src\engine\skybox.h" />
@@ -35,6 +36,7 @@
     <ClCompile Include="src\engine\INIparser.cpp" />
     <ClCompile Include="src\engine\keys.cpp" />
     <ClCompile Include="src\engine\OBJparser.cpp" />
+    <ClCompile Include="src\Engine\renderer.cpp" />
     <ClCompile Include="src\Engine\SDLgraph.cpp" />
     <ClCompile Include="src\engine\shader.cpp" />
     <ClCompile Include="src\engine\skybox.cpp" />

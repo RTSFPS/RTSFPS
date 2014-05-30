@@ -9,6 +9,7 @@ using namespace glm;
 
 
 #include "shader.h"
+#include "renderer.h"
 
 
 
@@ -28,46 +29,25 @@ private:
     
     float size;
     
-    shader* skyShader;
+    shader* SkyShader;
     int matrix_location;
     mat4 matrix;
     
     
-    float* vert_left;
-    float* vert_back;
-    float* vert_right;
-    float* vert_front;
-    float* vert_top;
-    float* vert_bottom;
+    float vert_left[12];
+    float vert_back[12];
+    float vert_right[12];
+    float vert_front[12];
+    float vert_top[12];
+    float vert_bottom[12];
 
-    float* text_left;
-    float* text_back;
-    float* text_right;
-    float* text_front;
-    float* text_top;
-    float* text_bottom;
+    float text_left[8];
+    float text_back[8];
+    float text_right[8];
+    float text_front[8];
+    float text_top[8];
+    float text_bottom[8];
     
-    unsigned int left_vertVBO;
-    unsigned int left_textVBO;
-    unsigned int left_VAO;
-    
-    unsigned int back_vertVBO;
-    unsigned int back_textVBO;
-    unsigned int back_VAO;
-    
-    unsigned int right_vertVBO;
-    unsigned int right_textVBO;
-    unsigned int right_VAO;
-    
-    unsigned int front_vertVBO;
-    unsigned int front_textVBO;
-    unsigned int fron_VAO;
-    
-    unsigned int top_vertVBO;
-    unsigned int top_textVBO;
-    unsigned int top_VAO;
-    
-    unsigned int bottom_vertVBO;
-    unsigned int bottom_textVBO;
-    unsigned int bottom_VAO;
+	
+	renderer* back;
 };
