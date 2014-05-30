@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E01E8F36193911EE00FF5140 /* renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E01E8F34193911EE00FF5140 /* renderer.cpp */; };
 		E0BC4562193766A100684124 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0BC4561193766A100684124 /* Cocoa.framework */; };
 		E0BC456C193766A100684124 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E0BC456A193766A100684124 /* InfoPlist.strings */; };
 		E0BC4572193766A100684124 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = E0BC4570193766A100684124 /* Credits.rtf */; };
@@ -70,6 +71,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		E01E8F34193911EE00FF5140 /* renderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = renderer.cpp; sourceTree = "<group>"; };
+		E01E8F35193911EE00FF5140 /* renderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = renderer.h; sourceTree = "<group>"; };
 		E0BC455E193766A100684124 /* macbuild.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = macbuild.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0BC4561193766A100684124 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		E0BC4564193766A100684124 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -250,6 +253,8 @@
 		E0BC45A2193767BF00684124 /* Engine */ = {
 			isa = PBXGroup;
 			children = (
+				E01E8F34193911EE00FF5140 /* renderer.cpp */,
+				E01E8F35193911EE00FF5140 /* renderer.h */,
 				E0BC45A3193767BF00684124 /* drawfont.cpp */,
 				E0BC45A4193767BF00684124 /* drawfont.h */,
 				E0BC45A5193767BF00684124 /* freecam.cpp */,
@@ -390,6 +395,7 @@
 				E0BC45C8193767BF00684124 /* skybox.cpp in Sources */,
 				E0BC45CB193767BF00684124 /* tools.cpp in Sources */,
 				E0BC45C9193767BF00684124 /* test.cpp in Sources */,
+				E01E8F36193911EE00FF5140 /* renderer.cpp in Sources */,
 				E0BC45C6193767BF00684124 /* SDLgraph.cpp in Sources */,
 				E0BC45C4193767BF00684124 /* keys.cpp in Sources */,
 				E0BC45C3193767BF00684124 /* INIparser.cpp in Sources */,
