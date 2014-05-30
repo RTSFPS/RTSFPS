@@ -24,7 +24,6 @@
 		E0BC45BE193767BF00684124 /* conf.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E0BC45A0193767BF00684124 /* conf.cpp */; };
 		E0BC45BF193767BF00684124 /* drawfont.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E0BC45A3193767BF00684124 /* drawfont.cpp */; };
 		E0BC45C0193767BF00684124 /* freecam.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E0BC45A5193767BF00684124 /* freecam.cpp */; };
-		E0BC45C1193767BF00684124 /* GLgraph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E0BC45A7193767BF00684124 /* GLgraph.cpp */; };
 		E0BC45C2193767BF00684124 /* GLstuff.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E0BC45A9193767BF00684124 /* GLstuff.cpp */; };
 		E0BC45C3193767BF00684124 /* INIparser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E0BC45AB193767BF00684124 /* INIparser.cpp */; };
 		E0BC45C4193767BF00684124 /* keys.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E0BC45AD193767BF00684124 /* keys.cpp */; };
@@ -99,8 +98,6 @@
 		E0BC45A4193767BF00684124 /* drawfont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = drawfont.h; sourceTree = "<group>"; };
 		E0BC45A5193767BF00684124 /* freecam.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = freecam.cpp; sourceTree = "<group>"; };
 		E0BC45A6193767BF00684124 /* freecam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = freecam.h; sourceTree = "<group>"; };
-		E0BC45A7193767BF00684124 /* GLgraph.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLgraph.cpp; sourceTree = "<group>"; };
-		E0BC45A8193767BF00684124 /* GLgraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLgraph.h; sourceTree = "<group>"; };
 		E0BC45A9193767BF00684124 /* GLstuff.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLstuff.cpp; sourceTree = "<group>"; };
 		E0BC45AA193767BF00684124 /* GLstuff.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLstuff.h; sourceTree = "<group>"; };
 		E0BC45AB193767BF00684124 /* INIparser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = INIparser.cpp; sourceTree = "<group>"; };
@@ -259,8 +256,6 @@
 				E0BC45A4193767BF00684124 /* drawfont.h */,
 				E0BC45A5193767BF00684124 /* freecam.cpp */,
 				E0BC45A6193767BF00684124 /* freecam.h */,
-				E0BC45A7193767BF00684124 /* GLgraph.cpp */,
-				E0BC45A8193767BF00684124 /* GLgraph.h */,
 				E0BC45A9193767BF00684124 /* GLstuff.cpp */,
 				E0BC45AA193767BF00684124 /* GLstuff.h */,
 				E0BC45AB193767BF00684124 /* INIparser.cpp */,
@@ -391,7 +386,6 @@
 				E0BC45C7193767BF00684124 /* shader.cpp in Sources */,
 				E0BC45C2193767BF00684124 /* GLstuff.cpp in Sources */,
 				E0BC45C0193767BF00684124 /* freecam.cpp in Sources */,
-				E0BC45C1193767BF00684124 /* GLgraph.cpp in Sources */,
 				E0BC45C8193767BF00684124 /* skybox.cpp in Sources */,
 				E0BC45CB193767BF00684124 /* tools.cpp in Sources */,
 				E0BC45C9193767BF00684124 /* test.cpp in Sources */,

@@ -135,8 +135,7 @@ int main(int argc, char** argv)
 	glDepthFunc(GL_LEQUAL);
 		
 
-	mat4 ProjMatrix = perspective(45.0f, (float) screenwidth / screenheight, 0.01f, 10000.0f);
-
+	
 
 	//////////////////////////////////////////////////////////////////////////////////////
 
