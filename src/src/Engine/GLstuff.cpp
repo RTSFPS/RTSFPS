@@ -166,4 +166,3 @@ unsigned int createTexture(int w,int h, bool isDepth=false)
 	return textureID;
 
 }
-

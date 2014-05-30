@@ -3,7 +3,11 @@
 
 #include <string>
 
+#include <glm.hpp>
+#include <ext.hpp>
+
 using namespace std;
+using namespace glm;
 
 
 

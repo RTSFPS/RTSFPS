@@ -53,7 +53,7 @@ Test::Test()
 
 
 	mySkybox = new skybox();
-	mySkybox->initSkyBox(10);
+	mySkybox->initSkyBox(1000);
 
 
 
@@ -79,20 +79,29 @@ Test::~Test()
 void Test::Draw()
 {
 
-/*
 	glUseProgram(0);
 
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	gluPerspective(45,screenwidth / screenheight, 0.01, 10000);
 
+
+		glMatrixMode(GL_MODELVIEW);
+		glLoadIdentity();
 
 	myFreecam->cameraMatrix = mat4(1);
     myFreecam->CameraControl();
+		glLoadMatrixf(value_ptr(myFreecam->cameraMatrix));
+
 			 mySkybox->renderSkyBox();
+
 		myFreecam->CameraTranslate();
 
 
-		gluLookAt(myFreecam->getCameraLookAt().x,myFreecam->getCameraLookAt().y,myFreecam->getCameraLookAt().z,
-			      myFreecam->getCameraDirection().x,myFreecam->getCameraDirection().y,myFreecam->getCameraDirection().z,
-				  0,1,0);
+
+
+		
+		glLoadMatrixf(value_ptr(myFreecam->cameraMatrix));
 
 
 
@@ -100,7 +109,7 @@ void Test::Draw()
 
 
 
-	// glColor4f(1.0,1.0,1.0,1.0);
+	glColor4f(1.0,1.0,1.0,1.0);
 
 	glDisable(GL_LIGHTING);
 	glEnable(GL_TEXTURE_2D);
@@ -110,8 +119,8 @@ void Test::Draw()
 
 	glBindTexture(GL_TEXTURE_2D,textureID);
 	glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,GL_LINEAR_MIPMAP_NEAREST );
-glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR );
- glGenerateMipmap(GL_TEXTURE_2D);
+	glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR );
+	glGenerateMipmap(GL_TEXTURE_2D);
     
     
     
@@ -144,5 +153,5 @@ glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR );
 	glEnd();
 
 		glBindTexture(GL_TEXTURE_2D,0);
-*/
+
  }

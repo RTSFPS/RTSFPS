@@ -1,6 +1,6 @@
 [LOG]
 ok
-OpenGL renderer AMD Mobility Radeon HD 5000
-OpenGL version 3.2.12798 Core Profile Context 13.35.1005
+OpenGL renderer GeForce GTX 770/PCIe/SSE2
+OpenGL version 4.4.0
  - file ../data/scene/cube.obj has 26Vertex and 48Faces
 normal Exit

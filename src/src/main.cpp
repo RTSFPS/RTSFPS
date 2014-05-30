@@ -65,8 +65,12 @@ int main(int argc, char** argv)
 int main(int argc, char** argv)
 #endif
 {
-    absoluteExecutablePath = getPathFromFullFileName(pcharstring(argv[0]))+"/";
-    
+
+#ifdef OS_WIN
+	absoluteExecutablePath = "";
+#else
+	absoluteExecutablePath = getPathFromFullFileName(pcharstring(argv[0]))+"/";
+#endif
     
     CreateLogFile();
 
@@ -81,8 +85,8 @@ int main(int argc, char** argv)
 	
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION,3);
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION,2);
-	SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
-//	SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_COMPATIBILITY);
+//	SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
+	SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_COMPATIBILITY);
 	
 	
 
