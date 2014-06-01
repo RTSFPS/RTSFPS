@@ -1,0 +1,6 @@
+to play You must install:
+1) SDL2
+2) SDL2_image
+3) SDL2_ttf
+4) GLew
+5) Bullet 2.81

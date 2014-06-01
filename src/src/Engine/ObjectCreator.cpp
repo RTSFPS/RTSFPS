@@ -2,9 +2,15 @@
 #define _HAS_ITERATOR_DEBUGGING 0
 #define _SECURE_SCL 0
 
+#include "../conf.h"
+#ifdef OS_WIN
 #include <Windows.h>
+#endif
 #include <glew.h>
+#ifdef OS_WIN
 #include <gl/GL.h>
+#endif
+#include <math.h>
 #include <string>
 #include <vector>
 #include "../tools.h"

@@ -4,8 +4,15 @@
 #define _SECURE_SCL 0
 
 #define OS_WIN
-// #define OS_OSX
-// #define OS_LIN
+//#define OS_OSX
+//#define OS_LIN
+
+
+
+#if defined(__linux__)
+#define OS_LIN
+#undef OS_WIN
+#endif
 
 // if APPLE
 #if defined(__APPLE__)
