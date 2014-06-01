@@ -32,11 +32,29 @@
 #include <fstream>
 #include <sstream>
 #include <stdlib.h>
-
+#include <vector>
 #include "tools.h"
 
 using namespace std;
 
+vector <string> split(const string& str, const string& delimiter) 
+{
+    vector <string> tokens;
+
+    string::size_type lastPos = 0;
+    string::size_type pos = str.find(delimiter, lastPos);
+
+    while (string::npos != pos) {
+        // Found a token, add it to the vector.
+        cout << str.substr(lastPos, pos - lastPos) << endl;
+        tokens.push_back(str.substr(lastPos, pos - lastPos));
+        lastPos = pos + delimiter.size();
+        pos = str.find(delimiter, lastPos);
+    }
+
+    tokens.push_back(str.substr(lastPos, str.size() - lastPos));
+    return tokens;
+}
 
 string pcharstring(char* pch)
 {
@@ -404,8 +422,7 @@ unsigned long strlength(string s)
 {
 #ifdef OS_OSX
     if (s.length()==0) return 0; else return s.length()-1;
-#endif
-#ifdef OS_WIN
+#else
     return s.length();
 #endif
 }

@@ -30,6 +30,7 @@
 #define NO_SDL_GLEXT
 
 #include <string>
+#include <vector>
 
 using namespace std;
 
@@ -38,6 +39,11 @@ using namespace std;
 #endif
 
 #define byte unsigned char
+
+
+
+
+vector <string> split(const string& str, const string& delimiter);
 
 /**
  * @brief   convert a char pointer to a string  <p/> <br/>

@@ -106,7 +106,6 @@ int main(int argc, char** argv)
   
 	glewExperimental = GL_TRUE;
 	GLenum glewError = glewInit();
-        log("ok");
 	if( glewError != GLEW_OK ) error("Unable to init GLew: "+constpcharstr(glewGetErrorString(glewError)));
 
 

@@ -26,23 +26,7 @@ using namespace std;
 #include "shader.h"
 
 
-vector <string> split(const string& str, const string& delimiter = " ") {
-    vector <string> tokens;
 
-    string::size_type lastPos = 0;
-    string::size_type pos = str.find(delimiter, lastPos);
-
-    while (string::npos != pos) {
-        // Found a token, add it to the vector.
-        cout << str.substr(lastPos, pos - lastPos) << endl;
-        tokens.push_back(str.substr(lastPos, pos - lastPos));
-        lastPos = pos + delimiter.size();
-        pos = str.find(delimiter, lastPos);
-    }
-
-    tokens.push_back(str.substr(lastPos, str.size() - lastPos));
-    return tokens;
-}
 
 shader::shader(string shadername)
 {
