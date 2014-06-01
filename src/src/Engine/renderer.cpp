@@ -144,6 +144,37 @@ void renderer::LoadTextCoords(void* data, unsigned int numUVs)
 }
 
 
+void renderer::LoadColors(void* data, unsigned int numColors)
+{
+	
+		this->numColors = numColors;
+    
+    
+    	glBindVertexArray(VAO);
+    
+    
+
+		glGenBuffers (1, &ColorsVBO);
+
+		glBindBuffer(GL_ARRAY_BUFFER, ColorsVBO);
+		
+
+		glBufferData (GL_ARRAY_BUFFER,  numColors * sizeof (float), data, drawingMode);
+
+            glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0, 0);
+        glEnableVertexAttribArray(1);
+
+
+
+
+		    	glBindVertexArray(0);
+
+
+
+    
+}
+
+
 
 void renderer::Render()
 {

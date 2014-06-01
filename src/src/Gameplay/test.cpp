@@ -60,7 +60,6 @@ btRigidBody* Test::addSphere(vec3 xyz, float rad)
 
 		btTransform t;
 		t.setIdentity();
-		t.setIdentity();
 		t.setOrigin(btVector3(xyz.x,xyz.y,xyz.z));
 		btSphereShape* mySphere = new btSphereShape(1); // radius
 		btVector3 inertia(0,0,0);
@@ -80,7 +79,33 @@ btRigidBody* Test::addSphere(vec3 xyz, float rad)
 }
 
 
+btRigidBody* Test::addBox(vec3 center, vec3 whd)
+{
 
+		float mass=1;
+
+
+		btTransform t;
+		t.setIdentity();
+		t.setOrigin(btVector3(center.x,center.y,center.z));
+		btBoxShape* myBox = new btBoxShape(btVector3(whd.x,whd.y,whd.z));
+
+
+		btVector3 inertia(0,0,0);
+		myBox->calculateLocalInertia(mass,inertia); 
+
+		btMotionState* myBoxMotionState = new btDefaultMotionState(t);
+		btRigidBody::btRigidBodyConstructionInfo boxinfo(mass,myBoxMotionState,myBox);
+		btRigidBody* myBoxBody = new btRigidBody(boxinfo);
+
+		DynamicsWorld->addRigidBody(myBoxBody);
+
+		bodies.push_back(myBoxBody);
+
+		return myBoxBody;
+
+
+}
 
 
 Test::Test()
@@ -91,27 +116,41 @@ Test::Test()
 	mySkybox = new skybox(10);
 
 
+			textureID = loadTexture(DATAfolder+"graph/checker.jpg");
 
    // OBJ 
-
+	/*
 		myObj = new OBJparser(DATAfolder+"scene/cube.obj");
-		textureID = loadTexture(DATAfolder+"graph/checker.jpg");
+
 		myShader = new shader(DATAfolder+"shader/texture");
 		myRenderer = new renderer(GL_STATIC_DRAW, GL_TRIANGLES, myShader->prog);
 		myRenderer->setNumVertex(myObj->numVertex);
 		myRenderer->LoadPoints(myObj->PositionBuffer,myObj->numPositions);
 		myRenderer->LoadTextCoords(myObj->TextureCoordBuffer,myObj->numTextureCoords);
-
+		*/
 
 	// Sphere
 
+		mySphereShader = new shader(DATAfolder+"shader/texture");
 		mySphere = new ObjectCreator();
 		mySphere->createSphere(30,30,1);
-		mySphereRenderer = new renderer(GL_STATIC_DRAW, GL_TRIANGLES, myShader->prog);
+		mySphereRenderer = new renderer(GL_STATIC_DRAW, GL_TRIANGLES, mySphereShader->prog);
 		
 		mySphereRenderer->setNumVertex(mySphere->numVertex);
 		mySphereRenderer->LoadPoints(mySphere->Points,mySphere->numPoints);
 		mySphereRenderer->LoadTextCoords(mySphere->UVs,mySphere->numUVs);
+
+
+	// Box
+		myBoxShader = new shader(DATAfolder+"shader/flat");
+		myBox = new ObjectCreator();
+		myBox->createBox(1,1,1);
+		myBoxRenderer = new renderer(GL_STATIC_DRAW, GL_TRIANGLES, myBoxShader->prog);
+		
+		myBoxRenderer->setNumVertex(myBox->numVertex);
+		myBoxRenderer->LoadPoints(myBox->Points,myBox->numPoints);
+		myBoxRenderer->LoadColors(myBox->Colors,myBox->numColors);
+		//myBoxRenderer->LoadTextCoords(myBox->UVs,myBox->numUVs);
 
 
 	// BULLET
@@ -129,6 +168,7 @@ Test::Test()
 
 	
 		addSphere(vec3(0,20,0),1);
+		addBox(vec3(0,100,0),vec3(1,1,1));
 
 
 	//plain
@@ -156,7 +196,7 @@ Test::~Test()
 
 	delete myFreecam;
 	delete mySkybox;
-	delete myObj;
+//	delete myObj;
 
 
 	for(unsigned int i=0;i<bodies.size();i++)
@@ -227,10 +267,6 @@ void Test::Draw()
 
 
 
-	glUseProgram(myShader->prog);
-	glDisable(GL_LIGHTING);
-	glEnable(GL_TEXTURE_2D);
-	glBindTexture(GL_TEXTURE_2D,textureID);
 	
 					btTransform t;
 					
@@ -241,16 +277,46 @@ void Test::Draw()
 			t.setIdentity();
 			btRigidBody* body;
 			body = bodies[i];
-			body->getMotionState()->getWorldTransform(t);
-			mat4x4 matSphere;
-			t.getOpenGLMatrix(value_ptr(matSphere));
+			if (body->getCollisionShape()->getShapeType()==SPHERE_SHAPE_PROXYTYPE)
+			{
+				body->getMotionState()->getWorldTransform(t);
+				mat4x4 matSphere;
+				t.getOpenGLMatrix(value_ptr(matSphere));
 
-			mat4x4 matrix = ProjMatrix*myFreecam->cameraMatrix*matSphere;
+				mat4x4 matrix = ProjMatrix*myFreecam->cameraMatrix*matSphere;
+
+				
+				glUseProgram(mySphereShader->prog);
+				glDisable(GL_LIGHTING);
+				glEnable(GL_TEXTURE_2D);
+				glBindTexture(GL_TEXTURE_2D,textureID);
 		
-			uint		 matrix_location = glGetUniformLocation (myShader->prog, "matrix");
-			glUniformMatrix4fv (matrix_location, 1, GL_FALSE, value_ptr(matrix));
+				uint		 matrix_location = glGetUniformLocation (mySphereShader->prog, "matrix");
+				glUniformMatrix4fv (matrix_location, 1, GL_FALSE, value_ptr(matrix));
 
-			mySphereRenderer->Render();
+				mySphereRenderer->Render();
+			}
+			else if (body->getCollisionShape()->getShapeType()==BOX_SHAPE_PROXYTYPE)
+			{
+				btVector3 extent=((btBoxShape*)body->getCollisionShape())->getHalfExtentsWithoutMargin();
+
+				body->getMotionState()->getWorldTransform(t);
+				mat4x4 matSphere;
+				t.getOpenGLMatrix(value_ptr(matSphere));
+
+
+				
+				glUseProgram(myBoxShader->prog);
+				glDisable(GL_LIGHTING);
+				glEnable(GL_TEXTURE_2D);
+				glBindTexture(GL_TEXTURE_2D,textureID);
+				mat4x4 matrix = ProjMatrix*myFreecam->cameraMatrix*matSphere;
+		
+				uint		 matrix_location = glGetUniformLocation (myBoxShader->prog, "matrix");
+				glUniformMatrix4fv (matrix_location, 1, GL_FALSE, value_ptr(matrix));
+
+				myBoxRenderer->Render();
+			}
 		}
 
 		

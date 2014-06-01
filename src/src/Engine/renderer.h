@@ -91,6 +91,10 @@ public:
 
 
 
+	void LoadColors(void* data, unsigned int numColors);
+
+
+
 /**
  * @brief      renders the data in the Buffers depends on the GLSL version<p/> <br/> 
  * @details    you must mannualy setup the shader program, the material and the matrix<p/> <br/> 
@@ -111,6 +115,10 @@ private:
 
 	unsigned int UVsVBO;
 	unsigned int numUVs;
+
+	unsigned int ColorsVBO;
+	unsigned int numColors;
+
 
 	unsigned int drawingMode;
 	unsigned int PrimitiveType;

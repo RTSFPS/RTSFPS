@@ -38,6 +38,9 @@ public:
 	float* UVs;
 	unsigned int numUVs;
 
+	float* Colors;
+	unsigned int numColors;
+
 
 
 	string ObjectName;
@@ -48,6 +51,8 @@ public:
 	void FreeMemory();
 
 	void createSphere(int nRings, int nSegments, float Radius);
+	void createBox(float x, float y, float z);
+
 	void createTriangle();
 
 	void createScreenSpaceQuad();

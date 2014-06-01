@@ -38,14 +38,21 @@ public:
 
 	skybox* mySkybox;
 
-	OBJparser* myObj;
+	
 	unsigned int textureID;
-
+	/*
+	OBJparser* myObj;
 	shader* myShader;
 	renderer* myRenderer;
-	
+	*/
+
+	shader* mySphereShader;
 	ObjectCreator* mySphere;
 	renderer* mySphereRenderer;
+
+	shader* myBoxShader;
+	ObjectCreator* myBox;
+	renderer* myBoxRenderer;
 
 	btBroadphaseInterface* Broadphase;
 	btCollisionConfiguration* CollisionConfiguration;
@@ -57,7 +64,7 @@ public:
 	vector<btRigidBody*> bodies;
 
 	btRigidBody* addSphere(vec3 xyz, float rad);
+	btRigidBody* addBox(vec3 center, vec3 whd);
 
 	btRigidBody* myPlainBody;
-	btRigidBody* mySphereBody;
 };

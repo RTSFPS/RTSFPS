@@ -441,3 +441,96 @@ void ObjectCreator::createScreenSpaceQuad()
 
 
 }
+
+
+
+
+void ObjectCreator::createBox(float x, float y, float z)
+{
+	static const float vertexbufferdata[] = {
+    -x, -y, -z, 
+    -x, -y,  z,
+    -x,  y,  z, 
+     x,  y, -z, 
+    -x, -y, -z,
+    -x,  y, -z, 
+     x, -y,  z,
+    -x, -y, -z,
+     x, -y, -z,
+     x,  y, -z,
+     x, -y, -z,
+    -x, -y, -z,
+    -x, -y, -z,
+    -x,  y,  z,
+    -x,  y, -z,
+     x, -y,  z,
+    -x, -y,  z,
+    -x, -y, -z,
+    -x,  y,  z,
+    -x, -y,  z,
+     x, -y,  z,
+     x,  y,  z,
+     x, -y, -z,
+     x,  y, -z,
+     x, -y, -z,
+     x,  y,  z,
+     x, -y,  z,
+     x,  y,  z,
+     x,  y, -z,
+    -x,  y, -z,
+     x,  y,  z,
+    -x,  y, -z,
+    -x,  y,  z,
+     x,  y,  z,
+    -x,  y,  z,
+     x, -y,  z };
+
+	float r,g,b;
+	r=0;
+	g=1;
+	b=0;
+
+
+	unsigned int vertices = 36;
+
+	Vertices = new Vertex[vertices];
+	numVertex = vertices;
+
+	DrawMode = GL_TRIANGLES;
+
+	ObjectName = "cube";
+	matNumber = 0;
+
+	VertexPosition = true;
+	VertexNormals = false;
+	VertexColor = true;
+	VertexUV = false;
+
+	for (unsigned int i=0; i<numVertex; i++)
+	{
+		Vertices[i].x = vertexbufferdata[i * 3 + 0];
+		Vertices[i].y = vertexbufferdata[i * 3 + 1];
+		Vertices[i].z = vertexbufferdata[i * 3 + 2];
+		Vertices[i].r = r;
+		Vertices[i].g = g;
+		Vertices[i].b = b;
+	}
+
+	Points = new float[numVertex*3];
+	numPoints = numVertex * 3;
+	for (unsigned int i=0; i<numVertex; i++)
+	{
+		Points [i * 3 + 0] = Vertices[i].x;
+		Points [i * 3 + 1] = Vertices[i].y;
+		Points [i * 3 + 2] = Vertices[i].z;
+	}
+
+	Colors = new float[numVertex*3];
+	numColors = numVertex * 3;
+	for (unsigned int i=0; i<numVertex; i++)
+	{
+		Colors [i * 3 + 0] = Vertices[i].r;
+		Colors [i * 3 + 1] = Vertices[i].g;
+		Colors [i * 3 + 2] = Vertices[i].b;
+	}
+}
