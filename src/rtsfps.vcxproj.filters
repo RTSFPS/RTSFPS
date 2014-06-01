@@ -48,6 +48,9 @@
     <ClInclude Include="src\Engine\ObjectCreator.h">
       <Filter>Engine</Filter>
     </ClInclude>
+    <ClInclude Include="src\Engine\physics.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\engine\GLstuff.cpp">
@@ -87,6 +90,9 @@
       <Filter>Engine</Filter>
     </ClCompile>
     <ClCompile Include="src\Engine\ObjectCreator.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Engine\physics.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
   </ItemGroup>

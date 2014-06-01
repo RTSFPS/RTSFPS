@@ -16,11 +16,10 @@
 #include "../Engine/renderer.h"
 #include "../Engine/shader.h"
 #include "../Engine/ObjectCreator.h"
-
+#include "../Engine/physics.h"
 
 
 using namespace std;
-
 
 
 class Test
@@ -46,6 +45,8 @@ public:
 	renderer* myRenderer;
 	*/
 
+	physics* myPhysic;
+
 	shader* mySphereShader;
 	ObjectCreator* mySphere;
 	renderer* mySphereRenderer;
@@ -53,18 +54,4 @@ public:
 	shader* myBoxShader;
 	ObjectCreator* myBox;
 	renderer* myBoxRenderer;
-
-	btBroadphaseInterface* Broadphase;
-	btCollisionConfiguration* CollisionConfiguration;
-	btCollisionDispatcher* CollisionDispatcher;
-	btConstraintSolver* ConstraintSolver;
-	btDynamicsWorld* DynamicsWorld;
-
-
-	vector<btRigidBody*> bodies;
-
-	btRigidBody* addSphere(vec3 xyz, float rad);
-	btRigidBody* addBox(vec3 center, vec3 whd);
-
-	btRigidBody* myPlainBody;
 };

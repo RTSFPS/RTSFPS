@@ -43,6 +43,7 @@ using namespace glm;
 #include "../Engine/renderer.h"
 #include "../Engine/ObjectCreator.h"
 #include "../Engine/keys.h"
+#include "../Engine/physics.h"
 #include "../tools.h"
 #include "test.h"
 
@@ -52,71 +53,16 @@ using namespace glm;
 using namespace std;
 
 
-btRigidBody* Test::addSphere(vec3 xyz, float rad)
-{
-			
-		float mass=1;
-
-
-		btTransform t;
-		t.setIdentity();
-		t.setOrigin(btVector3(xyz.x,xyz.y,xyz.z));
-		btSphereShape* mySphere = new btSphereShape(1); // radius
-		btVector3 inertia(0,0,0);
-		mySphere->calculateLocalInertia(mass,inertia); 
-
-		btMotionState* mySphereMotionState = new btDefaultMotionState(t);
-		btRigidBody::btRigidBodyConstructionInfo sphereinfo(mass,mySphereMotionState,mySphere);
-		btRigidBody* mySphereBody = new btRigidBody(sphereinfo);
-
-		DynamicsWorld->addRigidBody(mySphereBody);
-
-		bodies.push_back(mySphereBody);
-
-		return mySphereBody;
-
-
-}
-
-
-btRigidBody* Test::addBox(vec3 center, vec3 whd)
-{
-
-		float mass=1;
-
-
-		btTransform t;
-		t.setIdentity();
-		t.setOrigin(btVector3(center.x,center.y,center.z));
-		btBoxShape* myBox = new btBoxShape(btVector3(whd.x,whd.y,whd.z));
-
-
-		btVector3 inertia(0,0,0);
-		myBox->calculateLocalInertia(mass,inertia); 
-
-		btMotionState* myBoxMotionState = new btDefaultMotionState(t);
-		btRigidBody::btRigidBodyConstructionInfo boxinfo(mass,myBoxMotionState,myBox);
-		btRigidBody* myBoxBody = new btRigidBody(boxinfo);
-
-		DynamicsWorld->addRigidBody(myBoxBody);
-
-		bodies.push_back(myBoxBody);
-
-		return myBoxBody;
-
-
-}
-
-
 Test::Test()
 {
 	
+	textureID = loadTexture(DATAfolder+"graph/checker.jpg");
+
 	myFreecam = new freecam();
 
 	mySkybox = new skybox(10);
 
-
-			textureID = loadTexture(DATAfolder+"graph/checker.jpg");
+	myPhysic = new physics();
 
    // OBJ 
 	/*
@@ -139,6 +85,7 @@ Test::Test()
 		mySphereRenderer->setNumVertex(mySphere->numVertex);
 		mySphereRenderer->LoadPoints(mySphere->Points,mySphere->numPoints);
 		mySphereRenderer->LoadTextCoords(mySphere->UVs,mySphere->numUVs);
+		mySphere->FreeMemory();
 
 
 	// Box
@@ -151,37 +98,17 @@ Test::Test()
 		myBoxRenderer->LoadPoints(myBox->Points,myBox->numPoints);
 		myBoxRenderer->LoadColors(myBox->Colors,myBox->numColors);
 		//myBoxRenderer->LoadTextCoords(myBox->UVs,myBox->numUVs);
+		myBox->FreeMemory();
 
 
 	// BULLET
 
-		
-	CollisionConfiguration = new btDefaultCollisionConfiguration();
-	CollisionDispatcher = new btCollisionDispatcher(CollisionConfiguration);
-	Broadphase = new btDbvtBroadphase();
-	ConstraintSolver = new btSequentialImpulseConstraintSolver();
-	DynamicsWorld = new btDiscreteDynamicsWorld(CollisionDispatcher,Broadphase,ConstraintSolver,CollisionConfiguration);
-	DynamicsWorld->setGravity(btVector3(0,-10,0));
-
-		
-
-
 	
-		addSphere(vec3(0,20,0),1);
-		addBox(vec3(0,100,0),vec3(1,1,1));
+		myPhysic->addSphere(vec3(0,20,0),1,1);
+		myPhysic->addBox(vec3(0,100,0),vec3(1,1,1),1);
+		myPhysic->addPlain(vec3(0,0,0),vec3(0,1,0),0);
 
-
-	//plain
-		btTransform t;
-		t.setIdentity();
-		t.setOrigin(btVector3(0.0f, 0.0f, 0.0f));
-		btStaticPlaneShape* myPlane = new btStaticPlaneShape(btVector3(0,1,0),0);
-		btMotionState* myPlainMotionState = new btDefaultMotionState();
-		btRigidBody::btRigidBodyConstructionInfo plaininfo(0,myPlainMotionState,myPlane);
-		myPlainBody = new btRigidBody(plaininfo);
-
-		DynamicsWorld->addRigidBody(myPlainBody);
-
+		
 }
 
 
@@ -192,51 +119,29 @@ Test::Test()
 Test::~Test()
 {
 
-	mySphere->FreeMemory();
-
 	delete myFreecam;
 	delete mySkybox;
+	delete myPhysic;
+
 //	delete myObj;
 
-
-	for(unsigned int i=0;i<bodies.size();i++)
-	{
-		DynamicsWorld->removeCollisionObject(bodies[i]);
-		btMotionState* motionState=bodies[i]->getMotionState();
-		btCollisionShape* shape=bodies[i]->getCollisionShape();
-		delete bodies[i];
-		delete shape;
-		delete motionState;
-	}
-
-		DynamicsWorld->removeCollisionObject(myPlainBody);
-		btMotionState* motionState=myPlainBody->getMotionState();
-		btCollisionShape* shape=myPlainBody->getCollisionShape();
-		delete myPlainBody;
-		delete shape;
-		delete motionState;
-
-
-	delete DynamicsWorld;
-	delete ConstraintSolver;
-	delete Broadphase;
-	delete CollisionDispatcher;
-	delete CollisionConfiguration;
+	glDeleteTextures( 1, &textureID );
 }
+	
 
 
 void Test::Draw()
 {
 	
-	DynamicsWorld->stepSimulation(1/60.0f);
+	myPhysic->DynamicsWorld->stepSimulation(1/60.0f);
 
 
 
 	if (keys::SPACEpressed)
 	{
-			btRigidBody* sphere=addSphere(vec3(myFreecam->getCamPos().x,myFreecam->getCamPos().y,myFreecam->getCamPos().z),1);
+			btRigidBody* sphere=myPhysic->addSphere(vec3(myFreecam->getCamPos().x,myFreecam->getCamPos().y,myFreecam->getCamPos().z),1,1);
 			vec3 look=myFreecam->getCameraDirection();
-			look *= 20;
+			look *= 200;
 			sphere->setLinearVelocity(btVector3(look.x,look.y,look.z));
 	}
 
@@ -252,31 +157,22 @@ void Test::Draw()
 
 
 
-			myFreecam->cameraMatrix = mat4(1);
-			myFreecam->CameraControl();
+		myFreecam->cameraMatrix = mat4(1);
+		myFreecam->CameraControl();
 
 		 mySkybox->renderSkyBox(ProjMatrix*myFreecam->cameraMatrix);
 		
 		myFreecam->CameraTranslate();
 
-
-
-
-
-
-
-
-
 	
-					btTransform t;
 					
-		for(unsigned int i=0;i<bodies.size();i++)
-		{
-	
 
+		for(unsigned int i=0;i<myPhysic->RigitBodies.size();i++)
+		{
+			btTransform t;
 			t.setIdentity();
 			btRigidBody* body;
-			body = bodies[i];
+			body = myPhysic->RigitBodies[i];
 			if (body->getCollisionShape()->getShapeType()==SPHERE_SHAPE_PROXYTYPE)
 			{
 				body->getMotionState()->getWorldTransform(t);
@@ -291,7 +187,7 @@ void Test::Draw()
 				glEnable(GL_TEXTURE_2D);
 				glBindTexture(GL_TEXTURE_2D,textureID);
 		
-				uint		 matrix_location = glGetUniformLocation (mySphereShader->prog, "matrix");
+				uint matrix_location = glGetUniformLocation (mySphereShader->prog, "matrix");
 				glUniformMatrix4fv (matrix_location, 1, GL_FALSE, value_ptr(matrix));
 
 				mySphereRenderer->Render();
@@ -304,7 +200,6 @@ void Test::Draw()
 				mat4x4 matSphere;
 				t.getOpenGLMatrix(value_ptr(matSphere));
 
-
 				
 				glUseProgram(myBoxShader->prog);
 				glDisable(GL_LIGHTING);
@@ -312,11 +207,43 @@ void Test::Draw()
 				glBindTexture(GL_TEXTURE_2D,textureID);
 				mat4x4 matrix = ProjMatrix*myFreecam->cameraMatrix*matSphere;
 		
-				uint		 matrix_location = glGetUniformLocation (myBoxShader->prog, "matrix");
+				uint matrix_location = glGetUniformLocation (myBoxShader->prog, "matrix");
 				glUniformMatrix4fv (matrix_location, 1, GL_FALSE, value_ptr(matrix));
 
 				myBoxRenderer->Render();
 			}
+			else if (body->getCollisionShape()->getShapeType()== STATIC_PLANE_PROXYTYPE)
+			{
+				
+						glUseProgram(0);
+
+						glMatrixMode(GL_PROJECTION);
+						glLoadIdentity();
+						gluPerspective(45,screenwidth/screenheight,0.01,10000);
+
+						glMatrixMode(GL_MODELVIEW);
+						//glLoadIdentity();
+
+						t.setIdentity();
+						body->getMotionState()->getWorldTransform(t);
+						mat4x4 matPlain;
+						t.getOpenGLMatrix(value_ptr(matPlain));
+
+
+						glLoadMatrixf(value_ptr(matPlain*myFreecam->cameraMatrix));
+
+						glBegin(GL_QUADS);
+		
+						glColor3f(0,0,1);
+
+							glVertex3f(-1000,0,1000);
+							glVertex3f(-1000,0,-1000);
+							glVertex3f(1000,0,-1000);
+							glVertex3f(1000,0,1000);
+						glEnd();
+			}
+
+			
 		}
 
 		
@@ -328,32 +255,7 @@ void Test::Draw()
 // PLAIN
 
 
-		glUseProgram(0);
 
-		glMatrixMode(GL_PROJECTION);
-		glLoadIdentity();
-		gluPerspective(45,screenwidth/screenheight,0.01,10000);
-
-		glMatrixMode(GL_MODELVIEW);
-		//glLoadIdentity();
-
-				t.setIdentity();
-		myPlainBody->getMotionState()->getWorldTransform(t);
-		mat4x4 matPlain;
-		t.getOpenGLMatrix(value_ptr(matPlain));
-
-
-		glLoadMatrixf(value_ptr(matPlain*myFreecam->cameraMatrix));
-
-		glBegin(GL_QUADS);
-		
-		glColor3f(0,0,1);
-
-			glVertex3f(-1000,0,1000);
-			glVertex3f(-1000,0,-1000);
-			glVertex3f(1000,0,-1000);
-			glVertex3f(1000,0,1000);
-		glEnd();
 
 
 		glBindTexture(GL_TEXTURE_2D,0);
