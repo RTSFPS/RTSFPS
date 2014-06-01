@@ -17,6 +17,7 @@
     <ClInclude Include="src\engine\GLstuff.h" />
     <ClInclude Include="src\engine\INIparser.h" />
     <ClInclude Include="src\engine\keys.h" />
+    <ClInclude Include="src\Engine\ObjectCreator.h" />
     <ClInclude Include="src\engine\OBJparser.h" />
     <ClInclude Include="src\Engine\renderer.h" />
     <ClInclude Include="src\Engine\SDLgraph.h" />
@@ -33,6 +34,7 @@
     <ClCompile Include="src\engine\GLstuff.cpp" />
     <ClCompile Include="src\engine\INIparser.cpp" />
     <ClCompile Include="src\engine\keys.cpp" />
+    <ClCompile Include="src\Engine\ObjectCreator.cpp" />
     <ClCompile Include="src\engine\OBJparser.cpp" />
     <ClCompile Include="src\Engine\renderer.cpp" />
     <ClCompile Include="src\Engine\SDLgraph.cpp" />
@@ -71,8 +73,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>src\Frameworks\SDL2\include;src\Frameworks\glm;src\Frameworks\GLew\include;$(IncludePath)</IncludePath>
-    <LibraryPath>src\Frameworks\SDL2\lib;src\Frameworks\GLew\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>src\Frameworks\SDL2\include;src\Frameworks\glm;src\Frameworks\GLew\include;src\Frameworks\Bullet\src;$(IncludePath)</IncludePath>
+    <LibraryPath>src\Frameworks\SDL2\lib;src\Frameworks\GLew\lib;src\Frameworks\Bullet\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -82,7 +84,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>OpenGL32.lib;GLu32.lib;GLew32.lib;SDL2main.lib;SDL2.lib;SDL2_image.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>OpenGL32.lib;GLu32.lib;GLew32.lib;SDL2main.lib;SDL2.lib;SDL2_image.lib;SDL2_ttf.lib;BulletCollision.lib;BulletDynamics.lib;LinearMath.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
     </Link>
   </ItemDefinitionGroup>

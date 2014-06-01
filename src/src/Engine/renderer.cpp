@@ -124,7 +124,9 @@ void renderer::LoadTextCoords(void* data, unsigned int numUVs)
 
 		glBindBuffer(GL_ARRAY_BUFFER, UVsVBO);
 		
+
 		glBufferData (GL_ARRAY_BUFFER,  numUVs * sizeof (float), data, drawingMode);
+
             glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0, 0);
         glEnableVertexAttribArray(1);
 

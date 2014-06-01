@@ -1,9 +1,9 @@
 #pragma once
 #define NO_SDL_GLEXT
 
-//#define OS_WIN
+#define OS_WIN
 // #define OS_OSX
- #define OS_LIN
+// #define OS_LIN
 
 // if APPLE
 #if defined(__APPLE__)

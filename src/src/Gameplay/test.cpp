@@ -35,6 +35,7 @@ using namespace glm;
 #include "../Engine/skybox.h"
 #include "../Engine/freecam.h"
 #include "../Engine/renderer.h"
+#include "../Engine/ObjectCreator.h"
 #include "../tools.h"
 #include "test.h"
 
@@ -63,11 +64,25 @@ Test::Test()
 		myRenderer->LoadPoints(myObj->PositionBuffer,myObj->numPositions);
 		myRenderer->LoadTextCoords(myObj->TextureCoordBuffer,myObj->numTextureCoords);
 
+
+	// Sphere
+
+		mySphere = new ObjectCreator();
+		mySphere->createSphere(30,30,1);
+		mySphereRenderer = new renderer(GL_STATIC_DRAW, GL_TRIANGLES, myShader->prog);
+		
+		mySphereRenderer->setNumVertex(mySphere->numVertex);
+		mySphereRenderer->LoadPoints(mySphere->Points,mySphere->numPoints);
+		mySphereRenderer->LoadTextCoords(mySphere->UVs,mySphere->numUVs);
+
 }
 
 
 Test::~Test()
 {
+
+	mySphere->FreeMemory();
+
 	delete myFreecam;
 	delete mySkybox;
 	delete myObj;
@@ -87,7 +102,7 @@ void Test::Draw()
 			myFreecam->cameraMatrix = mat4(1);
 			myFreecam->CameraControl();
 
-		 mySkybox->renderSkyBox(ProjMatrix*myFreecam->cameraMatrix);
+	//	 mySkybox->renderSkyBox(ProjMatrix*myFreecam->cameraMatrix);
 		
 		myFreecam->CameraTranslate();
 
@@ -126,7 +141,9 @@ void Test::Draw()
     
    
 
-	myRenderer->Render();
+//	myRenderer->Render();
+
+	mySphereRenderer->Render();
 
 		glBindTexture(GL_TEXTURE_2D,0);
 

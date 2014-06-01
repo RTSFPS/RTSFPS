@@ -9,6 +9,9 @@
 #include "../Engine/freecam.h"
 #include "../Engine/renderer.h"
 #include "../Engine/shader.h"
+#include "../Engine/ObjectCreator.h"
+
+
 
 using namespace std;
 
@@ -34,6 +37,7 @@ public:
 
 	shader* myShader;
 	renderer* myRenderer;
-
-
+	
+	ObjectCreator* mySphere;
+	renderer* mySphereRenderer;
 };
