@@ -11,9 +11,11 @@
 #endif
 #include <string>
 #include <stdlib.h>
+#include <stdio.h>
 #include <fstream>
-
-
+#include <vector>
+#include <iostream>
+#include <string.h>
 #include <SDL.h>
 #include <SDL_opengl.h>
 
@@ -24,10 +26,32 @@ using namespace std;
 #include "shader.h"
 
 
+vector <string> split(const string& str, const string& delimiter = " ") {
+    vector <string> tokens;
 
+    string::size_type lastPos = 0;
+    string::size_type pos = str.find(delimiter, lastPos);
 
-shader::shader(string filenameVertexShader, string filenameFragmentShader)
+    while (string::npos != pos) {
+        // Found a token, add it to the vector.
+        cout << str.substr(lastPos, pos - lastPos) << endl;
+        tokens.push_back(str.substr(lastPos, pos - lastPos));
+        lastPos = pos + delimiter.size();
+        pos = str.find(delimiter, lastPos);
+    }
+
+    tokens.push_back(str.substr(lastPos, str.size() - lastPos));
+    return tokens;
+}
+
+shader::shader(string shadername)
 {
+
+	string filenameVertexShader=shadername+".vert";
+	string filenameFragmentShader=shadername+".frag";
+	string filenameScriptShader=shadername+".scrpt";
+
+
 	ifstream inputVSfile(filenameVertexShader.c_str());
 
 	if (!inputVSfile) error("[shader] Error opening Vertex Shader File "+filenameFragmentShader);
@@ -116,8 +140,40 @@ shader::shader(string filenameVertexShader, string filenameFragmentShader)
 		glAttachShader(prog,vsID);
 		glAttachShader(prog,fsID);
 
-//		    glBindAttribLocation(prog, 0, "inVertex");
-//			glBindAttribLocation(prog, 1, "inTextCoords");
+
+
+
+
+
+
+	ifstream inputSSfile(filenameScriptShader.c_str());
+
+	if (!inputSSfile) error("[shader] Error opening Script Shader File "+filenameScriptShader);
+
+	string s;
+	vector <string> fields;
+	unsigned int i=0;
+	while(!inputSSfile.eof())
+	{
+		memset (ch,0,256);
+		inputSSfile.getline(ch,256);
+		if(inputSSfile.eof()) break;
+		s=ch;
+
+		// log(" - glBindAttribLocation("+numstr(i)+","+s+")");
+		  fields = split( s, ":" );
+	
+
+		
+		glBindAttribLocation(prog, i, fields[1].c_str());
+		i++;
+	}
+
+
+
+	inputSSfile.close();
+
+
 
 		glLinkProgram(prog);
 

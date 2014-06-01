@@ -57,7 +57,7 @@ Test::Test()
 
 		myObj = new OBJparser(DATAfolder+"scene/cube.obj");
 		textureID = loadTexture(DATAfolder+"graph/checker.jpg");
-		myShader = new shader(DATAfolder+"shader/texture.vert", DATAfolder+"shader/texture.frag");
+		myShader = new shader(DATAfolder+"shader/texture");
 		myRenderer = new renderer(GL_STATIC_DRAW, GL_TRIANGLES, myShader->prog);
 		myRenderer->setNumVertex(myObj->numVertex);
 		myRenderer->LoadPoints(myObj->PositionBuffer,myObj->numPositions);

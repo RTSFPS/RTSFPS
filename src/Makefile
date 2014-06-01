@@ -11,12 +11,12 @@ CFLAGS=$(INCLUDES_FRAMEWORKS) $(INCLUDES_CODE)
 LDFLAGS=-lSDL2 -lSDL2_image -lSDL2_ttf -lGL -lGLU -lGLEW
 
 
-# CFLAGS+=-Wall -Wextra -Winit-self -Woverloaded-virtual -Wuninitialized -Wint-to-pointer-cast -Weffc++ -O3 -std=c++11 -msse3
-CFLAGS+=-O3 -std=c++11 -msse3
+CFLAGS+=-Wall -Wextra -Winit-self -Woverloaded-virtual -Wuninitialized -Wint-to-pointer-cast -Weffc++ -O3 -std=c++11 -msse3
+# CFLAGS+=-O3 -std=c++11 -msse3
 
 
 SOURCES=./src/main.cpp ./src/tools.cpp ./src/conf.cpp \
-	./src/Engine/drawfont.cpp ./src/Engine/freecam.cpp ./src/Engine/GLgraph.cpp ./src/Engine/GLstuff.cpp \
+	./src/Engine/drawfont.cpp ./src/Engine/freecam.cpp ./src/Engine/renderer.cpp ./src/Engine/GLstuff.cpp \
 	./src/Engine/INIparser.cpp ./src/Engine/keys.cpp ./src/Engine/OBJparser.cpp ./src/Engine/SDLgraph.cpp \
 	./src/Engine/shader.cpp ./src/Engine/skybox.cpp \
 	./src/Gameplay/test.cpp

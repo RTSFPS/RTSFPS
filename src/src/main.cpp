@@ -219,7 +219,7 @@ int main(int argc, char** argv)
 		
 	//////////////////////////////////////////////////////////////////////////////////////		
 	
-	SDL_WarpMouseInWindow(SDLwindow,screenwidth / 2,screenheight / 2);
+		SDL_WarpMouseInWindow(SDLwindow,screenwidth / 2,screenheight / 2);
 		myTest->Draw();
 
 

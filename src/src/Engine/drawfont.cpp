@@ -206,7 +206,7 @@ drawfont::drawfont(string fontfilename,int size)
 		
 	if (!(curfont = TTF_OpenFont(fontfilename.c_str(), size))) error("TTF_OpenFont "+fontfilename+" fails: " + (string) SDL_GetError());
 
-	FontShader = new shader(DATAfolder+"shader/font.vert", DATAfolder+"shader/font.frag");
+	FontShader = new shader(DATAfolder+"shader/font");
 
 
 }

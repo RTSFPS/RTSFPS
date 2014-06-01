@@ -113,7 +113,7 @@ skybox::skybox(float size)
 
     this->size = size;
 
-	SkyShader = new shader(DATAfolder+"shader/texture.vert", DATAfolder+"shader/texture.frag");
+	SkyShader = new shader(DATAfolder+"shader/texture");
 
 	vert_back[0] = size / 2;
 	vert_back[1] = size / 2;
