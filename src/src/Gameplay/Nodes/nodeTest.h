@@ -10,29 +10,42 @@
 #include <btBulletCollisionCommon.h>
 
 
-#include "../Engine/OBJparser.h"
-#include "../Engine/skybox.h"
-#include "../Engine/freecam.h"
-#include "../Engine/renderer.h"
-#include "../Engine/shader.h"
-#include "../Engine/ObjectCreator.h"
-#include "../Engine/physics.h"
-
+#include "../../Engine/OBJparser.h"
+#include "../../Engine/skybox.h"
+#include "../../Engine/freecam.h"
+#include "../../Engine/renderer.h"
+#include "../../Engine/shader.h"
+#include "../../Engine/ObjectCreator.h"
+#include "../../Engine/physics.h"
+#include "../../Engine/SceneGraph.h"
+#include "../../Engine/Entitys/Node.h"
 
 using namespace std;
 
 
-class Test
+
+
+
+
+
+
+
+
+class nodeTest : public Node
 {
 public:
 
-
-	Test();
-   ~Test();
-
-   void Draw();
+	nodeTest();
+   ~nodeTest();
 
 
+	void update(void* data);
+	void render();
+
+private:
+
+
+	
     freecam* myFreecam;
 
 	skybox* mySkybox;
@@ -54,4 +67,6 @@ public:
 	shader* myBoxShader;
 	ObjectCreator* myBox;
 	renderer* myBoxRenderer;
+
+
 };

@@ -2,7 +2,7 @@
 #define _HAS_ITERATOR_DEBUGGING 0
 #define _SECURE_SCL 0
 
-#include "../conf.h"
+#include "../../conf.h"
 
 #ifdef OS_WIN
 #include <Windows.h>
@@ -31,31 +31,30 @@
 #include <btBulletCollisionCommon.h>
 
 
+
+#include "../../Engine/shader.h"
+#include "../../Engine/GLstuff.h"
+#include "../../Engine/SDLgraph.h"
+#include "../../Engine/OBJparser.h"
+#include "../../Engine/skybox.h"
+#include "../../Engine/freecam.h"
+#include "../../Engine/renderer.h"
+#include "../../Engine/ObjectCreator.h"
+#include "../../Engine/keys.h"
+#include "../../Engine/physics.h"
+#include "../../Engine/SceneGraph.h"
+#include "../../tools.h"
+#include "nodeTest.h"
+
+
+
 using namespace std;
 using namespace glm;
 
-#include "../Engine/shader.h"
-#include "../Engine/GLstuff.h"
-#include "../Engine/SDLgraph.h"
-#include "../Engine/OBJparser.h"
-#include "../Engine/skybox.h"
-#include "../Engine/freecam.h"
-#include "../Engine/renderer.h"
-#include "../Engine/ObjectCreator.h"
-#include "../Engine/keys.h"
-#include "../Engine/physics.h"
-#include "../tools.h"
-#include "test.h"
-
-
-
-
-using namespace std;
-
-
-Test::Test()
+nodeTest::nodeTest()
 {
 	
+
 	textureID = loadTexture(DATAfolder+"graph/checker.jpg");
 
 	myFreecam = new freecam();
@@ -64,16 +63,10 @@ Test::Test()
 
 	myPhysic = new physics();
 
-   // OBJ 
-	/*
-		myObj = new OBJparser(DATAfolder+"scene/cube.obj");
 
-		myShader = new shader(DATAfolder+"shader/texture");
-		myRenderer = new renderer(GL_STATIC_DRAW, GL_TRIANGLES, myShader->prog);
-		myRenderer->setNumVertex(myObj->numVertex);
-		myRenderer->LoadPoints(myObj->PositionBuffer,myObj->numPositions);
-		myRenderer->LoadTextCoords(myObj->TextureCoordBuffer,myObj->numTextureCoords);
-		*/
+
+
+
 
 	// Sphere
 
@@ -108,17 +101,14 @@ Test::Test()
 		myPhysic->addBox(vec3(0,100,0),vec3(1,1,1),1);
 		myPhysic->addPlain(vec3(0,0,0),vec3(0,1,0),0);
 
-		
+
 }
 
 
-
-
-
-
-Test::~Test()
+nodeTest::~nodeTest()
 {
 
+	
 	delete myFreecam;
 	delete mySkybox;
 	delete myPhysic;
@@ -126,13 +116,21 @@ Test::~Test()
 //	delete myObj;
 
 	glDeleteTextures( 1, &textureID );
+
 }
-	
 
 
-void Test::Draw()
+void nodeTest::update(void* data)
 {
-	
+
+
+
+}
+
+
+void nodeTest::render()
+{
+
 	myPhysic->DynamicsWorld->stepSimulation(1/60.0f);
 
 
@@ -260,4 +258,4 @@ void Test::Draw()
 
 		glBindTexture(GL_TEXTURE_2D,0);
 
- }
+}

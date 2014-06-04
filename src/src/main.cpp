@@ -38,7 +38,10 @@
 #include "Engine/GLstuff.h"
 #include "Engine/SDLgraph.h"
 #include "Engine/keys.h"
-#include "Gameplay/test.h"
+#include "Engine/SceneGraph.h"
+
+#include "Gameplay\Nodes\nodeTest.h"
+#include "Gameplay\Nodes\nodeShot.h"
 
 
 using namespace std;
@@ -136,11 +139,13 @@ int main(int argc, char** argv)
 	glDepthFunc(GL_LEQUAL);
 		
 
-	
+	SceneGraph* mySceneGraph = new SceneGraph();
 
 	//////////////////////////////////////////////////////////////////////////////////////
 
-		Test* myTest = new Test();
+		
+	nodeTest* aNodeTest = new nodeTest();
+	mySceneGraph->addNode(aNodeTest);
 
 	//////////////////////////////////////////////////////////////////////////////////////
 
@@ -221,7 +226,10 @@ int main(int argc, char** argv)
 	//////////////////////////////////////////////////////////////////////////////////////		
 	
 		SDL_WarpMouseInWindow(SDLwindow,screenwidth / 2,screenheight / 2);
-		myTest->Draw();
+
+
+		mySceneGraph->update(NULL);
+		mySceneGraph->render();
 
 
 
@@ -253,7 +261,7 @@ int main(int argc, char** argv)
 
 	//////////////////////////////////////////////////////////////////////////////////////	
 
-		myTest->~Test();
+	
 		
 
 	//////////////////////////////////////////////////////////////////////////////////////	
@@ -262,7 +270,7 @@ int main(int argc, char** argv)
 
 
 
-
+		delete mySceneGraph;
 
 
 	TTF_Quit();

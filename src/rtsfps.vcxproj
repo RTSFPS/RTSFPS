@@ -13,6 +13,9 @@
   <ItemGroup>
     <ClInclude Include="src\conf.h" />
     <ClInclude Include="src\engine\drawfont.h" />
+    <ClInclude Include="src\Engine\EntitySystem\Component.h" />
+    <ClInclude Include="src\Engine\EntitySystem\Entity.h" />
+    <ClInclude Include="src\Engine\Entitys\Node.h" />
     <ClInclude Include="src\engine\freecam.h" />
     <ClInclude Include="src\engine\GLstuff.h" />
     <ClInclude Include="src\engine\INIparser.h" />
@@ -21,10 +24,12 @@
     <ClInclude Include="src\engine\OBJparser.h" />
     <ClInclude Include="src\Engine\physics.h" />
     <ClInclude Include="src\Engine\renderer.h" />
+    <ClInclude Include="src\Engine\SceneGraph.h" />
     <ClInclude Include="src\Engine\SDLgraph.h" />
     <ClInclude Include="src\engine\shader.h" />
     <ClInclude Include="src\engine\skybox.h" />
-    <ClInclude Include="src\Gameplay\test.h" />
+    <ClInclude Include="src\Gameplay\Nodes\nodeShot.h" />
+    <ClInclude Include="src\Gameplay\Nodes\nodeTest.h" />
     <ClInclude Include="src\main.h" />
     <ClInclude Include="src\tools.h" />
   </ItemGroup>
@@ -39,10 +44,12 @@
     <ClCompile Include="src\engine\OBJparser.cpp" />
     <ClCompile Include="src\Engine\physics.cpp" />
     <ClCompile Include="src\Engine\renderer.cpp" />
+    <ClCompile Include="src\Engine\SceneGraph.cpp" />
     <ClCompile Include="src\Engine\SDLgraph.cpp" />
     <ClCompile Include="src\engine\shader.cpp" />
     <ClCompile Include="src\engine\skybox.cpp" />
-    <ClCompile Include="src\Gameplay\test.cpp" />
+    <ClCompile Include="src\Gameplay\Nodes\nodeShot.cpp" />
+    <ClCompile Include="src\Gameplay\Nodes\nodeTest.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\tools.cpp" />
   </ItemGroup>

@@ -7,6 +7,18 @@
     <Filter Include="Gameplay">
       <UniqueIdentifier>{1fa69b2d-85cf-444d-90d2-1eced23cf587}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Components">
+      <UniqueIdentifier>{c4900ec0-26c6-4e11-a2bc-c379aac04110}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\EntitySystem">
+      <UniqueIdentifier>{ae52d89d-25eb-43a2-8e56-925f5c5e0cf0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Entitys">
+      <UniqueIdentifier>{33215fbb-587a-44c1-944c-d19776e9ff41}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Gameplay\Nodes">
+      <UniqueIdentifier>{bc9a1f3a-878d-4461-8a21-c404eff8befb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\engine\freecam.h">
@@ -35,9 +47,6 @@
     </ClInclude>
     <ClInclude Include="src\main.h" />
     <ClInclude Include="src\tools.h" />
-    <ClInclude Include="src\Gameplay\test.h">
-      <Filter>Gameplay</Filter>
-    </ClInclude>
     <ClInclude Include="src\conf.h" />
     <ClInclude Include="src\Engine\SDLgraph.h">
       <Filter>Engine</Filter>
@@ -50,6 +59,24 @@
     </ClInclude>
     <ClInclude Include="src\Engine\physics.h">
       <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Engine\Entitys\Node.h">
+      <Filter>Engine\Entitys</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Engine\EntitySystem\Entity.h">
+      <Filter>Engine\EntitySystem</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Engine\EntitySystem\Component.h">
+      <Filter>Engine\EntitySystem</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Engine\SceneGraph.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Gameplay\Nodes\nodeShot.h">
+      <Filter>Gameplay\Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Gameplay\Nodes\nodeTest.h">
+      <Filter>Gameplay\Nodes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -79,9 +106,6 @@
     </ClCompile>
     <ClCompile Include="src\tools.cpp" />
     <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="src\Gameplay\test.cpp">
-      <Filter>Gameplay</Filter>
-    </ClCompile>
     <ClCompile Include="src\conf.cpp" />
     <ClCompile Include="src\Engine\SDLgraph.cpp">
       <Filter>Engine</Filter>
@@ -94,6 +118,15 @@
     </ClCompile>
     <ClCompile Include="src\Engine\physics.cpp">
       <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Engine\SceneGraph.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Gameplay\Nodes\nodeShot.cpp">
+      <Filter>Gameplay\Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Gameplay\Nodes\nodeTest.cpp">
+      <Filter>Gameplay\Nodes</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

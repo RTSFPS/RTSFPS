@@ -18,3 +18,4 @@ extern int MouseY;
 
 extern long g_lLastTime;
 extern long g_lElapsedTime;
+
