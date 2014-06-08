@@ -212,7 +212,7 @@ void nodeTest::render()
 			}
 			else if (body->getCollisionShape()->getShapeType()== STATIC_PLANE_PROXYTYPE)
 			{
-				
+				/*
 						glUseProgram(0);
 
 						glMatrixMode(GL_PROJECTION);
@@ -239,6 +239,7 @@ void nodeTest::render()
 							glVertex3f(1000,0,-1000);
 							glVertex3f(1000,0,1000);
 						glEnd();
+                 */
 			}
 
 			

@@ -1,0 +1,75 @@
+1) Create a Cocoa Application
+2) name  it propperly
+3) delete following files:
+		AppDelegate.h
+		AppDelegate.m
+		MainMenu.xib
+		main.m
+4) goto TARGETS and add under „General“ to the "Linked Frameworks and Libraries" by pressing + the SDL2.framework
+	add your SDL2.framework’s
+
+5) goto TARGETS and add under "Build Settings" / "Search Paths" setup the paths
+6) goto TARGETS and under LINKING / Runpath Search Paths set it to "@executable_path/../Frameworks" to find the farmeworks in the .app bundle
+7) under Build Phases under Copy Files Editor-Menu / Build Phases / add Copy Files Build Phase. set Destination to Framworks and add all the frameworks / Libs you need
+
+
+extra) setuping the GLEW: just run make in the flew directory, but than do:
+
+	"install_name_tool -id @executable_path/../Frameworks/libGLEW.1.10.0.dylib libGLEW.1.10.0.dylib"
+
+
+
+Buillet Physics :
+
+-LinearMath
+0)
+install_name_tool -id @executable_path/../Frameworks/libLinearMath.2.82.dylib libLinearMath.2.82.dylib
+
+- Collision
+0)
+install_name_tool -id @executable_path/../Frameworks/libBulletCollision.2.82.dylib libBulletCollision.2.82.dylib
+1)
+install_name_tool -change /Users/KeyReal/Desktop/RTSFPS/bullet-2.82-r2704/src/LinearMath/libLinearMath.2.82.dylib @executable_path/../Frameworks/libLinearMath.2.82.dylib libBulletCollision.2.82.dylib
+ 
+
+
+- Dynamics
+0)
+install_name_tool -id @executable_path/../Frameworks/libBulletDynamics.2.82.dylib libBulletDynamics.2.82.dylib
+1)
+install_name_tool -change /Users/KeyReal/Desktop/RTSFPS/bullet-2.82-r2704/src/LinearMath/libLinearMath.2.82.dylib @executable_path/../Frameworks/libLinearMath.2.82.dylib libBulletDynamics.2.82.dylib
+2)
+install_name_tool -change /Users/KeyReal/Desktop/RTSFPS/bullet-2.82-r2704/src/BulletCollision/libBulletCollision.2.82.dylib @executable_path/../Frameworks/libBulletCollision.2.82.dylib libBulletDynamics.2.82.dylib
+
+- MultiThreaded
+0)
+install_name_tool -id @executable_path/../Frameworks/libBulletMultiThreaded.2.82.dylib libBulletMultiThreaded.2.82.dylib
+1)
+install_name_tool -change /Users/KeyReal/Desktop/RTSFPS/bullet-2.82-r2704/src/LinearMath/libLinearMath.2.82.dylib @executable_path/../Frameworks/libLinearMath.2.82.dylib libBulletMultiThreaded.2.82.dylib
+2)
+install_name_tool -change /Users/KeyReal/Desktop/RTSFPS/bullet-2.82-r2704/src/BulletCollision/libBulletCollision.2.82.dylib @executable_path/../Frameworks/libBulletCollision.2.82.dylib libBulletMultiThreaded.2.82.dylib
+3)
+install_name_tool -change /Users/KeyReal/Desktop/RTSFPS/bullet-2.82-r2704/src/BulletDynamics/libBulletDynamics.2.82.dylib @executable_path/../Frameworks/libBulletDynamics.2.82.dylib libBulletMultiThreaded.2.82.dylib
+
+- SoftBody
+0)
+install_name_tool -id @executable_path/../Frameworks/libBulletSoftBody.2.82.dylib libBulletSoftBody.2.82.dylib
+1)
+install_name_tool -change /Users/KeyReal/Desktop/RTSFPS/bullet-2.82-r2704/src/LinearMath/libLinearMath.2.82.dylib @executable_path/../Frameworks/libLinearMath.2.82.dylib libBulletSoftBody.2.82.dylib
+2)
+install_name_tool -change /Users/KeyReal/Desktop/RTSFPS/bullet-2.82-r2704/src/BulletCollision/libBulletCollision.2.82.dylib @executable_path/../Frameworks/libBulletCollision.2.82.dylib libBulletSoftBody.2.82.dylib
+3)
+install_name_tool -change /Users/KeyReal/Desktop/RTSFPS/bullet-2.82-r2704/src/BulletDynamics/libBulletDynamics.2.82.dylib @executable_path/../Frameworks/libBulletDynamics.2.82.dylib libBulletSoftBody.2.82.dylib
+
+-MiniCL
+0)
+install_name_tool -id @executable_path/../Frameworks/libMiniCL.2.82.dylib libMiniCL.2.82.dylib
+1)
+install_name_tool -change /Users/KeyReal/Desktop/RTSFPS/bullet-2.82-r2704/src/LinearMath/libLinearMath.2.82.dylib @executable_path/../Frameworks/libLinearMath.2.82.dylib libMiniCL.2.82.dylib
+2)
+install_name_tool -change /Users/KeyReal/Desktop/RTSFPS/bullet-2.82-r2704/src/BulletCollision/libBulletCollision.2.82.dylib @executable_path/../Frameworks/libBulletCollision.2.82.dylib libMiniCL.2.82.dylib
+3)
+install_name_tool -change /Users/KeyReal/Desktop/RTSFPS/bullet-2.82-r2704/src/BulletDynamics/libBulletDynamics.2.82.dylib @executable_path/../Frameworks/libBulletDynamics.2.82.dylib libMiniCL.2.82.dylib
+4)
+install_name_tool -change /Users/KeyReal/Desktop/RTSFPS/bullet-2.82-r2704/src/BulletMultiThreaded/libBulletMultiThreaded.2.82.dylib @executable_path/../Frameworks/libBulletMultiThreaded.2.82.dylib libMiniCL.2.82.dylib
+

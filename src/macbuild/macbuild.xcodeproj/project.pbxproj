@@ -14,8 +14,6 @@
 		E0BC457A193766A100684124 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E0BC4579193766A100684124 /* Images.xcassets */; };
 		E0BC4581193766A100684124 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0BC4580193766A100684124 /* XCTest.framework */; };
 		E0BC4582193766A100684124 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0BC4561193766A100684124 /* Cocoa.framework */; };
-		E0BC458A193766A100684124 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E0BC4588193766A100684124 /* InfoPlist.strings */; };
-		E0BC458C193766A100684124 /* macbuildTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E0BC458B193766A100684124 /* macbuildTests.m */; };
 		E0BC45991937671700684124 /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0BC45951937671700684124 /* SDL2_image.framework */; };
 		E0BC459A1937671700684124 /* SDL2_mixer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0BC45961937671700684124 /* SDL2_mixer.framework */; };
 		E0BC459B1937671700684124 /* SDL2_ttf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0BC45971937671700684124 /* SDL2_ttf.framework */; };
@@ -31,9 +29,31 @@
 		E0BC45C6193767BF00684124 /* SDLgraph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E0BC45B1193767BF00684124 /* SDLgraph.cpp */; };
 		E0BC45C7193767BF00684124 /* shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E0BC45B3193767BF00684124 /* shader.cpp */; };
 		E0BC45C8193767BF00684124 /* skybox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E0BC45B5193767BF00684124 /* skybox.cpp */; };
-		E0BC45C9193767BF00684124 /* test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E0BC45B8193767BF00684124 /* test.cpp */; };
 		E0BC45CA193767BF00684124 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E0BC45BA193767BF00684124 /* main.cpp */; };
 		E0BC45CB193767BF00684124 /* tools.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E0BC45BC193767BF00684124 /* tools.cpp */; };
+		E0E92DCF1944809F00BB3152 /* nodeShot.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E0E92DCB1944809F00BB3152 /* nodeShot.cpp */; };
+		E0E92DD01944809F00BB3152 /* nodeTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E0E92DCD1944809F00BB3152 /* nodeTest.cpp */; };
+		E0E92DE61944853500BB3152 /* physics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E0E92DE21944853500BB3152 /* physics.cpp */; };
+		E0E92DE71944853500BB3152 /* SceneGraph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E0E92DE41944853500BB3152 /* SceneGraph.cpp */; };
+		E0E92DEA1944855400BB3152 /* ObjectCreator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E0E92DE81944855400BB3152 /* ObjectCreator.cpp */; };
+		E0E92DFD19448DB300BB3152 /* libBulletCollision.2.82.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E0E92DF119448DB300BB3152 /* libBulletCollision.2.82.dylib */; };
+		E0E92DFE19448DB300BB3152 /* libBulletCollision.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E0E92DF219448DB300BB3152 /* libBulletCollision.dylib */; };
+		E0E92DFF19448DB300BB3152 /* libBulletDynamics.2.82.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E0E92DF319448DB300BB3152 /* libBulletDynamics.2.82.dylib */; };
+		E0E92E0019448DB300BB3152 /* libBulletDynamics.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E0E92DF419448DB300BB3152 /* libBulletDynamics.dylib */; };
+		E0E92E0119448DB300BB3152 /* libBulletMultiThreaded.2.82.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E0E92DF519448DB300BB3152 /* libBulletMultiThreaded.2.82.dylib */; };
+		E0E92E0219448DB300BB3152 /* libBulletMultiThreaded.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E0E92DF619448DB300BB3152 /* libBulletMultiThreaded.dylib */; };
+		E0E92E0319448DB300BB3152 /* libBulletSoftBody.2.82.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E0E92DF719448DB300BB3152 /* libBulletSoftBody.2.82.dylib */; };
+		E0E92E0419448DB300BB3152 /* libBulletSoftBody.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E0E92DF819448DB300BB3152 /* libBulletSoftBody.dylib */; };
+		E0E92E0519448DB300BB3152 /* libLinearMath.2.82.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E0E92DF919448DB300BB3152 /* libLinearMath.2.82.dylib */; };
+		E0E92E0619448DB300BB3152 /* libLinearMath.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E0E92DFA19448DB300BB3152 /* libLinearMath.dylib */; };
+		E0E92E0719448DB300BB3152 /* libMiniCL.2.82.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E0E92DFB19448DB300BB3152 /* libMiniCL.2.82.dylib */; };
+		E0E92E0819448DB300BB3152 /* libMiniCL.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E0E92DFC19448DB300BB3152 /* libMiniCL.dylib */; };
+		E0E92E0919448DE200BB3152 /* libBulletCollision.2.82.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = E0E92DF119448DB300BB3152 /* libBulletCollision.2.82.dylib */; };
+		E0E92E0A19448DE600BB3152 /* libBulletDynamics.2.82.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = E0E92DF319448DB300BB3152 /* libBulletDynamics.2.82.dylib */; };
+		E0E92E0B19448DEA00BB3152 /* libBulletMultiThreaded.2.82.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = E0E92DF519448DB300BB3152 /* libBulletMultiThreaded.2.82.dylib */; };
+		E0E92E0C19448DEE00BB3152 /* libBulletSoftBody.2.82.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = E0E92DF719448DB300BB3152 /* libBulletSoftBody.2.82.dylib */; };
+		E0E92E0D19448DF600BB3152 /* libLinearMath.2.82.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = E0E92DF919448DB300BB3152 /* libLinearMath.2.82.dylib */; };
+		E0E92E0E19448DFC00BB3152 /* libMiniCL.2.82.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = E0E92DFB19448DB300BB3152 /* libMiniCL.2.82.dylib */; };
 		E0F331CA1937687400F78936 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0F331C91937687400F78936 /* OpenGL.framework */; };
 		E0F331CC1937697200F78936 /* SDL2.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = E0BC45981937671700684124 /* SDL2.framework */; };
 		E0F331CD1937697400F78936 /* SDL2_ttf.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = E0BC45971937671700684124 /* SDL2_ttf.framework */; };
@@ -64,6 +84,12 @@
 				E0F331CC1937697200F78936 /* SDL2.framework in CopyFiles */,
 				E0F331CD1937697400F78936 /* SDL2_ttf.framework in CopyFiles */,
 				E0F331CE1937697600F78936 /* SDL2_mixer.framework in CopyFiles */,
+				E0E92E0919448DE200BB3152 /* libBulletCollision.2.82.dylib in CopyFiles */,
+				E0E92E0A19448DE600BB3152 /* libBulletDynamics.2.82.dylib in CopyFiles */,
+				E0E92E0B19448DEA00BB3152 /* libBulletMultiThreaded.2.82.dylib in CopyFiles */,
+				E0E92E0C19448DEE00BB3152 /* libBulletSoftBody.2.82.dylib in CopyFiles */,
+				E0E92E0D19448DF600BB3152 /* libLinearMath.2.82.dylib in CopyFiles */,
+				E0E92E0E19448DFC00BB3152 /* libMiniCL.2.82.dylib in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,9 +110,6 @@
 		E0BC4579193766A100684124 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		E0BC457F193766A100684124 /* macbuildTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = macbuildTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0BC4580193766A100684124 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		E0BC4587193766A100684124 /* macbuildTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "macbuildTests-Info.plist"; sourceTree = "<group>"; };
-		E0BC4589193766A100684124 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		E0BC458B193766A100684124 /* macbuildTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = macbuildTests.m; sourceTree = "<group>"; };
 		E0BC45951937671700684124 /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = ../src/Frameworks/SDL2/maclib/SDL2_image.framework; sourceTree = "<group>"; };
 		E0BC45961937671700684124 /* SDL2_mixer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_mixer.framework; path = ../src/Frameworks/SDL2/maclib/SDL2_mixer.framework; sourceTree = "<group>"; };
 		E0BC45971937671700684124 /* SDL2_ttf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_ttf.framework; path = ../src/Frameworks/SDL2/maclib/SDL2_ttf.framework; sourceTree = "<group>"; };
@@ -112,12 +135,35 @@
 		E0BC45B4193767BF00684124 /* shader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = shader.h; sourceTree = "<group>"; };
 		E0BC45B5193767BF00684124 /* skybox.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = skybox.cpp; sourceTree = "<group>"; };
 		E0BC45B6193767BF00684124 /* skybox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = skybox.h; sourceTree = "<group>"; };
-		E0BC45B8193767BF00684124 /* test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = test.cpp; sourceTree = "<group>"; };
-		E0BC45B9193767BF00684124 /* test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = test.h; sourceTree = "<group>"; };
 		E0BC45BA193767BF00684124 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = ../src/main.cpp; sourceTree = "<group>"; };
 		E0BC45BB193767BF00684124 /* main.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = main.h; path = ../src/main.h; sourceTree = "<group>"; };
 		E0BC45BC193767BF00684124 /* tools.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = tools.cpp; path = ../src/tools.cpp; sourceTree = "<group>"; };
 		E0BC45BD193767BF00684124 /* tools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = tools.h; path = ../src/tools.h; sourceTree = "<group>"; };
+		E0E92DCB1944809F00BB3152 /* nodeShot.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = nodeShot.cpp; path = Nodes/nodeShot.cpp; sourceTree = "<group>"; };
+		E0E92DCC1944809F00BB3152 /* nodeShot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = nodeShot.h; path = Nodes/nodeShot.h; sourceTree = "<group>"; };
+		E0E92DCD1944809F00BB3152 /* nodeTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = nodeTest.cpp; path = Nodes/nodeTest.cpp; sourceTree = "<group>"; };
+		E0E92DCE1944809F00BB3152 /* nodeTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = nodeTest.h; path = Nodes/nodeTest.h; sourceTree = "<group>"; };
+		E0E92DDF194484FA00BB3152 /* Node.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Node.h; path = Entitys/Node.h; sourceTree = "<group>"; };
+		E0E92DE01944850700BB3152 /* Component.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Component.h; path = EntitySystem/Component.h; sourceTree = "<group>"; };
+		E0E92DE11944850700BB3152 /* Entity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Entity.h; path = EntitySystem/Entity.h; sourceTree = "<group>"; };
+		E0E92DE21944853500BB3152 /* physics.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = physics.cpp; sourceTree = "<group>"; };
+		E0E92DE31944853500BB3152 /* physics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = physics.h; sourceTree = "<group>"; };
+		E0E92DE41944853500BB3152 /* SceneGraph.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SceneGraph.cpp; sourceTree = "<group>"; };
+		E0E92DE51944853500BB3152 /* SceneGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneGraph.h; sourceTree = "<group>"; };
+		E0E92DE81944855400BB3152 /* ObjectCreator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ObjectCreator.cpp; sourceTree = "<group>"; };
+		E0E92DE91944855400BB3152 /* ObjectCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectCreator.h; sourceTree = "<group>"; };
+		E0E92DF119448DB300BB3152 /* libBulletCollision.2.82.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libBulletCollision.2.82.dylib; path = ../src/Frameworks/Bullet/maclib/libBulletCollision.2.82.dylib; sourceTree = "<group>"; };
+		E0E92DF219448DB300BB3152 /* libBulletCollision.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libBulletCollision.dylib; path = ../src/Frameworks/Bullet/maclib/libBulletCollision.dylib; sourceTree = "<group>"; };
+		E0E92DF319448DB300BB3152 /* libBulletDynamics.2.82.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libBulletDynamics.2.82.dylib; path = ../src/Frameworks/Bullet/maclib/libBulletDynamics.2.82.dylib; sourceTree = "<group>"; };
+		E0E92DF419448DB300BB3152 /* libBulletDynamics.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libBulletDynamics.dylib; path = ../src/Frameworks/Bullet/maclib/libBulletDynamics.dylib; sourceTree = "<group>"; };
+		E0E92DF519448DB300BB3152 /* libBulletMultiThreaded.2.82.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libBulletMultiThreaded.2.82.dylib; path = ../src/Frameworks/Bullet/maclib/libBulletMultiThreaded.2.82.dylib; sourceTree = "<group>"; };
+		E0E92DF619448DB300BB3152 /* libBulletMultiThreaded.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libBulletMultiThreaded.dylib; path = ../src/Frameworks/Bullet/maclib/libBulletMultiThreaded.dylib; sourceTree = "<group>"; };
+		E0E92DF719448DB300BB3152 /* libBulletSoftBody.2.82.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libBulletSoftBody.2.82.dylib; path = ../src/Frameworks/Bullet/maclib/libBulletSoftBody.2.82.dylib; sourceTree = "<group>"; };
+		E0E92DF819448DB300BB3152 /* libBulletSoftBody.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libBulletSoftBody.dylib; path = ../src/Frameworks/Bullet/maclib/libBulletSoftBody.dylib; sourceTree = "<group>"; };
+		E0E92DF919448DB300BB3152 /* libLinearMath.2.82.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libLinearMath.2.82.dylib; path = ../src/Frameworks/Bullet/maclib/libLinearMath.2.82.dylib; sourceTree = "<group>"; };
+		E0E92DFA19448DB300BB3152 /* libLinearMath.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libLinearMath.dylib; path = ../src/Frameworks/Bullet/maclib/libLinearMath.dylib; sourceTree = "<group>"; };
+		E0E92DFB19448DB300BB3152 /* libMiniCL.2.82.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libMiniCL.2.82.dylib; path = ../src/Frameworks/Bullet/maclib/libMiniCL.2.82.dylib; sourceTree = "<group>"; };
+		E0E92DFC19448DB300BB3152 /* libMiniCL.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libMiniCL.dylib; path = ../src/Frameworks/Bullet/maclib/libMiniCL.dylib; sourceTree = "<group>"; };
 		E0F331C91937687400F78936 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -130,6 +176,18 @@
 				E0BC459E1937679100684124 /* libGLEW.1.10.0.dylib in Frameworks */,
 				E0BC4562193766A100684124 /* Cocoa.framework in Frameworks */,
 				E0BC45991937671700684124 /* SDL2_image.framework in Frameworks */,
+				E0E92DFD19448DB300BB3152 /* libBulletCollision.2.82.dylib in Frameworks */,
+				E0E92DFE19448DB300BB3152 /* libBulletCollision.dylib in Frameworks */,
+				E0E92DFF19448DB300BB3152 /* libBulletDynamics.2.82.dylib in Frameworks */,
+				E0E92E0019448DB300BB3152 /* libBulletDynamics.dylib in Frameworks */,
+				E0E92E0119448DB300BB3152 /* libBulletMultiThreaded.2.82.dylib in Frameworks */,
+				E0E92E0219448DB300BB3152 /* libBulletMultiThreaded.dylib in Frameworks */,
+				E0E92E0319448DB300BB3152 /* libBulletSoftBody.2.82.dylib in Frameworks */,
+				E0E92E0419448DB300BB3152 /* libBulletSoftBody.dylib in Frameworks */,
+				E0E92E0519448DB300BB3152 /* libLinearMath.2.82.dylib in Frameworks */,
+				E0E92E0619448DB300BB3152 /* libLinearMath.dylib in Frameworks */,
+				E0E92E0719448DB300BB3152 /* libMiniCL.2.82.dylib in Frameworks */,
+				E0E92E0819448DB300BB3152 /* libMiniCL.dylib in Frameworks */,
 				E0BC459A1937671700684124 /* SDL2_mixer.framework in Frameworks */,
 				E0BC459B1937671700684124 /* SDL2_ttf.framework in Frameworks */,
 				E0BC459C1937671700684124 /* SDL2.framework in Frameworks */,
@@ -153,7 +211,6 @@
 			children = (
 				E0BC459F193767A200684124 /* src */,
 				E0BC4567193766A100684124 /* macbuild */,
-				E0BC4585193766A100684124 /* macbuildTests */,
 				E0BC4560193766A100684124 /* Frameworks */,
 				E0BC455F193766A100684124 /* Products */,
 			);
@@ -171,6 +228,18 @@
 		E0BC4560193766A100684124 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E0E92DF119448DB300BB3152 /* libBulletCollision.2.82.dylib */,
+				E0E92DF219448DB300BB3152 /* libBulletCollision.dylib */,
+				E0E92DF319448DB300BB3152 /* libBulletDynamics.2.82.dylib */,
+				E0E92DF419448DB300BB3152 /* libBulletDynamics.dylib */,
+				E0E92DF519448DB300BB3152 /* libBulletMultiThreaded.2.82.dylib */,
+				E0E92DF619448DB300BB3152 /* libBulletMultiThreaded.dylib */,
+				E0E92DF719448DB300BB3152 /* libBulletSoftBody.2.82.dylib */,
+				E0E92DF819448DB300BB3152 /* libBulletSoftBody.dylib */,
+				E0E92DF919448DB300BB3152 /* libLinearMath.2.82.dylib */,
+				E0E92DFA19448DB300BB3152 /* libLinearMath.dylib */,
+				E0E92DFB19448DB300BB3152 /* libMiniCL.2.82.dylib */,
+				E0E92DFC19448DB300BB3152 /* libMiniCL.dylib */,
 				E0F331C91937687400F78936 /* OpenGL.framework */,
 				E0BC459D1937679100684124 /* libGLEW.1.10.0.dylib */,
 				E0BC45951937671700684124 /* SDL2_image.framework */,
@@ -214,24 +283,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		E0BC4585193766A100684124 /* macbuildTests */ = {
-			isa = PBXGroup;
-			children = (
-				E0BC458B193766A100684124 /* macbuildTests.m */,
-				E0BC4586193766A100684124 /* Supporting Files */,
-			);
-			path = macbuildTests;
-			sourceTree = "<group>";
-		};
-		E0BC4586193766A100684124 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				E0BC4587193766A100684124 /* macbuildTests-Info.plist */,
-				E0BC4588193766A100684124 /* InfoPlist.strings */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		E0BC459F193767A200684124 /* src */ = {
 			isa = PBXGroup;
 			children = (
@@ -250,6 +301,14 @@
 		E0BC45A2193767BF00684124 /* Engine */ = {
 			isa = PBXGroup;
 			children = (
+				E0E92DE81944855400BB3152 /* ObjectCreator.cpp */,
+				E0E92DE91944855400BB3152 /* ObjectCreator.h */,
+				E0E92DE21944853500BB3152 /* physics.cpp */,
+				E0E92DE31944853500BB3152 /* physics.h */,
+				E0E92DE41944853500BB3152 /* SceneGraph.cpp */,
+				E0E92DE51944853500BB3152 /* SceneGraph.h */,
+				E0E92DDE194484E400BB3152 /* EntitySystem */,
+				E0E92DDD194484C000BB3152 /* Entitys */,
 				E01E8F34193911EE00FF5140 /* renderer.cpp */,
 				E01E8F35193911EE00FF5140 /* renderer.h */,
 				E0BC45A3193767BF00684124 /* drawfont.cpp */,
@@ -278,11 +337,38 @@
 		E0BC45B7193767BF00684124 /* Gameplay */ = {
 			isa = PBXGroup;
 			children = (
-				E0BC45B8193767BF00684124 /* test.cpp */,
-				E0BC45B9193767BF00684124 /* test.h */,
+				E0E92DCA1944809100BB3152 /* Nodes */,
 			);
 			name = Gameplay;
 			path = ../src/Gameplay;
+			sourceTree = "<group>";
+		};
+		E0E92DCA1944809100BB3152 /* Nodes */ = {
+			isa = PBXGroup;
+			children = (
+				E0E92DCB1944809F00BB3152 /* nodeShot.cpp */,
+				E0E92DCC1944809F00BB3152 /* nodeShot.h */,
+				E0E92DCD1944809F00BB3152 /* nodeTest.cpp */,
+				E0E92DCE1944809F00BB3152 /* nodeTest.h */,
+			);
+			name = Nodes;
+			sourceTree = "<group>";
+		};
+		E0E92DDD194484C000BB3152 /* Entitys */ = {
+			isa = PBXGroup;
+			children = (
+				E0E92DDF194484FA00BB3152 /* Node.h */,
+			);
+			name = Entitys;
+			sourceTree = "<group>";
+		};
+		E0E92DDE194484E400BB3152 /* EntitySystem */ = {
+			isa = PBXGroup;
+			children = (
+				E0E92DE01944850700BB3152 /* Component.h */,
+				E0E92DE11944850700BB3152 /* Entity.h */,
+			);
+			name = EntitySystem;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -372,7 +458,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E0BC458A193766A100684124 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -384,19 +469,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				E0BC45C7193767BF00684124 /* shader.cpp in Sources */,
+				E0E92DD01944809F00BB3152 /* nodeTest.cpp in Sources */,
+				E0E92DE71944853500BB3152 /* SceneGraph.cpp in Sources */,
 				E0BC45C2193767BF00684124 /* GLstuff.cpp in Sources */,
 				E0BC45C0193767BF00684124 /* freecam.cpp in Sources */,
 				E0BC45C8193767BF00684124 /* skybox.cpp in Sources */,
 				E0BC45CB193767BF00684124 /* tools.cpp in Sources */,
-				E0BC45C9193767BF00684124 /* test.cpp in Sources */,
+				E0E92DEA1944855400BB3152 /* ObjectCreator.cpp in Sources */,
 				E01E8F36193911EE00FF5140 /* renderer.cpp in Sources */,
 				E0BC45C6193767BF00684124 /* SDLgraph.cpp in Sources */,
 				E0BC45C4193767BF00684124 /* keys.cpp in Sources */,
 				E0BC45C3193767BF00684124 /* INIparser.cpp in Sources */,
 				E0BC45BF193767BF00684124 /* drawfont.cpp in Sources */,
 				E0BC45CA193767BF00684124 /* main.cpp in Sources */,
+				E0E92DCF1944809F00BB3152 /* nodeShot.cpp in Sources */,
 				E0BC45C5193767BF00684124 /* OBJparser.cpp in Sources */,
 				E0BC45BE193767BF00684124 /* conf.cpp in Sources */,
+				E0E92DE61944853500BB3152 /* physics.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -404,7 +493,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E0BC458C193766A100684124 /* macbuildTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -433,14 +521,6 @@
 				E0BC4571193766A100684124 /* en */,
 			);
 			name = Credits.rtf;
-			sourceTree = "<group>";
-		};
-		E0BC4588193766A100684124 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E0BC4589193766A100684124 /* en */,
-			);
-			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -525,7 +605,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/KeyReal/Desktop/RTSFPS/RTSFPS/src/src/Frameworks/SDL2/maclib,
+					"\"$(SRCROOT)/../src/Frameworks/SDL2/maclib\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "macbuild/macbuild-Prefix.pch";
@@ -535,11 +615,13 @@
 					"\"$(SRCROOT)/../src/Frameworks/GLew/include\"",
 					"\"$(SRCROOT)/../src/Frameworks/SDL2/include\"",
 					"\"$(SRCROOT)/../src/Frameworks/glm\"",
+					"\"$(SRCROOT)/../src/Frameworks/Bullet/src\"",
 				);
 				INFOPLIST_FILE = "macbuild/macbuild-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/KeyReal/Desktop/RTSFPS/RTSFPS/src/src/Frameworks/GLew/maclib,
+					../src/Frameworks/GLew/maclib,
+					../src/Frameworks/Bullet/maclib,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -553,7 +635,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/KeyReal/Desktop/RTSFPS/RTSFPS/src/src/Frameworks/SDL2/maclib,
+					"\"$(SRCROOT)/../src/Frameworks/SDL2/maclib\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "macbuild/macbuild-Prefix.pch";
@@ -563,11 +645,13 @@
 					"\"$(SRCROOT)/../src/Frameworks/GLew/include\"",
 					"\"$(SRCROOT)/../src/Frameworks/SDL2/include\"",
 					"\"$(SRCROOT)/../src/Frameworks/glm\"",
+					"\"$(SRCROOT)/../src/Frameworks/Bullet/src\"",
 				);
 				INFOPLIST_FILE = "macbuild/macbuild-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/KeyReal/Desktop/RTSFPS/RTSFPS/src/src/Frameworks/GLew/maclib,
+					../src/Frameworks/GLew/maclib,
+					../src/Frameworks/Bullet/maclib,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
