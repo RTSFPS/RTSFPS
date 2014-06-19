@@ -1,0 +1,2 @@
+DELETE texture in Material
+error ausspucken wenn einn Component nicht regestriert ist!
