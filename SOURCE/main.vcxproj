@@ -77,7 +77,6 @@
     <ClInclude Include="src\Components\MeshRenderer.h" />
     <ClInclude Include="src\Components\Renderer.h" />
     <ClInclude Include="src\Components\RenderManager.h" />
-    <ClInclude Include="src\Components\SkyBox.h" />
     <ClInclude Include="src\Components\SkyBoxRenderer.h" />
     <ClInclude Include="src\Components\TextRenderer.h" />
     <ClInclude Include="src\Components\Transform.h" />
@@ -111,7 +110,6 @@
     <ClCompile Include="src\Components\MeshRenderer.cpp" />
     <ClCompile Include="src\Components\Renderer.cpp" />
     <ClCompile Include="src\Components\RenderManager.cpp" />
-    <ClCompile Include="src\Components\SkyBox.cpp" />
     <ClCompile Include="src\Components\SkyBoxRenderer.cpp" />
     <ClCompile Include="src\Components\TextRenderer.cpp" />
     <ClCompile Include="src\Components\Transform.cpp" />

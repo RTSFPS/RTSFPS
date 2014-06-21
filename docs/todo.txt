@@ -1,9 +1,0 @@
-- ObjectCreator:
-	- Extend the Box with UVs and Normals
-
-- renderer:
-	- Be carefull with rendering:
-		- render modes:
-			- Points + UVs
-			- Points + Colors
-		  other render modes not supported

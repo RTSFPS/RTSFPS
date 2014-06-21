@@ -48,7 +48,6 @@
 #include "Components\Material.h"
 #include "Components\Transform.h"
 #include "Entitys\InputHandler.h"
-#include "Components\SkyBox.h"
 #include "Components\SkyBoxRenderer.h"
 #include "Components\Camera.h"
 #include "Entitys\FreeCam.h"
@@ -203,11 +202,9 @@ int main(int argc, char** argv)
 
 	
 	Entity* skybox = new Entity();
-	skybox->addComponent<SkyBox>();
 	skybox->addComponent<Material>(contentLoader->skyboxMaterial);
-	skybox->addComponent<Transform>(new Transform(vec3(0,0,0)));
+	skybox->addComponent<Transform>(new Transform(vec3(0,0,0),vec3(0,0,0),vec3(500,500,500)));
 	skybox->addComponent<SkyBoxRenderer>(new SkyBoxRenderer(renderManager));
-	skybox->getComponent<SkyBoxRenderer>()->load();
 	
 
 	//////////////////////////////////////////////////////////////////////////////////////
@@ -273,6 +270,17 @@ int main(int argc, char** argv)
 		// Update
 		
 		SDL_WarpMouseInWindow(SDLwindow,screenwidth / 2,screenheight / 2);
+
+
+		// rotate cube
+			
+		static float f=0;
+		f++;
+		cubus->getComponent<Transform>()->rotation.x = f;
+		cubus->getComponent<Transform>()->rotation.y = f;
+		cubus->getComponent<Transform>()->rotation.z = f;
+
+
 
 		framesPerScondContainer->getComponent<FramesPerSecond>()->calculateFps();
 

@@ -21,5 +21,5 @@ public:
 	mat4 cameraRotateMatrix;
 	mat4 cameraTranslateMatrix;
 
-
+	mat4 cameraProjectionMatrix;
 };

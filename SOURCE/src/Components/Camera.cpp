@@ -6,6 +6,7 @@
 #include <glm.hpp>
 #include <ext.hpp>
 
+#include "../conf.h"
 #include "Transform.h"
 #include "Camera.h"
 #include "../tools.h"
@@ -16,6 +17,8 @@ Camera::Camera()
 {
 	cameraRotateMatrix = mat4(1);
 	cameraTranslateMatrix = mat4(1);
+
+	cameraProjectionMatrix = perspective(45.0f, (float) screenwidth / screenheight, 0.01f, 1000.0f);
 }
 
 

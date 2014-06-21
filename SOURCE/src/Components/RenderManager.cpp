@@ -31,11 +31,11 @@ void RenderManager::registerSkyBoxRenderer(SkyBoxRenderer* renderer)
 
 void RenderManager::draw()
 {
-	skyboxRenderer->draw(this->camera->cameraRotateMatrix);
+	skyboxRenderer->draw(this->camera->cameraProjectionMatrix * this->camera->cameraRotateMatrix);
 
 	for(unsigned int i = 0; i < this->meshRenderers.size(); i++)
 	{
-		meshRenderers[i]->draw(this->camera->cameraRotateMatrix * this->camera->cameraTranslateMatrix);
+		meshRenderers[i]->draw(this->camera->cameraProjectionMatrix * this->camera->cameraRotateMatrix * this->camera->cameraTranslateMatrix);
 	}
 
 	for(unsigned int i = 0; i < this->textRenderers.size(); i++)

@@ -26,7 +26,7 @@ void FreeCam::handleEvent(Event* e)
 {
 
 	float mousevel = 0.02f;
-	float keyvel = 0.2f;
+	float keyvel = 1.0f;
 
 	Transform* transform = this->getComponent<Transform>();
 

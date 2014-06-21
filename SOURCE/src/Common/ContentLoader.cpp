@@ -79,17 +79,17 @@ Material* ContentLoader::loadSkyBoxMaterial(string shaderName, string skyboxPath
 	unsigned int tempShaderID = shaderr->prog;
 
 	SDL_Surface *xpos = IMG_Load(string(DATAfolder+skyboxPath+"/xpos.jpg").c_str());
-	if (!xpos) error("[loadSkyBoxMaterial] xpos.png not loaded");
+	if (!xpos) error("[loadSkyBoxMaterial] xpos.jpg not loaded");
 	SDL_Surface *xneg = IMG_Load(string(DATAfolder+skyboxPath+"/xneg.jpg").c_str());
-	if (!xneg) error("[loadSkyBoxMaterial] xneg not loaded");
+	if (!xneg) error("[loadSkyBoxMaterial] xneg.jpg not loaded");
 	SDL_Surface *ypos = IMG_Load(string(DATAfolder+skyboxPath+"/ypos.jpg").c_str()); 
-	if (!ypos) error("[loadSkyBoxMaterial] ypos not loaded");
+	if (!ypos) error("[loadSkyBoxMaterial] ypos.jpg not loaded");
 	SDL_Surface *yneg = IMG_Load(string(DATAfolder+skyboxPath+"/yneg.jpg").c_str());
-	if (!yneg) error("[loadSkyBoxMaterial] yneg not loaded");
+	if (!yneg) error("[loadSkyBoxMaterial] yneg.jpg not loaded");
 	SDL_Surface *zpos = IMG_Load(string(DATAfolder+skyboxPath+"/zpos.jpg").c_str()); 
-	if (!zpos) error("[loadSkyBoxMaterial] zpos not loaded");
+	if (!zpos) error("[loadSkyBoxMaterial] zpos.jpg not loaded");
 	SDL_Surface *zneg = IMG_Load(string(DATAfolder+skyboxPath+"/zneg.jpg").c_str());
-	if (!zneg) error("[loadSkyBoxMaterial] zneg not loaded");
+	if (!zneg) error("[loadSkyBoxMaterial] zneg.jpg not loaded");
 
 	unsigned int cubemap_texture;
 
@@ -99,6 +99,7 @@ Material* ContentLoader::loadSkyBoxMaterial(string shaderName, string skyboxPath
     glBindTexture(GL_TEXTURE_CUBE_MAP, cubemap_texture);
     glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
     glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+
     glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
     glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
     glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);

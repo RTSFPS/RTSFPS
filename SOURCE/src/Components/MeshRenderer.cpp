@@ -40,7 +40,6 @@
 #include "MeshRenderer.h"
 #include "Material.h"
 #include "Transform.h"
-#include "SkyBox.h"
 #include "Renderer.h"
 
 using namespace std;
@@ -93,83 +92,40 @@ MeshRenderer::~MeshRenderer()
 
 void MeshRenderer::draw(mat4 matrix)
 {
-
-
-	if (numIndices==0)
-	{
-
-		static float f=0;
-
-	
 		Material* material = this->parent->getComponent<Material>();
 
 		unsigned int shaderID = material->shaderID;
 		unsigned int textureID = material->textureID;
-
 	
-		mat4 ProjMatrix = mat4(1);
-		ProjMatrix = perspective(45.0f, (float) screenwidth / screenheight, 0.01f, 100.0f);
-	
-		mat4 ModelViewMatrix= matrix; 
+		mat4 finalMatrix = matrix;
 
+		Transform* transform = this->parent->getComponent<Transform>();
 
-		f++;
-		mat4 rotationMatrix = mat4(1.0f);
-		rotationMatrix*=rotate(f,vec3(1.0f,1.0f,1.0f));
+		
+		finalMatrix = translate (finalMatrix,transform->position);
 
+		vec3 rot = transform->rotation;
+		finalMatrix=rotate(finalMatrix,rot.x,vec3(1.0f,0.0f,0.0f));
+		finalMatrix=rotate(finalMatrix,rot.y,vec3(0.0f,1.0f,0.0f));
+		finalMatrix=rotate(finalMatrix,rot.z,vec3(0.0f,0.0f,1.0f));
 
+		finalMatrix = scale(finalMatrix,transform->scale);
 
-		vec3 pos = this->parent->getComponent<Transform>()->position;
-		mat4 translationMatrix = mat4(1);
-		translationMatrix = translate (pos);
-
-		mat4x4 finalmatrix = ProjMatrix * ModelViewMatrix * translationMatrix * rotationMatrix;
-
-				
+		
 		glUseProgram(shaderID);
 		glDisable(GL_LIGHTING);
 		glEnable(GL_TEXTURE_2D);
 		glBindTexture(GL_TEXTURE_2D,textureID);
 
 		uint matrix_location = glGetUniformLocation (shaderID, "matrix");
-		glUniformMatrix4fv (matrix_location, 1, GL_FALSE, value_ptr(finalmatrix));
+		glUniformMatrix4fv (matrix_location, 1, GL_FALSE, value_ptr(finalMatrix));
 
 
 		glBindVertexArray(vao);
-		glDrawArrays (triangleType, 0, numVertex);
 
 
-	}
+	if (numIndices==0) glDrawArrays (triangleType, 0, numVertex);
 
-
-	if (numIndices!=0)
-	{
-		Material* material = this->parent->getComponent<Material>();
-
-		unsigned int shaderID = material->shaderID;
-		unsigned int textureID = material->textureID;
-
-
-		mat4 Projection = perspective(45.0f, (float) screenwidth / screenheight, 0.01f, 100.0f);
-		mat4 View       = mat4(1.0f);
-		mat4 Model      = scale(glm::mat4(1.0f),glm::vec3(50,50,50));
-
-		mat4x4 matrix = Projection * View * Model;
-
-				
-		glUseProgram(shaderID);
-		glDisable(GL_LIGHTING);
-		glEnable(GL_TEXTURE_CUBE_MAP);
-		glActiveTexture(GL_TEXTURE0);
-		glBindTexture(GL_TEXTURE_CUBE_MAP, textureID);
-
-		uint matrix_location = glGetUniformLocation (shaderID, "matrix");
-		glUniformMatrix4fv (matrix_location, 1, GL_FALSE, value_ptr(matrix));
-
-
-		glBindVertexArray(vao);
-		glDrawElements(GL_QUADS, 24*sizeof(unsigned int), GL_UNSIGNED_INT, 0);
-
-	}
+	if (numIndices!=0) glDrawElements(GL_QUADS, 24*sizeof(unsigned int), GL_UNSIGNED_INT, 0);
 	
 }

@@ -23,7 +23,6 @@ public:
 	SkyBoxRenderer(Component* renderManager);
 	virtual ~SkyBoxRenderer();
 
-	void load();
 
 	void draw(mat4 matrix);
 };

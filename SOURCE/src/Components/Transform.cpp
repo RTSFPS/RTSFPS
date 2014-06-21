@@ -21,7 +21,7 @@ Transform::Transform(vec3 position)
 {
 	this->position = position;
 	this->rotation = vec3(0,0,0);
-	this->scale = vec3(0,0,0);
+	this->scale = vec3(1,1,1);
 }
 
 vec3 Transform::getDirection()

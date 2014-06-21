@@ -40,7 +40,6 @@
 #include "MeshRenderer.h"
 #include "Material.h"
 #include "Transform.h"
-#include "SkyBox.h"
 #include "Renderer.h"
 
 using namespace std;
