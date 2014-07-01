@@ -47,6 +47,8 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
+      <DebugInformationFormat>None</DebugInformationFormat>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -71,12 +73,14 @@
   <ItemGroup>
     <ClInclude Include="src\Common\ContentLoader.h" />
     <ClInclude Include="src\Components\Camera.h" />
+    <ClInclude Include="src\Components\CharacterController.h" />
     <ClInclude Include="src\Components\FramesPerSecond.h" />
     <ClInclude Include="src\Components\Material.h" />
     <ClInclude Include="src\Components\Mesh.h" />
     <ClInclude Include="src\Components\MeshRenderer.h" />
     <ClInclude Include="src\Components\Renderer.h" />
     <ClInclude Include="src\Components\RenderManager.h" />
+    <ClInclude Include="src\Components\RigidBody.h" />
     <ClInclude Include="src\Components\SkyBoxRenderer.h" />
     <ClInclude Include="src\Components\TextRenderer.h" />
     <ClInclude Include="src\Components\Transform.h" />
@@ -97,19 +101,23 @@
     <ClInclude Include="src\GraphicTools\SDLgraph.h" />
     <ClInclude Include="src\GraphicTools\shader.h" />
     <ClInclude Include="src\main.h" />
+    <ClInclude Include="src\Managers\PhysicsManager.h" />
     <ClInclude Include="src\SystemTools\INIparser.h" />
+    <ClInclude Include="src\SystemTools\ObjectCreator.h" />
     <ClInclude Include="src\SystemTools\OBJparser.h" />
     <ClInclude Include="src\tools.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Common\ContentLoader.cpp" />
     <ClCompile Include="src\Components\Camera.cpp" />
+    <ClCompile Include="src\Components\CharacterController.cpp" />
     <ClCompile Include="src\Components\FramesPerSecond.cpp" />
     <ClCompile Include="src\Components\Material.cpp" />
     <ClCompile Include="src\Components\Mesh.cpp" />
     <ClCompile Include="src\Components\MeshRenderer.cpp" />
     <ClCompile Include="src\Components\Renderer.cpp" />
     <ClCompile Include="src\Components\RenderManager.cpp" />
+    <ClCompile Include="src\Components\RigidBody.cpp" />
     <ClCompile Include="src\Components\SkyBoxRenderer.cpp" />
     <ClCompile Include="src\Components\TextRenderer.cpp" />
     <ClCompile Include="src\Components\Transform.cpp" />
@@ -128,7 +136,9 @@
     <ClCompile Include="src\GraphicTools\SDLgraph.cpp" />
     <ClCompile Include="src\GraphicTools\shader.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\Managers\PhysicsManager.cpp" />
     <ClCompile Include="src\SystemTools\INIparser.cpp" />
+    <ClCompile Include="src\SystemTools\ObjectCreator.cpp" />
     <ClCompile Include="src\SystemTools\OBJparser.cpp" />
     <ClCompile Include="src\tools.cpp" />
   </ItemGroup>

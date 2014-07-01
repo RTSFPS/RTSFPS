@@ -14,6 +14,7 @@
 #include "../conf.h"
 #include "MeshFactory.h"
 #include "../tools.h"
+#include "../SystemTools/ObjectCreator.h"
 
 using namespace glm;
 
@@ -51,3 +52,31 @@ Mesh* createMesh(filetype type, string fileName)
 	return NULL;
 }
 
+
+Mesh* createPrimitive(primitivetype type)
+{
+	Mesh* tempMesh = new Mesh();
+
+
+	if (type==plane)
+	{
+		ObjectCreator* objCreator = new ObjectCreator();
+		objCreator->createPlane(1000);
+
+
+		tempMesh->numVertex=objCreator->numVertex;
+		tempMesh->verticies = new Vertex[tempMesh->numVertex];
+	
+		for (unsigned int i=0; i<tempMesh->numVertex;i++)
+		{
+			tempMesh->verticies[i].position = vec3(objCreator->Vertices[i].x,objCreator->Vertices[i].y,objCreator->Vertices[i].z);
+			tempMesh->verticies[i].normal = vec3(objCreator->Vertices[i].nx,objCreator->Vertices[i].ny,objCreator->Vertices[i].nz);
+			tempMesh->verticies[i].textcoord = vec2(objCreator->Vertices[i].u,objCreator->Vertices[i].v);
+		}
+	
+		tempMesh->triangleType = objCreator->DrawMode;	
+	}
+
+
+	return tempMesh;
+}

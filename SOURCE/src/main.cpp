@@ -51,6 +51,10 @@
 #include "Components\SkyBoxRenderer.h"
 #include "Components\Camera.h"
 #include "Entitys\FreeCam.h"
+#include "SystemTools\ObjectCreator.h"
+#include "Managers\PhysicsManager.h"
+#include "Components\RigidBody.h"
+#include "Components\CharacterController.h"
 
 using namespace std;
 using namespace glm;
@@ -150,6 +154,8 @@ int main(int argc, char** argv)
 	
 
 	//////////////////////////////////////////////////////////////////////////////////////
+	PhysicsManager* physicsManager = new PhysicsManager();
+
 
 	EventEngine* eventEngine = new EventEngine();
 	EventSender* sender = new EventSender(eventEngine);
@@ -165,11 +171,17 @@ int main(int argc, char** argv)
 	Entity* renderManagerContainer = createRenderManagerContainer();
 	RenderManager* renderManager = renderManagerContainer->getComponent<RenderManager>();
 	Entity* framesPerScondContainer = createFramesPerSecondContainer(renderManager, DATAfolder+"font/arial.ttf", 24, 0xffffffff, vec3(10, 10,0) );
+	
 	Player* player = new Player();
 	player->addComponent<Transform>(new Transform(vec3(300, 100,0)));
 	player->addComponent<InputProcessor>(new InputProcessor(eventBus, sender));
-
-
+	player->addComponent<RigidBody>(new RigidBody(physicsManager));
+	player->getComponent<RigidBody>()->setSphere(1,1000);
+	//player->getComponent<RigidBody>()->setBox(vec3(2,2,2), 10);
+	player->addComponent<CharacterController>();
+	player->addComponent<Camera>();
+	renderManager->registerCamera(player->getComponent<Camera>());
+	
 
 	ContentLoader* contentLoader = ContentLoader::getInstance();
 	contentLoader->loadContent("");
@@ -180,6 +192,11 @@ int main(int argc, char** argv)
 	cubus->addComponent<Transform>(new Transform(vec3(5,0,0)));
 	cubus->addComponent<MeshRenderer>(new MeshRenderer(renderManager));
 	cubus->getComponent<MeshRenderer>()->load();
+	cubus->addComponent<RigidBody>(new RigidBody(physicsManager));
+	cubus->getComponent<RigidBody>()->setBox(vec3(2,2,2), 1000);
+
+
+
 
 	Entity* sphere = new Entity();
 	sphere->addComponent<Mesh>(contentLoader->sphere);
@@ -193,19 +210,28 @@ int main(int argc, char** argv)
 	handler->addComponent(new InputProcessor(eventBus, sender));
 	handler->sender = sender;
 
-
+/*
 	FreeCam* freecam = new FreeCam();
-	freecam->addComponent<Transform>(new Transform(vec3(0,0,0)));
+	freecam->addComponent<Transform>(new Transform(vec3(0,0,10)));
 	freecam->addComponent<InputProcessor>(new InputProcessor(eventBus, sender));
 	freecam->addComponent<Camera>();
 	renderManager->registerCamera(freecam->getComponent<Camera>());
-
+*/
 	
 	Entity* skybox = new Entity();
 	skybox->addComponent<Material>(contentLoader->skyboxMaterial);
 	skybox->addComponent<Transform>(new Transform(vec3(0,0,0),vec3(0,0,0),vec3(500,500,500)));
 	skybox->addComponent<SkyBoxRenderer>(new SkyBoxRenderer(renderManager));
 	
+	Entity* plane = new Entity();
+	plane->addComponent<Mesh>(contentLoader->plane);
+	plane->addComponent<Material>(contentLoader->planeMaterial);
+	plane->addComponent<Transform>(new Transform(vec3(0,-100,0)));
+	plane->addComponent<MeshRenderer>(new MeshRenderer(renderManager));
+	plane->getComponent<MeshRenderer>()->load();
+	plane->addComponent<RigidBody>(new RigidBody(physicsManager));
+	plane->getComponent<RigidBody>()->setBox(vec3(1000,1,1000), 0);
+
 
 	//////////////////////////////////////////////////////////////////////////////////////
 
@@ -270,16 +296,17 @@ int main(int argc, char** argv)
 		// Update
 		
 		SDL_WarpMouseInWindow(SDLwindow,screenwidth / 2,screenheight / 2);
-
-
+		physicsManager->DynamicsWorld->stepSimulation(1.0f/60.0f);
+		cubus->getComponent<RigidBody>()->update();
+		player->getComponent<RigidBody>()->update();
 		// rotate cube
-			
+		/*	
 		static float f=0;
 		f++;
 		cubus->getComponent<Transform>()->rotation.x = f;
 		cubus->getComponent<Transform>()->rotation.y = f;
 		cubus->getComponent<Transform>()->rotation.z = f;
-
+		*/
 
 
 		framesPerScondContainer->getComponent<FramesPerSecond>()->calculateFps();
@@ -310,6 +337,7 @@ int main(int argc, char** argv)
 	delete renderManagerContainer;
 	delete renderManager;
 	delete framesPerScondContainer;
+	delete physicsManager;
 
 	contentLoader->freeContent();
 

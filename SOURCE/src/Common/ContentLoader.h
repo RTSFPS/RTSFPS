@@ -26,8 +26,12 @@ public:
 
 	Mesh* Cubus;
 	Mesh* sphere;
+
+	Mesh* plane;
+
 	Material* checkerMaterial;
 	Material* greenMaterial;
+	Material* planeMaterial;
 
 
 	Material* skyboxMaterial;

@@ -13,6 +13,7 @@
 #include "../Factories/MeshFactory.h"
 #include "../Components/Material.h"
 #include "../GraphicTools/shader.h"
+#include "../SystemTools/ObjectCreator.h"
 
 using namespace std;
 
@@ -55,11 +56,11 @@ Mesh* loadMesh(string filename);
 
 void ContentLoader::loadMeshes()
 {
-		
 	Cubus = loadMesh("scene/cube.obj");
 	sphere = loadMesh("scene/sphere.obj");
-}
 
+	plane = createPrimitive(primitivetype::plane);
+}
 
 Material* ContentLoader::loadMaterial(string shaderName, string diffuseTexture)
 {
@@ -129,6 +130,7 @@ void ContentLoader::loadMaterials()
 	checkerMaterial = loadMaterial("shader/texture","graph/checker.jpg");
 	greenMaterial = loadMaterial("shader/texture","graph/green.jpg");
 	skyboxMaterial = loadSkyBoxMaterial("shader/skybox","graph/skybox");
+	planeMaterial = loadMaterial("shader/texture","graph/floor.jpg");
 }
 
 

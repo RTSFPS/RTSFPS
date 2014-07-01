@@ -19,5 +19,5 @@ public:
 
 	vec3 position, rotation, scale;
 
-	vec3 getDirection();
+	mat4 getDirection();
 };

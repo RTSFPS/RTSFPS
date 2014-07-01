@@ -24,14 +24,11 @@ Transform::Transform(vec3 position)
 	this->scale = vec3(1,1,1);
 }
 
-vec3 Transform::getDirection()
+mat4 Transform::getDirection()
 {
-	vec3 res;
-	float cP = (float) deg2rad(rotation.x);
-	float cY = (float) deg2rad(rotation.y);
-	res.x=-cos(cP)*sin(cY);
-	res.y=sin(cP);
-	res.z=-cos(cP)*cos(cY);
-	normalize(res);
-	return res;
+    mat4 orientation = mat4(1);
+    orientation = rotate(orientation, rotation.x, vec3(1,0,0));
+    orientation = rotate(orientation, rotation.y, vec3(0,1,0));
+
+	return orientation;
 }

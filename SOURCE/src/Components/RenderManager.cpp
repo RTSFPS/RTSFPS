@@ -42,6 +42,10 @@ void RenderManager::draw()
 	{
 		this->textRenderers[i]->draw();
 	}
+
+	
+	camera->update();
+
 }
 
 void RenderManager::registerCamera(Camera* camera)

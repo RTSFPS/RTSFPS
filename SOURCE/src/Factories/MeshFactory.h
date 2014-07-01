@@ -17,9 +17,15 @@ enum  filetype
 	obj
 };
 
+enum primitivetype
+{
+	plane
+};
+
 
 Mesh* createMesh(filetype type, string fileName);
 
 
 Mesh* loadObj(string fileName);
 
+Mesh* createPrimitive(primitivetype type);

@@ -88,6 +88,18 @@
     <ClInclude Include="src\Components\Renderer.h">
       <Filter>Components</Filter>
     </ClInclude>
+    <ClInclude Include="src\SystemTools\ObjectCreator.h">
+      <Filter>SystemTools</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Managers\PhysicsManager.h">
+      <Filter>Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Components\RigidBody.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Components\CharacterController.h">
+      <Filter>Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\conf.cpp" />
@@ -171,6 +183,18 @@
     <ClCompile Include="src\Components\Renderer.cpp">
       <Filter>Components</Filter>
     </ClCompile>
+    <ClCompile Include="src\SystemTools\ObjectCreator.cpp">
+      <Filter>SystemTools</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Managers\PhysicsManager.cpp">
+      <Filter>Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Components\RigidBody.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Components\CharacterController.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GraphicTools">
@@ -199,6 +223,9 @@
     </Filter>
     <Filter Include="Common">
       <UniqueIdentifier>{296b2296-27c0-4ef1-8ff9-91a9413dfc7d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Managers">
+      <UniqueIdentifier>{8b40410a-3679-49fa-996d-66ef177bad9e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

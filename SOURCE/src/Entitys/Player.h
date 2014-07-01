@@ -9,5 +9,11 @@
 class Player :  public EventHandler
 {
 public:
+	
+	float mouseSpeed;
+	float keyboardSpeed;
+
 	void handleEvent(Event* e);
+
+	Player();
 };

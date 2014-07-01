@@ -19,9 +19,6 @@
 
 using namespace glm;
 
-
-
-
 void FreeCam::handleEvent(Event* e)
 {
 
@@ -36,9 +33,11 @@ void FreeCam::handleEvent(Event* e)
 	{
 		if (inputEvent->keyCode == SDLK_UP) 
 		{ 
+
 			if ((transform->rotation.x!=90) && (transform->rotation.x!=-90))
 			{
-				float dir = 0;
+				
+				float dir = 360;
 				float rad=(float) deg2rad(transform->rotation.y+dir);
 				transform->position.x-=sin(rad)*keyvel;
 				transform->position.z-=cos(rad)*keyvel;
@@ -53,7 +52,6 @@ void FreeCam::handleEvent(Event* e)
 			if ((transform->rotation.x!=90) && (transform->rotation.x!=-90))
 			{
 				float dir = 180;
-
 				float rad=(float) deg2rad(transform->rotation.y+dir);
 				transform->position.x-=sin(rad)*keyvel;
 				transform->position.z-=cos(rad)*keyvel;
