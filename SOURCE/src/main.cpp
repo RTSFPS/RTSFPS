@@ -89,6 +89,8 @@ int main(int argc, char** argv)
     CreateLogFile();
 
 	GetEngineStartupConfig();
+    
+      DATAfolder=absoluteExecutablePath+DATAfolder;
 	
 	srand((unsigned int) time(NULL));
 	
