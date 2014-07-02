@@ -50,7 +50,6 @@
 #include "Entitys\InputHandler.h"
 #include "Components\SkyBoxRenderer.h"
 #include "Components\Camera.h"
-#include "Entitys\FreeCam.h"
 #include "SystemTools\ObjectCreator.h"
 #include "Managers\PhysicsManager.h"
 #include "Components\RigidBody.h"
@@ -175,10 +174,10 @@ int main(int argc, char** argv)
 	Player* player = new Player();
 	player->addComponent<Transform>(new Transform(vec3(300, 100,0)));
 	player->addComponent<InputProcessor>(new InputProcessor(eventBus, sender));
-	player->addComponent<RigidBody>(new RigidBody(physicsManager));
-	player->getComponent<RigidBody>()->setSphere(1,1000);
+//	player->addComponent<RigidBody>(new RigidBody(physicsManager));
+//	player->getComponent<RigidBody>()->setSphere(1,1000);
 	//player->getComponent<RigidBody>()->setBox(vec3(2,2,2), 10);
-	player->addComponent<CharacterController>();
+//	player->addComponent<CharacterController>();
 	player->addComponent<Camera>();
 	renderManager->registerCamera(player->getComponent<Camera>());
 	
@@ -209,6 +208,8 @@ int main(int argc, char** argv)
 	InputHandler* handler = new InputHandler();
 	handler->addComponent(new InputProcessor(eventBus, sender));
 	handler->sender = sender;
+
+	vector<Entity*> cubusses;
 
 /*
 	FreeCam* freecam = new FreeCam();
@@ -272,24 +273,29 @@ int main(int argc, char** argv)
 				case SDL_QUIT: {systemEvent->systemEventType = terminateapplication; sender->sendEvent(systemEvent); } break;
 				case SDL_APP_TERMINATING: { systemEvent->systemEventType = terminateapplication; sender->sendEvent(systemEvent); } break;
 				case SDL_WINDOWEVENT_CLOSE: { systemEvent->systemEventType = terminateapplication; sender->sendEvent(systemEvent); } break;
+				
 				case SDL_KEYDOWN: 
 					{
-						inputEvent->keyCode = event.key.keysym.sym;
-						inputEvent->inputtype = keydown;
-						sender->sendEvent(inputEvent);
+					if(event.key.keysym.sym == SDLK_SPACE)
+						{
+							for(int i = 0; i < cubusses.size(); i++)
+							{
+								cubusses[i]->getComponent<CharacterController>()->move(vec3(0,10,0));
+							}
+						}
+
 					} break;
 				case SDL_KEYUP: 
 					{
-						inputEvent->keyCode = event.key.keysym.sym;
-						inputEvent->inputtype = keyup;
-						sender->sendEvent(inputEvent);
+
 					} break;
 			
 				default: break;
 			}
 		}
-		
-		
+
+		if (inputEvent->keyState) sender->sendEvent(inputEvent);
+
 
 		curTimeStamp=SDL_GetTicks()-progEnterTime;
 
@@ -298,9 +304,9 @@ int main(int argc, char** argv)
 		SDL_WarpMouseInWindow(SDLwindow,screenwidth / 2,screenheight / 2);
 		physicsManager->DynamicsWorld->stepSimulation(1.0f/60.0f);
 		cubus->getComponent<RigidBody>()->update();
-		player->getComponent<RigidBody>()->update();
+		//player->getComponent<RigidBody>()->update();
 		// rotate cube
-		/*	
+		/*
 		static float f=0;
 		f++;
 		cubus->getComponent<Transform>()->rotation.x = f;
@@ -308,8 +314,28 @@ int main(int argc, char** argv)
 		cubus->getComponent<Transform>()->rotation.z = f;
 		*/
 
+		int e = randomRange(0,10);
+
+		if(e > 5 && cubusses.size() < 250)
+		{
+		Entity* e = new Entity();
+		e->addComponent<Mesh>(contentLoader->sphere);
+		e->addComponent<Material>(contentLoader->checkerMaterial);
+		e->addComponent<Transform>(new Transform(vec3(randomRange(-500,500),randomRange(0,100),randomRange(-500,500))));
+		e->addComponent<MeshRenderer>(new MeshRenderer(renderManager));
+		e->getComponent<MeshRenderer>()->load();
+		e->addComponent<RigidBody>(new RigidBody(physicsManager));
+		e->getComponent<RigidBody>()->setBox(vec3(2,2,2), 1000);
+		e->addComponent<CharacterController>();
+		cubusses.push_back(e);
+		}
 
 		framesPerScondContainer->getComponent<FramesPerSecond>()->calculateFps();
+
+		for(int i = 0; i < cubusses.size(); i++)
+		{
+			cubusses[i]->getComponent<RigidBody>()->update();
+		}
 
 		// Draw
 		

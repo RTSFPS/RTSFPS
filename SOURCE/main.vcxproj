@@ -47,7 +47,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <DebugInformationFormat>None</DebugInformationFormat>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
@@ -88,7 +88,6 @@
     <ClInclude Include="src\EntitySystem\Component.h" />
     <ClInclude Include="src\EntitySystem\Entity.h" />
     <ClInclude Include="src\Entitys\EventHandler.h" />
-    <ClInclude Include="src\Entitys\FreeCam.h" />
     <ClInclude Include="src\Entitys\InputHandler.h" />
     <ClInclude Include="src\Entitys\Player.h" />
     <ClInclude Include="src\EventMessages\EventInput.h" />
@@ -123,7 +122,6 @@
     <ClCompile Include="src\Components\Transform.cpp" />
     <ClCompile Include="src\conf.cpp" />
     <ClCompile Include="src\Entitys\EventHandler.cpp" />
-    <ClCompile Include="src\Entitys\FreeCam.cpp" />
     <ClCompile Include="src\Entitys\InputHandler.cpp" />
     <ClCompile Include="src\Entitys\Player.cpp" />
     <ClCompile Include="src\EventMessages\EventInput.cpp" />

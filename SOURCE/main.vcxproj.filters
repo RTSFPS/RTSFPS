@@ -73,9 +73,6 @@
     <ClInclude Include="src\Entitys\InputHandler.h">
       <Filter>Entitys</Filter>
     </ClInclude>
-    <ClInclude Include="src\Entitys\FreeCam.h">
-      <Filter>Entitys</Filter>
-    </ClInclude>
     <ClInclude Include="src\Components\Camera.h">
       <Filter>Components</Filter>
     </ClInclude>
@@ -166,9 +163,6 @@
       <Filter>Components</Filter>
     </ClCompile>
     <ClCompile Include="src\Entitys\InputHandler.cpp">
-      <Filter>Entitys</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Entitys\FreeCam.cpp">
       <Filter>Entitys</Filter>
     </ClCompile>
     <ClCompile Include="src\Components\Camera.cpp">

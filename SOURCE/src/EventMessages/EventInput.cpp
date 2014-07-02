@@ -9,8 +9,10 @@
 #include "../tools.h"
 #include "../Entitys/EventHandler.h"
 
-InputEvent::InputEvent(){
+InputEvent::InputEvent()
+{
 	this->type = input;
+	keyState = const_cast<Uint8*> (SDL_GetKeyboardState(NULL));
 }
 
 void InputProcessor::registerInEventBus(EventBus* eventBus)

@@ -13,7 +13,7 @@ void InputHandler::handleEvent(Event* e)
 {
 	InputEvent* inputEvent = (InputEvent*)e;
 
-	if(inputEvent->keyCode == SDLK_ESCAPE)
+	if(inputEvent->keyState[SDL_SCANCODE_ESCAPE])
 	{
 		SystemEvent* sysEvent = new SystemEvent();
 		sysEvent->type = systemevent;

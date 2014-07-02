@@ -93,6 +93,15 @@ void RigidBody::update()
 	this->parent->getComponent<Transform>()->position = vec3(t.getOrigin().getX(),t.getOrigin().getY(),t.getOrigin().getZ());
 }
 
+void RigidBody::updateT()
+{
+	btTransform t;
+	t.setIdentity();
+	rigidBody->getMotionState()->getWorldTransform(t);
+//	this->parent->getComponent<Transform>()->position = vec3(t.getOrigin().getX(),t.getOrigin().getY(),t.getOrigin().getZ());
+	t.setOrigin(btVector3(this->parent->getComponent<Transform>()->position.x, this->parent->getComponent<Transform>()->position.y, this->parent->getComponent<Transform>()->position.z));
+}
+
 RigidBody::~RigidBody()
 {
 

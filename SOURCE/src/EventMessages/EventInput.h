@@ -12,8 +12,6 @@ enum inputeventtype
 	mousebuttondown,
 	mousebuttonup,
 	mousemotion,
-	keyup,
-	keydown
 };
 
 class InputEvent : public Event
@@ -22,7 +20,8 @@ public:
 	InputEvent();
 	Uint8 buttonCode;
 	inputeventtype inputtype;
-	SDL_Keycode keyCode;
+
+	Uint8* keyState;
 	int MouseX;
 	int MouseY;
 };

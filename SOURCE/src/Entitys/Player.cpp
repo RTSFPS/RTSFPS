@@ -18,66 +18,52 @@ using namespace glm;
 Player::Player()
 {
 	mouseSpeed = 0.04f;
-	keyboardSpeed = 50;
+	keyboardSpeed = 500;
 }
 
+void Player::move(vec3 pos)
+{
+	
+	Transform* transform = this->getComponent<Transform>();
+
+	vec4 lookvec = transform->getDirection()*vec4(pos,1);
+	
+	transform->position += vec3(lookvec);
+
+}
+
+
+void Player::rotate(vec3 rot)
+{
+	Transform* transform = getComponent<Transform>();
+	
+
+	 transform->rotation.y = fmodf(transform->rotation.y, 360.0f);
+
+	if (transform->rotation.y<0) transform->rotation.y += 360.0f;
+
+	if(transform->rotation.x > 90.0f) transform->rotation.x = 90.0f;
+    else if(transform->rotation.x < -90.0f) transform->rotation.x = -90.0f;
+	
+		transform->rotation.x += rot.y;
+		transform->rotation.y += rot.x;
+		transform->rotation.z += rot.z;
+}
 
 void Player::handleEvent(Event* e)
 {
 	InputEvent* inputEvent = (InputEvent*)e;
+		vec3 movement=vec3(0,0,0);
+		if (inputEvent->keyState[SDL_SCANCODE_RIGHT]) { movement.x=keyboardSpeed; } 
+		if (inputEvent->keyState[SDL_SCANCODE_LEFT]) { movement.x=-keyboardSpeed; }
+		if (inputEvent->keyState[SDL_SCANCODE_UP]) { movement.z=-keyboardSpeed; } 
+		if (inputEvent->keyState[SDL_SCANCODE_DOWN]) { movement.z=+keyboardSpeed; } 
+		move(movement * 0.004f);
 
-
-		if(inputEvent->keyCode == SDLK_RIGHT && inputEvent->inputtype == keydown) 
-		{
-			this->getComponent<CharacterController>()->move(vec3(keyboardSpeed,0,0));
-		} 
-		if(inputEvent->keyCode == SDLK_RIGHT && inputEvent->inputtype == keyup) 
-		{
-			this->getComponent<CharacterController>()->move(vec3(0,0,0));
-		} 
-
-
-		if(inputEvent->keyCode == SDLK_LEFT && inputEvent->inputtype == keydown) 
-		{
-			this->getComponent<CharacterController>()->move(vec3(-keyboardSpeed,0,0));
-		} 
-		if(inputEvent->keyCode == SDLK_LEFT && inputEvent->inputtype == keyup) 
-		{
-			this->getComponent<CharacterController>()->move(vec3(0,0,0));
-		} 
-
-
-		if(inputEvent->keyCode == SDLK_UP && inputEvent->inputtype == keydown) 
-		{
-			this->getComponent<CharacterController>()->move(vec3(0,0,-keyboardSpeed));
-		} 
-		if(inputEvent->keyCode == SDLK_UP && inputEvent->inputtype == keyup) 
-		{
-			this->getComponent<CharacterController>()->move(vec3(0,0,0));
-		} 
-
-		
-		if(inputEvent->keyCode == SDLK_DOWN && inputEvent->inputtype == keydown) 
-		{
-			this->getComponent<CharacterController>()->move(vec3(0,0,+keyboardSpeed));
-		} 
-		if(inputEvent->keyCode == SDLK_DOWN && inputEvent->inputtype == keyup) 
-		{
-			this->getComponent<CharacterController>()->move(vec3(0,0,0));
-		} 	
-
-
-		if(inputEvent->keyCode == SDLK_SPACE && inputEvent->inputtype == keydown) 
-		{
-			this->getComponent<CharacterController>()->move(vec3(0,+keyboardSpeed,0));
-		} 
-		if(inputEvent->keyCode == SDLK_SPACE && inputEvent->inputtype == keyup) 
-		{
-			this->getComponent<CharacterController>()->move(vec3(0,0,0));
-		} 	
 
 	if(inputEvent->inputtype == mousemotion)
 	{
-		this->getComponent<CharacterController>()->rotate(vec3(mouseSpeed*(screenwidth / 2 - inputEvent->MouseX),mouseSpeed*(screenheight / 2 - inputEvent->MouseY),0));
+		rotate(vec3(mouseSpeed*(screenwidth / 2 - inputEvent->MouseX),mouseSpeed*(screenheight / 2 - inputEvent->MouseY),0));
+		//this->getComponent<Transform>()->rotation += vec3(mouseSpeed*(screenwidth / 2 - inputEvent->MouseX),mouseSpeed*(screenheight / 2 - inputEvent->MouseY),0);
 	}
 }

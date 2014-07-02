@@ -31,6 +31,7 @@ public:
 	void setPlane(vec3 up, float mass);
 	void setBox(vec3 whd, float mass);
 	void update();
+	void updateT();
 	btRigidBody* rigidBody;
 	Transform* transform;
 	PhysicsManager* physicsManager;

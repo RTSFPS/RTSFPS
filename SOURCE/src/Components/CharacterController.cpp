@@ -1,12 +1,8 @@
-#pragma once
 #define NO_SDL_GLEXT
 #define _HAS_ITERATOR_DEBUGGING 0
 #define _SECURE_SCL 0
 
-
 #include <SDL.h>
-
-
 
 #include <btBulletDynamicsCommon.h>
 #include <btBulletCollisionCommon.h>

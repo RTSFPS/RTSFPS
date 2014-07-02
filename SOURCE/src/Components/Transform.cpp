@@ -27,8 +27,8 @@ Transform::Transform(vec3 position)
 mat4 Transform::getDirection()
 {
     mat4 orientation = mat4(1);
-    orientation = rotate(orientation, rotation.x, vec3(1,0,0));
+	///orientation = rotate(orientation, rotation.z, vec3(0,0,1));
     orientation = rotate(orientation, rotation.y, vec3(0,1,0));
-
+	orientation = rotate(orientation, rotation.x, vec3(1,0,0));
 	return orientation;
 }

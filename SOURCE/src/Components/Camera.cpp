@@ -18,7 +18,7 @@ Camera::Camera()
 	cameraRotateMatrix = mat4(1);
 	cameraTranslateMatrix = mat4(1);
 
-	cameraProjectionMatrix = perspective(45.0f, (float) screenwidth / screenheight, 0.01f, 1000.0f);
+	cameraProjectionMatrix = perspective(45.0f, (float) screenwidth / screenheight, 0.01f, 10000.0f);
 }
 
 
