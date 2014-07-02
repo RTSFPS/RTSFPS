@@ -23,10 +23,12 @@ public:
 	eventtype type;
 };
 
+/*
 __interface IEventHandler
 {
 	void handleEvent(Event* e);
 };
+*/
 
 class EventBus;
 

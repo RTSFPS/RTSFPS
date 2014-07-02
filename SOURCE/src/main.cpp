@@ -37,23 +37,23 @@
 #include "GraphicTools/GLstuff.h"
 #include "GraphicTools/SDLgraph.h"
 #include "EventSystem/EventSystem.h"
-#include "EventMessages\EventInput.h"
-#include "EventMessages\EventSystemMessages.h"
-#include "Factories\EntityFactory.h"
-#include "Components\RenderManager.h"
-#include "EntitySystem\Entity.h"
-#include "Components\FramesPerSecond.h"
-#include "Entitys\Player.h"
-#include "Common\ContentLoader.h"
-#include "Components\Material.h"
-#include "Components\Transform.h"
-#include "Entitys\InputHandler.h"
-#include "Components\SkyBoxRenderer.h"
-#include "Components\Camera.h"
-#include "SystemTools\ObjectCreator.h"
-#include "Managers\PhysicsManager.h"
-#include "Components\RigidBody.h"
-#include "Components\CharacterController.h"
+#include "EventMessages/EventInput.h"
+#include "EventMessages/EventSystemMessages.h"
+#include "Factories/EntityFactory.h"
+#include "Components/RenderManager.h"
+#include "EntitySystem/Entity.h"
+#include "Components/FramesPerSecond.h"
+#include "Entitys/Player.h"
+#include "Common/ContentLoader.h"
+#include "Components/Material.h"
+#include "Components/Transform.h"
+#include "Entitys/InputHandler.h"
+#include "Components/SkyBoxRenderer.h"
+#include "Components/Camera.h"
+#include "SystemTools/ObjectCreator.h"
+#include "Managers/PhysicsManager.h"
+#include "Components/RigidBody.h"
+#include "Components/CharacterController.h"
 
 using namespace std;
 using namespace glm;
@@ -99,8 +99,8 @@ int main(int argc, char** argv)
 	
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION,3);
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION,2);
-//	SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
-	SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_COMPATIBILITY);
+	SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
+//	SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_COMPATIBILITY);
 	
 	
 
@@ -113,7 +113,7 @@ int main(int argc, char** argv)
 
 	if (screenFullScreen) WindowFlags = SDL_WINDOW_OPENGL | SDL_WINDOW_FULLSCREEN; else WindowFlags = SDL_WINDOW_OPENGL;
 
-	SDLwindow = SDL_CreateWindow("RTSFPS ver.1.0", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, screenwidth,screenheight, WindowFlags);
+	SDLwindow = SDL_CreateWindow("RTSFPS ver.2.0", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, screenwidth,screenheight, WindowFlags);
 	if (!SDLwindow) error("SDL_CreateWindow: "+ (string) SDL_GetError());
 
 	
