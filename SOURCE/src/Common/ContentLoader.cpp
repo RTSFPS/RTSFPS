@@ -1,7 +1,7 @@
 #define NO_SDL_GLEXT
 #define _HAS_ITERATOR_DEBUGGING 0
 #define _SECURE_SCL 0
-
+#include <glew.h>
 #include <SDL.h>
 #include <SDL_image.h>
 #include <string>
@@ -12,7 +12,7 @@
 #include "../tools.h"
 #include "../Factories/MeshFactory.h"
 #include "../Components/Material.h"
-#include "../GraphicTools/shader.h"
+#include "../GraphicTools/Shader.h"
 #include "../SystemTools/ObjectCreator.h"
 
 using namespace std;
@@ -65,7 +65,7 @@ void ContentLoader::loadMeshes()
 Material* ContentLoader::loadMaterial(string shaderName, string diffuseTexture)
 {
 		
-	shader* shaderr = new shader(DATAfolder+shaderName);
+	Shader* shaderr = new Shader(DATAfolder+shaderName);
 	unsigned int tempShaderID = shaderr->prog;
 	unsigned int tempTextureID = loadTexture(DATAfolder+diffuseTexture);
 	Material* m = new Material(Cubus->materialName, tempShaderID ,tempTextureID);
@@ -76,7 +76,7 @@ Material* ContentLoader::loadMaterial(string shaderName, string diffuseTexture)
 
 Material* ContentLoader::loadSkyBoxMaterial(string shaderName, string skyboxPath)
 {
-	shader* shaderr = new shader(DATAfolder+shaderName);
+	Shader* shaderr = new Shader(DATAfolder+shaderName);
 	unsigned int tempShaderID = shaderr->prog;
 
 	SDL_Surface *xpos = IMG_Load(string(DATAfolder+skyboxPath+"/xpos.jpg").c_str());

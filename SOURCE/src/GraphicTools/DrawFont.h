@@ -19,18 +19,18 @@
 #include <SDL.h>
 #include <SDL_ttf.h>
 
-#include "shader.h"
+#include "Shader.h"
 
 using namespace std;
 
 
-class drawfont
+class DrawFont
 {
 	
 public:
 
-	drawfont(string fontfilename, int size);
-   ~drawfont();
+	DrawFont(string fontfilename, int size);
+   	~DrawFont();
 
 	void glTextOut(int x, int y, string txt, Uint32 color);
 
@@ -41,7 +41,7 @@ private:
 	TTF_Font* curfont;
 	GLuint texture;
 
-	shader* FontShader;
+	Shader* FontShader;
 
 
 	int doround(double x);

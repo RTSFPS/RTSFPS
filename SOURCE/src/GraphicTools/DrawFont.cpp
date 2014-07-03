@@ -22,8 +22,8 @@
 #include "../tools.h"
 #include "SDLgraph.h"
 #include "../main.h"
-#include "shader.h"
-#include "drawfont.h"
+#include "Shader.h"
+#include "DrawFont.h"
 
 using namespace std;
 using namespace glm;
@@ -37,18 +37,18 @@ using namespace glm;
 
 
 
-int drawfont::doround(double x)
+int DrawFont::doround(double x)
 {
 	return (int)(x + 0.5);
 }
 
-int drawfont::nextpoweroftwo(float x)
+int DrawFont::nextpoweroftwo(float x)
 {
 	double logbase2 = log(x) / log(2.0f);
 	return doround(pow(2,ceil(logbase2)));
 }
 
-void drawfont::glTextOut(int x, int y, string txt, Uint32 color)
+void DrawFont::glTextOut(int x, int y, string txt, Uint32 color)
 {
 	if (txt=="") return;
 	if (!curfont) error("glTextOut: font is not initialized!");
@@ -202,18 +202,18 @@ void drawfont::glTextOut(int x, int y, string txt, Uint32 color)
 }
 
 
-drawfont::drawfont(string fontfilename,int size)
+DrawFont::DrawFont(string fontfilename,int size)
 {
 		
 	if (!(curfont = TTF_OpenFont(fontfilename.c_str(), size))) error("TTF_OpenFont "+fontfilename+" fails: " + (string) SDL_GetError());
 
-	FontShader = new shader(DATAfolder+"shader/font");
+	FontShader = new Shader(DATAfolder+"shader/font");
 
 
 }
 
-drawfont::~drawfont()
+DrawFont::~DrawFont()
 {
 	TTF_CloseFont(curfont);
-	FontShader->~shader();
+	FontShader->~Shader();
 }

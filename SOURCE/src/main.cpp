@@ -14,6 +14,7 @@
 #ifdef OS_WIN
 #include <gl/GL.h>
 #endif
+
 #include <string>
 #include <stdlib.h>
 #include <time.h>
@@ -33,7 +34,7 @@
 #include "main.h"
 
 #include "tools.h"
-#include "GraphicTools/shader.h"
+#include "GraphicTools/Shader.h"
 #include "GraphicTools/GLstuff.h"
 #include "GraphicTools/SDLgraph.h"
 #include "EventSystem/EventSystem.h"
@@ -79,7 +80,6 @@ int main(int argc, char** argv)
 int main(int argc, char** argv)
 #endif
 {
-
 #ifdef OS_WIN
 	absoluteExecutablePath = "";
 #else

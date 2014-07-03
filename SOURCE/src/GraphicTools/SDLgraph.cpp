@@ -21,7 +21,7 @@
 #define _SECURE_SCL 0
 
 #include <string>
-
+#include <glew.h>
 #include <SDL.h>
 #include <SDL_image.h>
 #include "../tools.h"

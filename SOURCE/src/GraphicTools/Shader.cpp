@@ -25,12 +25,12 @@
 using namespace std;
 
 #include "../tools.h"
-#include "shader.h"
+#include "Shader.h"
 
 
 
 
-shader::shader(string shadername)
+Shader::Shader(string shadername)
 {
 
 	string filenameVertexShader=shadername+".vert";
@@ -166,7 +166,7 @@ shader::shader(string shadername)
 	
 }
 
-shader::~shader()
+Shader::~Shader()
 {
 	glDetachShader(prog,vsID);
 	glDetachShader(prog,fsID);
@@ -177,13 +177,13 @@ shader::~shader()
 
 
   
-void shader::useShader()
+void Shader::useShader()
 {
 	glUseProgram(prog);
 }
 
 
-void shader::delShader()
+void Shader::delShader()
 {
 	glUseProgram(0);
 }

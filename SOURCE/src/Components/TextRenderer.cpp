@@ -1,10 +1,10 @@
 #define NO_SDL_GLEXT
 #define _HAS_ITERATOR_DEBUGGING 0
 #define _SECURE_SCL 0
-
+#include <glew.h>
 #include <string>
 #include <SDL.h>
-#include "../GraphicTools/drawfont.h"
+#include "../GraphicTools/DrawFont.h"
 #include "Transform.h"
 #include "RenderManager.h"
 #include "TextRenderer.h"
@@ -16,7 +16,7 @@ using namespace std;
 TextRenderer::TextRenderer(Component* renderManager,string fontFileName, int size, Uint32 color)
 {
 	
-	this->font = new drawfont(fontFileName, size);
+	this->font = new DrawFont(fontFileName, size);
 	this->color = color;
 	RenderManager* rManager = (RenderManager*)renderManager;
 	rManager->registerTextRenderer(this);

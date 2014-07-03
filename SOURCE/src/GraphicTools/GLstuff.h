@@ -4,7 +4,7 @@
 #define _SECURE_SCL 0
 
 #include <string>
-
+#include <glew.h>
 #include <glm.hpp>
 #include <ext.hpp>
 

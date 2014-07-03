@@ -3,7 +3,7 @@
 #define _HAS_ITERATOR_DEBUGGING 0
 #define _SECURE_SCL 0
 
-
+#include <glew.h>
 #include <glm.hpp>
 #include <ext.hpp>
 #include <string>
