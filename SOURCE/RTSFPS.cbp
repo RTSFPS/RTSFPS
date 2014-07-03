@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="RTSFPS" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/RTSFPS" prefix_auto="1" extension_auto="1" />
+				<Option object_output="bin/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Option projectLinkerOptionsRelation="0" />
+				<Compiler>
+					<Add option="-pg" />
+					<Add option="-g" />
+				</Compiler>
+				<Linker>
+					<Add option="-pg" />
+				</Linker>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/RTSFPS" prefix_auto="1" extension_auto="1" />
+				<Option object_output="bin/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add directory="Frameworks/Bullet/src" />
+			<Add directory="Frameworks/GLew/include" />
+			<Add directory="Frameworks/glm" />
+			<Add directory="Frameworks/SDL2/include" />
+		</Compiler>
+		<Linker>
+			<Add option="-lSDL2 -lSDL2_image -lSDL2_ttf -lGL -lGLU -lGLEW -lBulletSoftBody -lBulletDynamics -lBulletCollision -lLinearMath" />
+		</Linker>
+		<Unit filename="src/Common/ContentLoader.cpp" />
+		<Unit filename="src/Common/ContentLoader.h" />
+		<Unit filename="src/Components/Camera.cpp" />
+		<Unit filename="src/Components/Camera.h" />
+		<Unit filename="src/Components/CharacterController.cpp" />
+		<Unit filename="src/Components/CharacterController.h" />
+		<Unit filename="src/Components/FramesPerSecond.cpp" />
+		<Unit filename="src/Components/FramesPerSecond.h" />
+		<Unit filename="src/Components/Material.cpp" />
+		<Unit filename="src/Components/Material.h" />
+		<Unit filename="src/Components/Mesh.cpp" />
+		<Unit filename="src/Components/Mesh.h" />
+		<Unit filename="src/Components/MeshRenderer.cpp" />
+		<Unit filename="src/Components/MeshRenderer.h" />
+		<Unit filename="src/Components/RenderManager.cpp" />
+		<Unit filename="src/Components/RenderManager.h" />
+		<Unit filename="src/Components/Renderer.cpp" />
+		<Unit filename="src/Components/Renderer.h" />
+		<Unit filename="src/Components/RigidBody.cpp" />
+		<Unit filename="src/Components/RigidBody.h" />
+		<Unit filename="src/Components/SkyBoxRenderer.cpp" />
+		<Unit filename="src/Components/SkyBoxRenderer.h" />
+		<Unit filename="src/Components/TextRenderer.cpp" />
+		<Unit filename="src/Components/TextRenderer.h" />
+		<Unit filename="src/Components/Transform.cpp" />
+		<Unit filename="src/Components/Transform.h" />
+		<Unit filename="src/EntitySystem/Component.h" />
+		<Unit filename="src/EntitySystem/Entity.h" />
+		<Unit filename="src/Entitys/EventHandler.cpp" />
+		<Unit filename="src/Entitys/EventHandler.h" />
+		<Unit filename="src/Entitys/InputHandler.cpp" />
+		<Unit filename="src/Entitys/InputHandler.h" />
+		<Unit filename="src/Entitys/Player.cpp" />
+		<Unit filename="src/Entitys/Player.h" />
+		<Unit filename="src/EventMessages/EventInput.cpp" />
+		<Unit filename="src/EventMessages/EventInput.h" />
+		<Unit filename="src/EventMessages/EventSystemMessages.cpp" />
+		<Unit filename="src/EventMessages/EventSystemMessages.h" />
+		<Unit filename="src/EventSystem/EventSystem.cpp" />
+		<Unit filename="src/EventSystem/EventSystem.h" />
+		<Unit filename="src/Factories/EntityFactory.cpp" />
+		<Unit filename="src/Factories/EntityFactory.h" />
+		<Unit filename="src/Factories/MeshFactory.cpp" />
+		<Unit filename="src/Factories/MeshFactory.h" />
+		<Unit filename="src/GraphicTools/DrawFont.cpp" />
+		<Unit filename="src/GraphicTools/DrawFont.h" />
+		<Unit filename="src/GraphicTools/GLstuff.cpp" />
+		<Unit filename="src/GraphicTools/GLstuff.h" />
+		<Unit filename="src/GraphicTools/SDLgraph.cpp" />
+		<Unit filename="src/GraphicTools/SDLgraph.h" />
+		<Unit filename="src/GraphicTools/Shader.cpp" />
+		<Unit filename="src/GraphicTools/Shader.h" />
+		<Unit filename="src/Managers/PhysicsManager.cpp" />
+		<Unit filename="src/Managers/PhysicsManager.h" />
+		<Unit filename="src/SystemTools/INIparser.cpp" />
+		<Unit filename="src/SystemTools/INIparser.h" />
+		<Unit filename="src/SystemTools/OBJparser.cpp" />
+		<Unit filename="src/SystemTools/OBJparser.h" />
+		<Unit filename="src/SystemTools/ObjectCreator.cpp" />
+		<Unit filename="src/SystemTools/ObjectCreator.h" />
+		<Unit filename="src/conf.cpp" />
+		<Unit filename="src/conf.h" />
+		<Unit filename="src/main.cpp" />
+		<Unit filename="src/main.h" />
+		<Unit filename="src/tools.cpp" />
+		<Unit filename="src/tools.h" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

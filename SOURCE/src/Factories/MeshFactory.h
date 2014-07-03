@@ -19,7 +19,7 @@ enum  filetype
 
 enum primitivetype
 {
-	plane
+	planePrimetive
 };
 
 

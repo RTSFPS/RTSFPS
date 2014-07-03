@@ -51,7 +51,7 @@ string INIparser::LineType(string s)
 
 		i++;
 	}
-	
+
 	i=0;
 	while (i<s.length())
 	{
@@ -61,7 +61,7 @@ string INIparser::LineType(string s)
 
 		i++;
 	}
-	
+
 	return "unknown";
 }
 
@@ -136,7 +136,7 @@ INIparser::Entry INIparser::returnEntry(string s)
 		i++;
 	}
 
-	
+
 	while (i<s.length())
 	{
 		ch=s[i];
@@ -169,7 +169,7 @@ bool INIparser::loadINI(string filename)
 
 	ifstream INIfile;
 
-	INIfile.open(filename);
+	INIfile.open(filename.c_str());
 
 	if(!INIfile.good())
 	{
@@ -191,7 +191,7 @@ bool INIparser::loadINI(string filename)
 		getline(INIfile,s);
 		ss=LineType(s);
 
-		if (ss!="comment" && ss!="") 
+		if (ss!="comment" && ss!="")
 		{
 
 			if (ss=="section")
@@ -209,9 +209,9 @@ bool INIparser::loadINI(string filename)
 
 	numSections=MYnumSections;
 	Sections = new Section[numSections];
-	
-	
-	INIfile.open(filename);
+
+
+	INIfile.open(filename.c_str());
 
 	int curSection=-1;
 
@@ -225,7 +225,7 @@ bool INIparser::loadINI(string filename)
 
 		SectionBeginLine++;
 
-		if (ss!="comment" && ss!="") 
+		if (ss!="comment" && ss!="")
 		{
 
 			if (ss=="section")
@@ -234,7 +234,7 @@ bool INIparser::loadINI(string filename)
 				curSection++;
 				Sections[curSection].SectionName = returnSection(s);
 
-				
+
 
 					int MYnumEntries=0;
 
@@ -244,23 +244,23 @@ bool INIparser::loadINI(string filename)
 						getline(INIfile,s);
 						ss=LineType(s);
 
-						if (ss!="comment" && ss!="") 
+						if (ss!="comment" && ss!="")
 						{
 							if (ss=="section") break;
 
-							
+
 							MYnumEntries++;
 
 						}
 					}
 
-				
+
 				Sections[curSection].numEntries = MYnumEntries;
 				Sections[curSection].Entries = new Entry[Sections[curSection].numEntries];
 
 
 					INIfile.close();
-					INIfile.open(filename);
+					INIfile.open(filename.c_str());
 				for (int i=0;i<SectionBeginLine;i++) getline(INIfile,s);
 				int curEntry=-1;
 				while (!INIfile.eof())
@@ -269,7 +269,7 @@ bool INIparser::loadINI(string filename)
 						getline(INIfile,s);
 						ss=LineType(s);
 
-						if (ss!="comment" && ss!="") 
+						if (ss!="comment" && ss!="")
 						{
 							if (ss=="section") break;
 
@@ -301,8 +301,8 @@ string INIparser::getKeyValue(string section, string keyname)
 
 		for (unsigned int i=0;i<section.length();i++)  mySection+=toupper(section[i]);
 		for (unsigned int i=0;i<keyname.length();i++)  myKeyname+=toupper(keyname[i]);
-	
-	
+
+
 		string curKeyname="";
 
 		int theSection=-1;
@@ -316,7 +316,7 @@ string INIparser::getKeyValue(string section, string keyname)
 		 }
 
 		 if (theSection==-1) error("unknown section");
-	
+
 	 for(int i=0;i<Sections[theSection].numEntries;i++)
 	 {
 		 string curKeyname="";

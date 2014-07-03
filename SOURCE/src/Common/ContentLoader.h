@@ -7,6 +7,7 @@
 #include <string>
 #include "../Components/Mesh.h"
 #include "../Components/Material.h"
+#include "../Factories/MeshFactory.h"
 
 
 using namespace std;
@@ -40,7 +41,7 @@ private:
 	static ContentLoader* instance;
 
 	ContentLoader();
-  
+
 	Material* loadMaterial(string shaderName, string diffuseTexture);
 	Material* loadSkyBoxMaterial(string shaderName, string skyboxPath);
 

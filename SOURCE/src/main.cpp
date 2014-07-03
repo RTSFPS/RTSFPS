@@ -85,31 +85,32 @@ int main(int argc, char** argv)
 #else
 	absoluteExecutablePath = getPathFromFullFileName(pcharstring(argv[0]))+"/";
 #endif
-    
+
     CreateLogFile();
 
-	GetEngineStartupConfig();
-    
-      DATAfolder=absoluteExecutablePath+DATAfolder;
-	
-	srand((unsigned int) time(NULL));
-	
 
-	
+	GetEngineStartupConfig();
+
+      DATAfolder=absoluteExecutablePath+DATAfolder;
+
+	srand((unsigned int) time(NULL));
+
+
+
     if ( SDL_Init(SDL_INIT_VIDEO) != 0 ) error("Unable to initialize SDL2: " + (string) SDL_GetError());
-	
-	
+
+
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION,3);
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION,2);
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
 //	SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_COMPATIBILITY);
-	
-	
+
+
 
     SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
 	SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
 
-	
+
 	SDL_Window *SDLwindow = NULL;
 	unsigned int WindowFlags;
 
@@ -118,41 +119,41 @@ int main(int argc, char** argv)
 	SDLwindow = SDL_CreateWindow("RTSFPS ver.2.0", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, screenwidth,screenheight, WindowFlags);
 	if (!SDLwindow) error("SDL_CreateWindow: "+ (string) SDL_GetError());
 
-	
+
     SDL_GLContext SDLopenGLcontext = SDL_GL_CreateContext(SDLwindow);
-	
-  
+
+
 	glewExperimental = GL_TRUE;
 	GLenum glewError = glewInit();
 	if( glewError != GLEW_OK ) error("Unable to init GLew: "+constpcharstr(glewGetErrorString(glewError)));
 
 
 	glGetError();
- 
-	const GLubyte* glRenderer = glGetString (GL_RENDERER); 
+
+	const GLubyte* glRenderer = glGetString (GL_RENDERER);
 	const GLubyte *glVersion= glGetString(GL_VERSION);
 	log("OpenGL renderer "+pcharstr((unsigned char*)glRenderer));
 	log("OpenGL version "+pcharstr((unsigned char*)glVersion));
 
 
-		
+
 	int flags=IMG_INIT_JPG | IMG_INIT_PNG;
 	int initted=IMG_Init(flags);
 	if((initted & flags) != flags) error("Unable to initialize SDL2_Image: "+ (string) SDL_GetError());
 
 
 
-	if (TTF_Init() < 0) error("TTF_Init fails: " + (string) SDL_GetError());  
+	if (TTF_Init() < 0) error("TTF_Init fails: " + (string) SDL_GetError());
 
 
 
-	
-	
+
+
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LEQUAL);
-		
 
-	
+
+
 
 	//////////////////////////////////////////////////////////////////////////////////////
 	PhysicsManager* physicsManager = new PhysicsManager();
@@ -172,7 +173,7 @@ int main(int argc, char** argv)
 	Entity* renderManagerContainer = createRenderManagerContainer();
 	RenderManager* renderManager = renderManagerContainer->getComponent<RenderManager>();
 	Entity* framesPerScondContainer = createFramesPerSecondContainer(renderManager, DATAfolder+"font/arial.ttf", 24, 0xffffffff, vec3(10, 10,0) );
-	
+
 	Player* player = new Player();
 	player->addComponent<Transform>(new Transform(vec3(300, 100,0)));
 	player->addComponent<InputProcessor>(new InputProcessor(eventBus, sender));
@@ -182,7 +183,7 @@ int main(int argc, char** argv)
 //	player->addComponent<CharacterController>();
 	player->addComponent<Camera>();
 	renderManager->registerCamera(player->getComponent<Camera>());
-	
+
 
 	ContentLoader* contentLoader = ContentLoader::getInstance();
 	contentLoader->loadContent("");
@@ -205,7 +206,7 @@ int main(int argc, char** argv)
 	sphere->addComponent<Transform>(new Transform(vec3(0,0,0)));
 	sphere->addComponent<MeshRenderer>(new MeshRenderer(renderManager));
 	sphere->getComponent<MeshRenderer>()->load();
-	
+
 
 	InputHandler* handler = new InputHandler();
 	handler->addComponent(new InputProcessor(eventBus, sender));
@@ -220,12 +221,12 @@ int main(int argc, char** argv)
 	freecam->addComponent<Camera>();
 	renderManager->registerCamera(freecam->getComponent<Camera>());
 */
-	
+
 	Entity* skybox = new Entity();
 	skybox->addComponent<Material>(contentLoader->skyboxMaterial);
 	skybox->addComponent<Transform>(new Transform(vec3(0,0,0),vec3(0,0,0),vec3(500,500,500)));
 	skybox->addComponent<SkyBoxRenderer>(new SkyBoxRenderer(renderManager));
-	
+
 	Entity* plane = new Entity();
 	plane->addComponent<Mesh>(contentLoader->plane);
 	plane->addComponent<Material>(contentLoader->planeMaterial);
@@ -251,7 +252,7 @@ int main(int argc, char** argv)
 		//Event polling
 		while (SDL_PollEvent(&event))
 		{
-			switch(event.type) 
+			switch(event.type)
 			{
 				case SDL_MOUSEBUTTONDOWN:
 					{
@@ -275,23 +276,23 @@ int main(int argc, char** argv)
 				case SDL_QUIT: {systemEvent->systemEventType = terminateapplication; sender->sendEvent(systemEvent); } break;
 				case SDL_APP_TERMINATING: { systemEvent->systemEventType = terminateapplication; sender->sendEvent(systemEvent); } break;
 				case SDL_WINDOWEVENT_CLOSE: { systemEvent->systemEventType = terminateapplication; sender->sendEvent(systemEvent); } break;
-				
-				case SDL_KEYDOWN: 
+
+				case SDL_KEYDOWN:
 					{
 					if(event.key.keysym.sym == SDLK_SPACE)
 						{
-							for(int i = 0; i < cubusses.size(); i++)
+							for(unsigned int i = 0; i < cubusses.size(); i++)
 							{
 								cubusses[i]->getComponent<CharacterController>()->move(vec3(0,10,0));
 							}
 						}
 
 					} break;
-				case SDL_KEYUP: 
+				case SDL_KEYUP:
 					{
 
 					} break;
-			
+
 				default: break;
 			}
 		}
@@ -302,7 +303,7 @@ int main(int argc, char** argv)
 		curTimeStamp=SDL_GetTicks()-progEnterTime;
 
 		// Update
-		
+
 		SDL_WarpMouseInWindow(SDLwindow,screenwidth / 2,screenheight / 2);
 		physicsManager->DynamicsWorld->stepSimulation(1.0f/60.0f);
 		cubus->getComponent<RigidBody>()->update();
@@ -334,26 +335,26 @@ int main(int argc, char** argv)
 
 		framesPerScondContainer->getComponent<FramesPerSecond>()->calculateFps();
 
-		for(int i = 0; i < cubusses.size(); i++)
+		for(unsigned int i = 0; i < cubusses.size(); i++)
 		{
 			cubusses[i]->getComponent<RigidBody>()->update();
 		}
 
 		// Draw
-		
+
 		glClearColor( 0.0f, 0.0f, 0.0f, 0.0f );
 		glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	
-			
+
+
 		renderManager->draw();
 
 
 		SDL_GL_SwapWindow(SDLwindow);
-		  
+
 	}
 
 
-	//////////////////////////////////////////////////////////////////////////////////////	
+	//////////////////////////////////////////////////////////////////////////////////////
 
 	delete eventEngine;
 	delete eventBus;
@@ -369,7 +370,7 @@ int main(int argc, char** argv)
 
 	contentLoader->freeContent();
 
-	//////////////////////////////////////////////////////////////////////////////////////	
+	//////////////////////////////////////////////////////////////////////////////////////
 
 
 

@@ -39,7 +39,7 @@
 
 using namespace std;
 
-vector <string> split(const string& str, const string& delimiter) 
+vector <string> split(const string& str, const string& delimiter)
 {
     vector <string> tokens;
 
@@ -48,7 +48,7 @@ vector <string> split(const string& str, const string& delimiter)
 
     while (string::npos != pos) {
         // Found a token, add it to the vector.
-        cout << str.substr(lastPos, pos - lastPos) << endl;
+       // cout << str.substr(lastPos, pos - lastPos) << endl;
         tokens.push_back(str.substr(lastPos, pos - lastPos));
         lastPos = pos + delimiter.size();
         pos = str.find(delimiter, lastPos);
@@ -129,7 +129,7 @@ float strfloat(string str)
 		pch[i]=str[i];
 		i++;
 	}
-	
+
 	float j;
 	j=(float) atof(pch);
 	delete[] pch;
@@ -167,7 +167,7 @@ string GetDigitNumber10(int dig)
 {
 	if(dig<10)
 	{
-		return "0" + numstr(dig); 
+		return "0" + numstr(dig);
 	}
 	return numstr(dig);
 }
@@ -176,7 +176,7 @@ string GetDigitNumber100(int dig)
 {
 	if(dig<10)
 	{
-		return "00" + numstr(dig); 
+		return "00" + numstr(dig);
 	}
 	if((dig>=10) && (dig<100))
 	{
@@ -204,7 +204,7 @@ char* stringchar(string s)
 	char *c;
 
 	c=new char [len+1];
-	
+
 	for (unsigned long i=0;i<s.length();i++)
 	{
 		c[i]=s[i];
@@ -221,7 +221,7 @@ wstring s2ws(const string& s)
 {
     int len;
     int slength = (int)s.length() + 1;
-    len = MultiByteToWideChar(CP_ACP, 0, s.c_str(), slength, 0, 0); 
+    len = MultiByteToWideChar(CP_ACP, 0, s.c_str(), slength, 0, 0);
     wchar_t* buf = new wchar_t[len];
     MultiByteToWideChar(CP_ACP, 0, s.c_str(), slength, buf, len);
     wstring r(buf);
@@ -269,7 +269,7 @@ string getPathFromFullFileName(string filename)
 		if ((ch=='/') || (ch=='\\')) break;
 		mycount--;
 	}
-    
+
 #ifdef OS_OSX
     mycount--;
  	while (true)
@@ -292,9 +292,9 @@ string getPathFromFullFileName(string filename)
 		if ((ch=='/') || (ch=='\\')) break;
 		mycount--;
 	}
-    
+
 #endif
-    
+
 
 	string ss="";
 	for (unsigned int i=0;i<mycount;i++)
@@ -327,12 +327,12 @@ void error(string thetext)
 #ifdef OS_WIN
 	wstring stemp = s2ws(thetext);
 	LPCWSTR result = stemp.c_str();
-	MessageBoxW(NULL,(LPCWSTR) result, L"Error", MB_OK);	
+	MessageBoxW(NULL,(LPCWSTR) result, L"Error", MB_OK);
 #endif
-    
+
 #ifdef OS_OSX
     CFStringRef cfDestination = ::CFStringCreateWithCString(kCFAllocatorDefault, thetext.c_str(),kCFStringEncodingMacRoman);
-    
+
     SInt32 nRes = 0;
     CFUserNotificationRef pDlg = NULL;
     const void* keys[] = { kCFUserNotificationAlertHeaderKey,
@@ -341,12 +341,12 @@ void error(string thetext)
         CFSTR("ERROR"),
         cfDestination
     };
-    
+
     CFDictionaryRef dict = CFDictionaryCreate(0, keys, vals,
                                               sizeof(keys)/sizeof(*keys),
                                               &kCFTypeDictionaryKeyCallBacks,
                                               &kCFTypeDictionaryValueCallBacks);
-    
+
     pDlg = CFUserNotificationCreate(kCFAllocatorDefault, 0,
                                     kCFUserNotificationPlainAlertLevel,
                                     &nRes, dict);
@@ -354,7 +354,7 @@ void error(string thetext)
     CFRelease(pDlg);
     CFRelease(dict);
 #endif
-    
+
 	exit(-1);
 }
 
@@ -367,12 +367,12 @@ void makeMessage(string thetext)
 #ifdef OS_WIN
 	wstring stemp = s2ws(thetext);
 	LPCWSTR result = stemp.c_str();
-	MessageBoxW(NULL,(LPCWSTR) result, L"Message", MB_OK);	
+	MessageBoxW(NULL,(LPCWSTR) result, L"Message", MB_OK);
 #endif
-    
+
 #ifdef OS_OSX
     CFStringRef cfDestination = ::CFStringCreateWithCString(kCFAllocatorDefault, thetext.c_str(),kCFStringEncodingMacRoman);
-    
+
     SInt32 nRes = 0;
     CFUserNotificationRef pDlg = NULL;
     const void* keys[] = { kCFUserNotificationAlertHeaderKey,
@@ -381,22 +381,22 @@ void makeMessage(string thetext)
         CFSTR("Message Box"),
         cfDestination
     };
-    
+
     CFDictionaryRef dict = CFDictionaryCreate(0, keys, vals,
                                               sizeof(keys)/sizeof(*keys),
                                               &kCFTypeDictionaryKeyCallBacks,
                                               &kCFTypeDictionaryValueCallBacks);
-    
+
     pDlg = CFUserNotificationCreate(kCFAllocatorDefault, 0,
                                     kCFUserNotificationPlainAlertLevel,
                                     &nRes, dict);
     CFRelease(cfDestination);
     CFRelease(pDlg);
     CFRelease(dict);
-    
+
 #endif
-    
-    
+
+
 }
 
 

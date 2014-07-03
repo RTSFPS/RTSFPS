@@ -29,10 +29,10 @@ ContentLoader::ContentLoader()
 
 ContentLoader* ContentLoader::getInstance()
 {
-	if (instance==NULL) 
+	if (instance==NULL)
 	{
 		instance = new ContentLoader;
-	} 
+	}
 
 	return instance;
 }
@@ -40,7 +40,7 @@ ContentLoader* ContentLoader::getInstance()
 
 void ContentLoader::loadContent(string levelFileName)
 {
-	
+
 	loadMeshes();
 	loadMaterials();
 }
@@ -59,12 +59,13 @@ void ContentLoader::loadMeshes()
 	Cubus = loadMesh("scene/cube.obj");
 	sphere = loadMesh("scene/sphere.obj");
 
-	plane = createPrimitive(primitivetype::plane);
+	plane = createPrimitive(planePrimetive);
+
 }
 
 Material* ContentLoader::loadMaterial(string shaderName, string diffuseTexture)
 {
-		
+
 	Shader* shaderr = new Shader(DATAfolder+shaderName);
 	unsigned int tempShaderID = shaderr->prog;
 	unsigned int tempTextureID = loadTexture(DATAfolder+diffuseTexture);
@@ -83,11 +84,11 @@ Material* ContentLoader::loadSkyBoxMaterial(string shaderName, string skyboxPath
 	if (!xpos) error("[loadSkyBoxMaterial] xpos.jpg not loaded");
 	SDL_Surface *xneg = IMG_Load(string(DATAfolder+skyboxPath+"/xneg.jpg").c_str());
 	if (!xneg) error("[loadSkyBoxMaterial] xneg.jpg not loaded");
-	SDL_Surface *ypos = IMG_Load(string(DATAfolder+skyboxPath+"/ypos.jpg").c_str()); 
+	SDL_Surface *ypos = IMG_Load(string(DATAfolder+skyboxPath+"/ypos.jpg").c_str());
 	if (!ypos) error("[loadSkyBoxMaterial] ypos.jpg not loaded");
 	SDL_Surface *yneg = IMG_Load(string(DATAfolder+skyboxPath+"/yneg.jpg").c_str());
 	if (!yneg) error("[loadSkyBoxMaterial] yneg.jpg not loaded");
-	SDL_Surface *zpos = IMG_Load(string(DATAfolder+skyboxPath+"/zpos.jpg").c_str()); 
+	SDL_Surface *zpos = IMG_Load(string(DATAfolder+skyboxPath+"/zpos.jpg").c_str());
 	if (!zpos) error("[loadSkyBoxMaterial] zpos.jpg not loaded");
 	SDL_Surface *zneg = IMG_Load(string(DATAfolder+skyboxPath+"/zneg.jpg").c_str());
 	if (!zneg) error("[loadSkyBoxMaterial] zneg.jpg not loaded");
@@ -112,13 +113,13 @@ Material* ContentLoader::loadSkyBoxMaterial(string shaderName, string skyboxPath
     glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_Z, 0, GL_RGBA, zpos->w, zpos->h, 0, zpos->format->BytesPerPixel == 4 ? GL_RGBA : GL_RGB, GL_UNSIGNED_BYTE, zpos->pixels);
     glTexImage2D(GL_TEXTURE_CUBE_MAP_NEGATIVE_Z, 0, GL_RGBA, zneg->w, zneg->h, 0, zneg->format->BytesPerPixel == 4 ? GL_RGBA : GL_RGB, GL_UNSIGNED_BYTE, zneg->pixels);
 
-	SDL_FreeSurface(xneg);  
+	SDL_FreeSurface(xneg);
 	SDL_FreeSurface(xpos);
-	SDL_FreeSurface(yneg);  
+	SDL_FreeSurface(yneg);
 	SDL_FreeSurface(ypos);
-	SDL_FreeSurface(zneg);  
+	SDL_FreeSurface(zneg);
 	SDL_FreeSurface(zpos);
-	
+
 	Material* m = new Material("skybox Material", tempShaderID ,cubemap_texture);
 
 	return m;
