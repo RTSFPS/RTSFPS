@@ -98,6 +98,6 @@ SDL_Surface* LoadIMG(string filename)
 	SDL_Surface* img;
 	img = IMG_Load(filename.c_str());
 	if (!img) error("error loading "+filename);
-	img = SDL_ConvertSurfaceFormat(img,SDL_PIXELFORMAT_ARGB8888,0);
+	img = SDL_ConvertSurfaceFormat(img,SDL_PIXELFORMAT_ABGR8888,0);
 	return img;
 }

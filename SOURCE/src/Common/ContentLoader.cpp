@@ -6,6 +6,7 @@
 #include <SDL_image.h>
 #include <string>
 #include "../GraphicTools/GLstuff.h"
+#include "../GraphicTools/SDLgraph.h"
 #include "../SystemTools/OBJparser.h"
 #include "ContentLoader.h"
 #include "../conf.h"
@@ -80,17 +81,17 @@ Material* ContentLoader::loadSkyBoxMaterial(string shaderName, string skyboxPath
 	Shader* shaderr = new Shader(DATAfolder+shaderName);
 	unsigned int tempShaderID = shaderr->prog;
 
-	SDL_Surface *xpos = IMG_Load(string(DATAfolder+skyboxPath+"/xpos.jpg").c_str());
+	SDL_Surface *xpos = LoadIMG(string(DATAfolder+skyboxPath+"/xpos.jpg").c_str());
 	if (!xpos) error("[loadSkyBoxMaterial] xpos.jpg not loaded");
-	SDL_Surface *xneg = IMG_Load(string(DATAfolder+skyboxPath+"/xneg.jpg").c_str());
+	SDL_Surface *xneg = LoadIMG(string(DATAfolder+skyboxPath+"/xneg.jpg").c_str());
 	if (!xneg) error("[loadSkyBoxMaterial] xneg.jpg not loaded");
-	SDL_Surface *ypos = IMG_Load(string(DATAfolder+skyboxPath+"/ypos.jpg").c_str());
+	SDL_Surface *ypos = LoadIMG(string(DATAfolder+skyboxPath+"/ypos.jpg").c_str());
 	if (!ypos) error("[loadSkyBoxMaterial] ypos.jpg not loaded");
-	SDL_Surface *yneg = IMG_Load(string(DATAfolder+skyboxPath+"/yneg.jpg").c_str());
+	SDL_Surface *yneg = LoadIMG(string(DATAfolder+skyboxPath+"/yneg.jpg").c_str());
 	if (!yneg) error("[loadSkyBoxMaterial] yneg.jpg not loaded");
-	SDL_Surface *zpos = IMG_Load(string(DATAfolder+skyboxPath+"/zpos.jpg").c_str());
+	SDL_Surface *zpos = LoadIMG(string(DATAfolder+skyboxPath+"/zpos.jpg").c_str());
 	if (!zpos) error("[loadSkyBoxMaterial] zpos.jpg not loaded");
-	SDL_Surface *zneg = IMG_Load(string(DATAfolder+skyboxPath+"/zneg.jpg").c_str());
+	SDL_Surface *zneg = LoadIMG(string(DATAfolder+skyboxPath+"/zneg.jpg").c_str());
 	if (!zneg) error("[loadSkyBoxMaterial] zneg.jpg not loaded");
 
 	unsigned int cubemap_texture;
@@ -106,12 +107,12 @@ Material* ContentLoader::loadSkyBoxMaterial(string shaderName, string skyboxPath
     glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
     glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
 
-    glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X, 0, GL_RGBA, xpos->w, xpos->h, 0, xpos->format->BytesPerPixel == 4 ? GL_RGBA : GL_RGB, GL_UNSIGNED_BYTE, xpos->pixels);
-    glTexImage2D(GL_TEXTURE_CUBE_MAP_NEGATIVE_X, 0, GL_RGBA, xneg->w, xneg->h, 0, xneg->format->BytesPerPixel == 4 ? GL_RGBA : GL_RGB, GL_UNSIGNED_BYTE, xneg->pixels);
-    glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_Y, 0, GL_RGBA, ypos->w, ypos->h, 0, ypos->format->BytesPerPixel == 4 ? GL_RGBA : GL_RGB, GL_UNSIGNED_BYTE, ypos->pixels);
-    glTexImage2D(GL_TEXTURE_CUBE_MAP_NEGATIVE_Y, 0, GL_RGBA, yneg->w, yneg->h, 0, yneg->format->BytesPerPixel == 4 ? GL_RGBA : GL_RGB, GL_UNSIGNED_BYTE, yneg->pixels);
-    glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_Z, 0, GL_RGBA, zpos->w, zpos->h, 0, zpos->format->BytesPerPixel == 4 ? GL_RGBA : GL_RGB, GL_UNSIGNED_BYTE, zpos->pixels);
-    glTexImage2D(GL_TEXTURE_CUBE_MAP_NEGATIVE_Z, 0, GL_RGBA, zneg->w, zneg->h, 0, zneg->format->BytesPerPixel == 4 ? GL_RGBA : GL_RGB, GL_UNSIGNED_BYTE, zneg->pixels);
+    glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X, 0, GL_RGBA, xpos->w, xpos->h, 0, GL_RGBA, GL_UNSIGNED_BYTE, xpos->pixels);
+    glTexImage2D(GL_TEXTURE_CUBE_MAP_NEGATIVE_X, 0, GL_RGBA, xneg->w, xneg->h, 0, GL_RGBA, GL_UNSIGNED_BYTE, xneg->pixels);
+    glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_Y, 0, GL_RGBA, ypos->w, ypos->h, 0, GL_RGBA, GL_UNSIGNED_BYTE, ypos->pixels);
+    glTexImage2D(GL_TEXTURE_CUBE_MAP_NEGATIVE_Y, 0, GL_RGBA, yneg->w, yneg->h, 0, GL_RGBA, GL_UNSIGNED_BYTE, yneg->pixels);
+    glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_Z, 0, GL_RGBA, zpos->w, zpos->h, 0, GL_RGBA, GL_UNSIGNED_BYTE, zpos->pixels);
+    glTexImage2D(GL_TEXTURE_CUBE_MAP_NEGATIVE_Z, 0, GL_RGBA, zneg->w, zneg->h, 0, GL_RGBA, GL_UNSIGNED_BYTE, zneg->pixels);
 
 	SDL_FreeSurface(xneg);
 	SDL_FreeSurface(xpos);
