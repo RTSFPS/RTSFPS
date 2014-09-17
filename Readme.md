@@ -1,4 +1,6 @@
-Wellcome to RTSFPS
+Welcome to RTSFPS / Blackbyte Engine
 
-Code: Key-Real
-Code: Lasse
+Programming by
+* Key-Real
+* Lasse
+* Dario
