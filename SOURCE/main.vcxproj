@@ -10,6 +10,48 @@
       <Platform>Win32</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Components\MeshRenderer.cpp" />
+    <ClCompile Include="src\Components\TextRenderer.cpp" />
+    <ClCompile Include="src\conf.cpp" />
+    <ClCompile Include="src\GraphicTools\DrawFont.cpp" />
+    <ClCompile Include="src\GraphicTools\GLstuff.cpp" />
+    <ClCompile Include="src\GraphicTools\SDLgraph.cpp" />
+    <ClCompile Include="src\GraphicTools\Shader.cpp" />
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\Managers\ContentManager.cpp" />
+    <ClCompile Include="src\Managers\RenderManager.cpp" />
+    <ClCompile Include="src\SceneManagement\ClassRegistration.cpp" />
+    <ClCompile Include="src\SceneManagement\SceneBuilder .cpp" />
+    <ClCompile Include="src\SceneManagement\SceneReader.cpp" />
+    <ClCompile Include="src\SystemTools\INIparser.cpp" />
+    <ClCompile Include="src\SystemTools\ObjectCreator.cpp" />
+    <ClCompile Include="src\SystemTools\OBJparser.cpp" />
+    <ClCompile Include="src\tools.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\Components\MeshRenderer.h" />
+    <ClInclude Include="src\Components\TextRenderer.h" />
+    <ClInclude Include="src\Components\Transform.h" />
+    <ClInclude Include="src\conf.h" />
+    <ClInclude Include="src\Containers\Mesh.h" />
+    <ClInclude Include="src\EntityComponentSystem\Component.h" />
+    <ClInclude Include="src\EntityComponentSystem\Entity.h" />
+    <ClInclude Include="src\GraphicTools\DrawFont.h" />
+    <ClInclude Include="src\GraphicTools\GLstuff.h" />
+    <ClInclude Include="src\GraphicTools\SDLgraph.h" />
+    <ClInclude Include="src\GraphicTools\Shader.h" />
+    <ClInclude Include="src\main.h" />
+    <ClInclude Include="src\Managers\ContentManager.h" />
+    <ClInclude Include="src\Managers\RenderManager.h" />
+    <ClInclude Include="src\SceneManagement\ClassRegistration.h" />
+    <ClInclude Include="src\SceneManagement\SceneBuilder.h" />
+    <ClInclude Include="src\SceneManagement\SceneReader.h" />
+    <ClInclude Include="src\SystemTools\INIparser.h" />
+    <ClInclude Include="src\SystemTools\ObjectCreator.h" />
+    <ClInclude Include="src\SystemTools\OBJparser.h" />
+    <ClInclude Include="src\tools.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{B494821D-8D51-4401-ACF9-D557CF274D2B}</ProjectGuid>
     <RootNamespace>main</RootNamespace>
@@ -70,76 +112,6 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClInclude Include="src\Common\ContentLoader.h" />
-    <ClInclude Include="src\Components\Camera.h" />
-    <ClInclude Include="src\Components\CharacterController.h" />
-    <ClInclude Include="src\Components\FramesPerSecond.h" />
-    <ClInclude Include="src\Components\Material.h" />
-    <ClInclude Include="src\Components\Mesh.h" />
-    <ClInclude Include="src\Components\MeshRenderer.h" />
-    <ClInclude Include="src\Components\Renderer.h" />
-    <ClInclude Include="src\Components\RenderManager.h" />
-    <ClInclude Include="src\Components\RigidBody.h" />
-    <ClInclude Include="src\Components\SkyBoxRenderer.h" />
-    <ClInclude Include="src\Components\TextRenderer.h" />
-    <ClInclude Include="src\Components\Transform.h" />
-    <ClInclude Include="src\conf.h" />
-    <ClInclude Include="src\EntitySystem\Component.h" />
-    <ClInclude Include="src\EntitySystem\Entity.h" />
-    <ClInclude Include="src\Entitys\EventHandler.h" />
-    <ClInclude Include="src\Entitys\InputHandler.h" />
-    <ClInclude Include="src\Entitys\Player.h" />
-    <ClInclude Include="src\EventMessages\EventInput.h" />
-    <ClInclude Include="src\EventMessages\EventSystemMessages.h" />
-    <ClInclude Include="src\EventSystem\EventSystem.h" />
-    <ClInclude Include="src\Factories\EntityFactory.h" />
-    <ClInclude Include="src\Factories\MeshFactory.h" />
-    <ClInclude Include="src\GraphicTools\drawfont.h" />
-    <ClInclude Include="src\GraphicTools\GLstuff.h" />
-    <ClInclude Include="src\GraphicTools\SDLgraph.h" />
-    <ClInclude Include="src\GraphicTools\shader.h" />
-    <ClInclude Include="src\main.h" />
-    <ClInclude Include="src\Managers\PhysicsManager.h" />
-    <ClInclude Include="src\SystemTools\INIparser.h" />
-    <ClInclude Include="src\SystemTools\ObjectCreator.h" />
-    <ClInclude Include="src\SystemTools\OBJparser.h" />
-    <ClInclude Include="src\tools.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="src\Common\ContentLoader.cpp" />
-    <ClCompile Include="src\Components\Camera.cpp" />
-    <ClCompile Include="src\Components\CharacterController.cpp" />
-    <ClCompile Include="src\Components\FramesPerSecond.cpp" />
-    <ClCompile Include="src\Components\Material.cpp" />
-    <ClCompile Include="src\Components\Mesh.cpp" />
-    <ClCompile Include="src\Components\MeshRenderer.cpp" />
-    <ClCompile Include="src\Components\Renderer.cpp" />
-    <ClCompile Include="src\Components\RenderManager.cpp" />
-    <ClCompile Include="src\Components\RigidBody.cpp" />
-    <ClCompile Include="src\Components\SkyBoxRenderer.cpp" />
-    <ClCompile Include="src\Components\TextRenderer.cpp" />
-    <ClCompile Include="src\Components\Transform.cpp" />
-    <ClCompile Include="src\conf.cpp" />
-    <ClCompile Include="src\Entitys\EventHandler.cpp" />
-    <ClCompile Include="src\Entitys\InputHandler.cpp" />
-    <ClCompile Include="src\Entitys\Player.cpp" />
-    <ClCompile Include="src\EventMessages\EventInput.cpp" />
-    <ClCompile Include="src\EventMessages\EventSystemMessages.cpp" />
-    <ClCompile Include="src\EventSystem\EventSystem.cpp" />
-    <ClCompile Include="src\Factories\EntityFactory.cpp" />
-    <ClCompile Include="src\Factories\MeshFactory.cpp" />
-    <ClCompile Include="src\GraphicTools\drawfont.cpp" />
-    <ClCompile Include="src\GraphicTools\GLstuff.cpp" />
-    <ClCompile Include="src\GraphicTools\SDLgraph.cpp" />
-    <ClCompile Include="src\GraphicTools\shader.cpp" />
-    <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="src\Managers\PhysicsManager.cpp" />
-    <ClCompile Include="src\SystemTools\INIparser.cpp" />
-    <ClCompile Include="src\SystemTools\ObjectCreator.cpp" />
-    <ClCompile Include="src\SystemTools\OBJparser.cpp" />
-    <ClCompile Include="src\tools.cpp" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

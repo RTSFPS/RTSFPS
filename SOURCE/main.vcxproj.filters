@@ -1,38 +1,94 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\tools.cpp" />
+    <ClCompile Include="src\conf.cpp" />
+    <ClCompile Include="src\SystemTools\OBJparser.cpp">
+      <Filter>SystemTools</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SystemTools\INIparser.cpp">
+      <Filter>SystemTools</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SystemTools\ObjectCreator.cpp">
+      <Filter>SystemTools</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GraphicTools\GLstuff.cpp">
+      <Filter>GraphicTools</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GraphicTools\SDLgraph.cpp">
+      <Filter>GraphicTools</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GraphicTools\Shader.cpp">
+      <Filter>GraphicTools</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GraphicTools\DrawFont.cpp">
+      <Filter>GraphicTools</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SceneManagement\ClassRegistration.cpp">
+      <Filter>SceneManagement</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SceneManagement\SceneBuilder .cpp">
+      <Filter>SceneManagement</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SceneManagement\SceneReader.cpp">
+      <Filter>SceneManagement</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Managers\RenderManager.cpp">
+      <Filter>Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Components\TextRenderer.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Managers\ContentManager.cpp">
+      <Filter>Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Components\MeshRenderer.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\main.h" />
     <ClInclude Include="src\tools.h" />
     <ClInclude Include="src\conf.h" />
-    <ClInclude Include="src\main.h" />
-    <ClInclude Include="src\GraphicTools\SDLgraph.h">
-      <Filter>GraphicTools</Filter>
-    </ClInclude>
-    <ClInclude Include="src\GraphicTools\shader.h">
-      <Filter>GraphicTools</Filter>
-    </ClInclude>
-    <ClInclude Include="src\GraphicTools\drawfont.h">
-      <Filter>GraphicTools</Filter>
-    </ClInclude>
-    <ClInclude Include="src\GraphicTools\GLstuff.h">
-      <Filter>GraphicTools</Filter>
+    <ClInclude Include="src\SystemTools\OBJparser.h">
+      <Filter>SystemTools</Filter>
     </ClInclude>
     <ClInclude Include="src\SystemTools\INIparser.h">
       <Filter>SystemTools</Filter>
     </ClInclude>
-    <ClInclude Include="src\EventSystem\EventSystem.h">
-      <Filter>EventSystem</Filter>
+    <ClInclude Include="src\SystemTools\ObjectCreator.h">
+      <Filter>SystemTools</Filter>
     </ClInclude>
-    <ClInclude Include="src\EventMessages\EventSystemMessages.h">
-      <Filter>EventMessages</Filter>
+    <ClInclude Include="src\GraphicTools\GLstuff.h">
+      <Filter>GraphicTools</Filter>
     </ClInclude>
-    <ClInclude Include="src\EventMessages\EventInput.h">
-      <Filter>EventMessages</Filter>
+    <ClInclude Include="src\GraphicTools\SDLgraph.h">
+      <Filter>GraphicTools</Filter>
     </ClInclude>
-    <ClInclude Include="src\EntitySystem\Entity.h">
-      <Filter>EntitySystem</Filter>
+    <ClInclude Include="src\GraphicTools\Shader.h">
+      <Filter>GraphicTools</Filter>
     </ClInclude>
-    <ClInclude Include="src\EntitySystem\Component.h">
-      <Filter>EntitySystem</Filter>
+    <ClInclude Include="src\GraphicTools\DrawFont.h">
+      <Filter>GraphicTools</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SceneManagement\ClassRegistration.h">
+      <Filter>SceneManagement</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SceneManagement\SceneBuilder.h">
+      <Filter>SceneManagement</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SceneManagement\SceneReader.h">
+      <Filter>SceneManagement</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EntityComponentSystem\Component.h">
+      <Filter>EntityComponentSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EntityComponentSystem\Entity.h">
+      <Filter>EntityComponentSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Managers\RenderManager.h">
+      <Filter>Managers</Filter>
     </ClInclude>
     <ClInclude Include="src\Components\TextRenderer.h">
       <Filter>Components</Filter>
@@ -40,186 +96,37 @@
     <ClInclude Include="src\Components\Transform.h">
       <Filter>Components</Filter>
     </ClInclude>
-    <ClInclude Include="src\Components\FramesPerSecond.h">
-      <Filter>Components</Filter>
+    <ClInclude Include="src\Managers\ContentManager.h">
+      <Filter>Managers</Filter>
     </ClInclude>
-    <ClInclude Include="src\Components\RenderManager.h">
-      <Filter>Components</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Factories\EntityFactory.h">
-      <Filter>Factories</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Entitys\Player.h">
-      <Filter>Entitys</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Entitys\EventHandler.h">
-      <Filter>Entitys</Filter>
-    </ClInclude>
-    <ClInclude Include="src\SystemTools\OBJparser.h">
-      <Filter>SystemTools</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Common\ContentLoader.h">
-      <Filter>Common</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Factories\MeshFactory.h">
-      <Filter>Factories</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Components\Material.h">
-      <Filter>Components</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Components\Mesh.h">
-      <Filter>Components</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Entitys\InputHandler.h">
-      <Filter>Entitys</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Components\Camera.h">
-      <Filter>Components</Filter>
+    <ClInclude Include="src\Containers\Mesh.h">
+      <Filter>Containers</Filter>
     </ClInclude>
     <ClInclude Include="src\Components\MeshRenderer.h">
       <Filter>Components</Filter>
     </ClInclude>
-    <ClInclude Include="src\Components\SkyBoxRenderer.h">
-      <Filter>Components</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Components\Renderer.h">
-      <Filter>Components</Filter>
-    </ClInclude>
-    <ClInclude Include="src\SystemTools\ObjectCreator.h">
-      <Filter>SystemTools</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Managers\PhysicsManager.h">
-      <Filter>Managers</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Components\RigidBody.h">
-      <Filter>Components</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Components\CharacterController.h">
-      <Filter>Components</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\conf.cpp" />
-    <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="src\tools.cpp" />
-    <ClCompile Include="src\GraphicTools\SDLgraph.cpp">
-      <Filter>GraphicTools</Filter>
-    </ClCompile>
-    <ClCompile Include="src\GraphicTools\shader.cpp">
-      <Filter>GraphicTools</Filter>
-    </ClCompile>
-    <ClCompile Include="src\GraphicTools\drawfont.cpp">
-      <Filter>GraphicTools</Filter>
-    </ClCompile>
-    <ClCompile Include="src\GraphicTools\GLstuff.cpp">
-      <Filter>GraphicTools</Filter>
-    </ClCompile>
-    <ClCompile Include="src\SystemTools\INIparser.cpp">
-      <Filter>SystemTools</Filter>
-    </ClCompile>
-    <ClCompile Include="src\EventSystem\EventSystem.cpp">
-      <Filter>EventSystem</Filter>
-    </ClCompile>
-    <ClCompile Include="src\EventMessages\EventInput.cpp">
-      <Filter>EventMessages</Filter>
-    </ClCompile>
-    <ClCompile Include="src\EventMessages\EventSystemMessages.cpp">
-      <Filter>EventMessages</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Components\TextRenderer.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Components\Transform.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Components\FramesPerSecond.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Components\RenderManager.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Factories\EntityFactory.cpp">
-      <Filter>Factories</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Entitys\Player.cpp">
-      <Filter>Entitys</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Entitys\EventHandler.cpp">
-      <Filter>Entitys</Filter>
-    </ClCompile>
-    <ClCompile Include="src\SystemTools\OBJparser.cpp">
-      <Filter>SystemTools</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Common\ContentLoader.cpp">
-      <Filter>Common</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Factories\MeshFactory.cpp">
-      <Filter>Factories</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Components\Material.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Components\Mesh.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Entitys\InputHandler.cpp">
-      <Filter>Entitys</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Components\Camera.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Components\MeshRenderer.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Components\SkyBoxRenderer.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Components\Renderer.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
-    <ClCompile Include="src\SystemTools\ObjectCreator.cpp">
-      <Filter>SystemTools</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Managers\PhysicsManager.cpp">
-      <Filter>Managers</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Components\RigidBody.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Components\CharacterController.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Filter Include="GraphicTools">
-      <UniqueIdentifier>{e5903f56-366f-4a97-a4e4-9444e78db348}</UniqueIdentifier>
-    </Filter>
     <Filter Include="SystemTools">
-      <UniqueIdentifier>{c3768d84-1931-40e6-a9b5-739bbe90aec0}</UniqueIdentifier>
+      <UniqueIdentifier>{21f19a2f-1ff9-48cf-91fc-6fbcb6b05911}</UniqueIdentifier>
     </Filter>
-    <Filter Include="EventSystem">
-      <UniqueIdentifier>{fe0dc81a-b615-4cfe-adcc-2689f39e0cbc}</UniqueIdentifier>
+    <Filter Include="GraphicTools">
+      <UniqueIdentifier>{4bf9cfaf-85fc-4d40-9fe8-192f941006f0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="EventMessages">
-      <UniqueIdentifier>{43e906e7-c98f-410b-94ca-73fc3b4ab057}</UniqueIdentifier>
+    <Filter Include="SceneManagement">
+      <UniqueIdentifier>{fb316670-5fb6-4f30-8695-d21493c2b045}</UniqueIdentifier>
     </Filter>
-    <Filter Include="EntitySystem">
-      <UniqueIdentifier>{8a81ac5c-f4a0-408e-a8b8-676ddd67e86a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Components">
-      <UniqueIdentifier>{7fc9ae0d-ff4b-45bd-8fb7-2ef1ec8e8d26}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Entitys">
-      <UniqueIdentifier>{7e4d14ec-e896-459d-b7c3-b3d27a755bda}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Factories">
-      <UniqueIdentifier>{267d7607-186b-4f17-a279-4bd3dbd3eb0d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Common">
-      <UniqueIdentifier>{296b2296-27c0-4ef1-8ff9-91a9413dfc7d}</UniqueIdentifier>
+    <Filter Include="EntityComponentSystem">
+      <UniqueIdentifier>{8973c312-fe01-4215-9dac-f1b1240a7919}</UniqueIdentifier>
     </Filter>
     <Filter Include="Managers">
-      <UniqueIdentifier>{8b40410a-3679-49fa-996d-66ef177bad9e}</UniqueIdentifier>
+      <UniqueIdentifier>{6f8d5a98-e8f4-4fbf-bd27-e1e0f5e0a18b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components">
+      <UniqueIdentifier>{06d43425-8106-41f3-93a7-c8ada7d01e18}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Containers">
+      <UniqueIdentifier>{cdf4466c-9463-47ec-a1b1-0c2fd6cdf8f2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

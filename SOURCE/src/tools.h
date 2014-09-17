@@ -47,6 +47,7 @@ using namespace std;
 #define byte unsigned char
 
 
+string getExtentionfromFileName(string filename);
 
 
 vector <string> split(const string& str, const string& delimiter);

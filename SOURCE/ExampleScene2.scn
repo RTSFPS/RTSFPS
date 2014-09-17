@@ -1,0 +1,33 @@
+[Entitys]
+
+(Entity1) 
+<Components> 
++Transform
+{int = 10}
+{int = 10}
+{int = 10}
++TextRenderer
+{string = font/arial.ttf}
+{int = 48}
+{int = 110}
+{string = test}
+
+(Entity2) 
+<Components> 
++Transform
+{int = 10}
+{int = 100}
+{int = 10}
++TextRenderer
+{string = font/arial.ttf}
+{int = 300}
+{int = 100}
+{string = test2}
+
+(Entity3)
+<Components> 
++Transform
+{int = 10}
+{int = 10}
+{int = 10}
+

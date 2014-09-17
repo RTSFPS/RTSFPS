@@ -39,6 +39,16 @@
 
 using namespace std;
 
+
+
+
+string getExtentionfromFileName(string filename)
+{
+	vector<string>s = split(filename,".");
+	return s[3];
+}
+
+
 vector <string> split(const string& str, const string& delimiter)
 {
     vector <string> tokens;

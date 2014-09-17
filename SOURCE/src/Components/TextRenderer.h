@@ -2,22 +2,24 @@
 #define NO_SDL_GLEXT
 #define _HAS_ITERATOR_DEBUGGING 0
 #define _SECURE_SCL 0
+
 #include <glew.h>
 #include <string>
 #include <SDL.h>
 
-#include "Renderer.h"
+
 #include "../GraphicTools/DrawFont.h"
-#include "../EntitySystem/Component.h"
-#include "../EntitySystem/Entity.h"
+#include "../EntityComponentSystem/Component.h"
+#include "../EntityComponentSystem/Entity.h"
+
 
 using namespace std;
 
 
-class TextRenderer : public Renderer
+class TextRenderer : public Component<Entity>
 {
 public:
-	TextRenderer(Component* renderManager,string fontFileName, int size, Uint32 color);
+	void construct(vector<void*> values);
 	void changeText(string text);
 	void draw();
 private:

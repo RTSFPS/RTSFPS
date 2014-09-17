@@ -10,6 +10,3 @@ using namespace std;
 
 
 extern string absoluteExecutablePath;
-
-extern long g_lLastTime;
-extern long g_lElapsedTime;

@@ -30,101 +30,67 @@
 #include <glm.hpp>
 #include <ext.hpp>
 
-#include "../GraphicTools/GLstuff.h"
 #include "../tools.h"
-#include "../EntitySystem/Component.h"
-#include "../EntitySystem/Entity.h"
-#include "RenderManager.h"
-#include "Mesh.h"
-#include "MeshRenderer.h"
-#include "Material.h"
+#include "../GraphicTools/GLstuff.h"
+#include "../EntityComponentSystem/Component.h"
+#include "../EntityComponentSystem/Entity.h"
+#include "../Managers/RenderManager.h"
 #include "Transform.h"
-#include "Renderer.h"
+
+#include "MeshRenderer.h"
+
 
 using namespace std;
 using namespace glm;
 
 
 
-MeshRenderer::MeshRenderer(Component* renderManager)
+void MeshRenderer::construct(vector<void*> values)
 {
-
-	RenderManager* renderM = (RenderManager*) renderManager;
-
-	renderM->registerMeshRenderer(this);
-
-	numVertex = 0;
-	numPositions = 0;
-	numUV = 0;
-	numIndices = 0;
+	RenderManager::exemplar()->registerMeshRenderer(this);
 }
 
 
 
-void MeshRenderer::load()
+void MeshRenderer::draw()
 {
 
-	Mesh* mesh = this->parent->getComponent<Mesh>();
+	glUseProgram(testShaderID);
+	glDisable(GL_LIGHTING);
+			
+	static float r=0;
 
-	this->numVertex = mesh->numVertex;
-	this->triangleType = mesh->triangleType;
+	r+=1;
 
-	 glGenVertexArrays(1, &vao);
+		mat4 myProjectionMatrix = glm::perspective(45.0f, (GLfloat) screenwidth / (GLfloat) screenheight, 0.01f, 100.0f);
+		mat4 myViewMatrix = glm::lookAt(vec3(0,5,50), glm::vec3(0.0f, 5, 0.0f), vec3(0.0f, 1.0f, 0.0f));
+		mat4 myModelMatrix = mat4(1); 
 
-	loadPositionsFromVertexBuffer(mesh->verticies,mesh->numVertex);
-	loadTextCoordsFromVertexBuffer(mesh->verticies,mesh->numVertex);
-	
-}
-
-
-
-MeshRenderer::~MeshRenderer()
-{
-	glDeleteBuffers(1,&positionVBO);
-	if (uvVBO)	glDeleteBuffers(1,&uvVBO);
-    glDeleteVertexArrays(1,&vao);
-}
-
-
-
-
-
-void MeshRenderer::draw(mat4 matrix)
-{
-		Material* material = this->parent->getComponent<Material>();
-
-		unsigned int shaderID = material->shaderID;
-		unsigned int textureID = material->textureID;
-	
-		mat4 finalMatrix = matrix;
-
-		Transform* transform = this->parent->getComponent<Transform>();
+		myModelMatrix =rotate(myModelMatrix,r,vec3(1,1,1));
+		mat4 myMatrix = myProjectionMatrix * myViewMatrix * myModelMatrix;
 
 		
-		finalMatrix = translate (finalMatrix,transform->position);
-
-		vec3 rot = transform->rotation;
-		finalMatrix=rotate(finalMatrix,rot.x,vec3(1.0f,0.0f,0.0f));
-		finalMatrix=rotate(finalMatrix,rot.y,vec3(0.0f,1.0f,0.0f));
-		finalMatrix=rotate(finalMatrix,rot.z,vec3(0.0f,0.0f,1.0f));
-
-		finalMatrix = scale(finalMatrix,transform->scale);
-
+		// glUniformMatrix4fv(glGetUniformLocation(testShaderID,"projectionMatrix"), 1, GL_FALSE, glm::value_ptr(myProjectionMatrix));
+		// glUniformMatrix4fv(glGetUniformLocation(testShaderID,"viewMatrix"), 1, GL_FALSE, glm::value_ptr(myViewMatrix));
+		// glUniformMatrix4fv(glGetUniformLocation(testShaderID,"modelMatrix"), 1, GL_FALSE, glm::value_ptr(myModelMatrix));
 		
-		glUseProgram(shaderID);
-		glDisable(GL_LIGHTING);
-		glEnable(GL_TEXTURE_2D);
-		glBindTexture(GL_TEXTURE_2D,textureID);
-
-		uint matrix_location = glGetUniformLocation (shaderID, "matrix");
-		glUniformMatrix4fv (matrix_location, 1, GL_FALSE, value_ptr(finalMatrix));
+		glUniformMatrix4fv(glGetUniformLocation(testShaderID,"matrix"), 1, GL_FALSE, glm::value_ptr(myMatrix));
 
 
-		glBindVertexArray(vao);
+    glEnable(GL_TEXTURE_2D);
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D,testTextureID);
+	Uint32 texture = glGetUniformLocation(testShaderID,"texture0");
+	if (!texture) error("Texture Uniform Error");
+	glUniform1i(texture,0);
 
 
-	if (numIndices==0) glDrawArrays (triangleType, 0, numVertex);
-
-	if (numIndices!=0) glDrawElements(GL_QUADS, 24*sizeof(unsigned int), GL_UNSIGNED_INT, 0);
+	glBindVertexArray(mesh2draw->vao);
 	
+
+	if (!mesh2draw->NumFaces) glDrawArrays (mesh2draw->triangleType, 0, mesh2draw->NumVertices);
+	//if (mesh2draw->NumFaces) glDrawElements(GL_TRIANGLES, 24*sizeof(unsigned int), GL_UNSIGNED_INT, 0);
+
 }
+
+

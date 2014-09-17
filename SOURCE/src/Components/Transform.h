@@ -2,22 +2,24 @@
 #define NO_SDL_GLEXT
 #define _HAS_ITERATOR_DEBUGGING 0
 #define _SECURE_SCL 0
-#include <glew.h>
-#include <glm.hpp>
-#include <ext.hpp>
-#include "../EntitySystem/Component.h"
-#include "../EntitySystem/Entity.h"
 
-using namespace glm;
+#include "../EntityComponentSystem/Entity.h"
+#include "../EntityComponentSystem/Component.h"
+
 
 class Transform : public Component<Entity>
 {
 public:
-	Transform(vec3 position, vec3 rotation, vec3 scale);
-	Transform(vec3 position);
-	Transform(){};
+	int x, y, z;
 
-	vec3 position, rotation, scale;
+	void construct(vector<void*> values)
+	{
+		this->x = *(int*)values[0];
+		this->y = *(int*)values[1];
+		this->z = *(int*)values[2];
+	}
 
-	mat4 getDirection();
+	void update()
+	{
+	}
 };

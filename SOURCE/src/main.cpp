@@ -34,27 +34,21 @@
 #include "main.h"
 
 #include "tools.h"
+
 #include "GraphicTools/Shader.h"
 #include "GraphicTools/GLstuff.h"
 #include "GraphicTools/SDLgraph.h"
-#include "EventSystem/EventSystem.h"
-#include "EventMessages/EventInput.h"
-#include "EventMessages/EventSystemMessages.h"
-#include "Factories/EntityFactory.h"
-#include "Components/RenderManager.h"
-#include "EntitySystem/Entity.h"
-#include "Components/FramesPerSecond.h"
-#include "Entitys/Player.h"
-#include "Common/ContentLoader.h"
-#include "Components/Material.h"
-#include "Components/Transform.h"
-#include "Entitys/InputHandler.h"
-#include "Components/SkyBoxRenderer.h"
-#include "Components/Camera.h"
-#include "SystemTools/ObjectCreator.h"
-#include "Managers/PhysicsManager.h"
-#include "Components/RigidBody.h"
-#include "Components/CharacterController.h"
+
+#include "SceneManagement\SceneReader.h"
+
+#include "SceneManagement\ClassRegistration.h"
+#include "EntityComponentSystem\Component.h"
+#include "EntityComponentSystem\Entity.h"
+#include "SceneManagement\SceneBuilder.h"
+#include "Components\Transform.h"
+#include "Managers\RenderManager.h"
+#include "Managers\ContentManager.h"
+#include "Components\MeshRenderer.h"
 
 using namespace std;
 using namespace glm;
@@ -68,6 +62,7 @@ unsigned int curTimeStamp=0;
 
 
 string absoluteExecutablePath="";
+
 
 
 #ifdef OS_WIN
@@ -152,91 +147,29 @@ int main(int argc, char** argv)
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LEQUAL);
 
-
-
-
 	//////////////////////////////////////////////////////////////////////////////////////
-	PhysicsManager* physicsManager = new PhysicsManager();
+	
+		ContentManager* myContentManagerTest=ContentManager::exemplar();
 
 
-	EventEngine* eventEngine = new EventEngine();
-	EventSender* sender = new EventSender(eventEngine);
+		string name=DATAfolder+"Scene/cube.obj";
 
-	EventBus* eventBus = new EventBus(input, eventEngine);
-	InputEvent* inputEvent = new InputEvent();
+		myContentManagerTest->loadMesh(name);
 
+		MeshRenderer* myMeshRenderer = new MeshRenderer();
+		myMeshRenderer->mesh2draw = myContentManagerTest->meshes[name];
 
-	EventBus* systemEventBus = new EventBus(systemevent, eventEngine);
-	SystemListener* systemListener = new SystemListener(systemEventBus);
-	SystemEvent* systemEvent = new SystemEvent();
-
-	Entity* renderManagerContainer = createRenderManagerContainer();
-	RenderManager* renderManager = renderManagerContainer->getComponent<RenderManager>();
-	Entity* framesPerScondContainer = createFramesPerSecondContainer(renderManager, DATAfolder+"font/arial.ttf", 24, 0xffffffff, vec3(10, 10,0) );
-
-	Player* player = new Player();
-	player->addComponent<Transform>(new Transform(vec3(300, 100,0)));
-	player->addComponent<InputProcessor>(new InputProcessor(eventBus, sender));
-//	player->addComponent<RigidBody>(new RigidBody(physicsManager));
-//	player->getComponent<RigidBody>()->setSphere(1,1000);
-	//player->getComponent<RigidBody>()->setBox(vec3(2,2,2), 10);
-//	player->addComponent<CharacterController>();
-	player->addComponent<Camera>();
-	renderManager->registerCamera(player->getComponent<Camera>());
+		Shader* myShader = new Shader(DATAfolder+"shader/texture");
+		
+		myMeshRenderer->testShaderID = myShader->prog;
 
 
-	ContentLoader* contentLoader = ContentLoader::getInstance();
-	contentLoader->loadContent("");
-
-	Entity* cubus = new Entity();
-	cubus->addComponent<Mesh>(contentLoader->Cubus);
-	cubus->addComponent<Material>(contentLoader->checkerMaterial);
-	cubus->addComponent<Transform>(new Transform(vec3(5,0,0)));
-	cubus->addComponent<MeshRenderer>(new MeshRenderer(renderManager));
-	cubus->getComponent<MeshRenderer>()->load();
-	cubus->addComponent<RigidBody>(new RigidBody(physicsManager));
-	cubus->getComponent<RigidBody>()->setBox(vec3(2,2,2), 1000);
+		myMeshRenderer->testTextureID = loadTexture(DATAfolder+"graph/checker.jpg");
 
 
-
-
-	Entity* sphere = new Entity();
-	sphere->addComponent<Mesh>(contentLoader->sphere);
-	sphere->addComponent<Material>(contentLoader->greenMaterial);
-	sphere->addComponent<Transform>(new Transform(vec3(0,0,0)));
-	sphere->addComponent<MeshRenderer>(new MeshRenderer(renderManager));
-	sphere->getComponent<MeshRenderer>()->load();
-
-
-	InputHandler* handler = new InputHandler();
-	handler->addComponent(new InputProcessor(eventBus, sender));
-	handler->sender = sender;
-
-	vector<Entity*> cubusses;
-
-/*
-	FreeCam* freecam = new FreeCam();
-	freecam->addComponent<Transform>(new Transform(vec3(0,0,10)));
-	freecam->addComponent<InputProcessor>(new InputProcessor(eventBus, sender));
-	freecam->addComponent<Camera>();
-	renderManager->registerCamera(freecam->getComponent<Camera>());
-*/
-
-	Entity* skybox = new Entity();
-	skybox->addComponent<Material>(contentLoader->skyboxMaterial);
-	skybox->addComponent<Transform>(new Transform(vec3(0,0,0),vec3(0,0,0),vec3(500,500,500)));
-	skybox->addComponent<SkyBoxRenderer>(new SkyBoxRenderer(renderManager));
-
-	Entity* plane = new Entity();
-	plane->addComponent<Mesh>(contentLoader->plane);
-	plane->addComponent<Material>(contentLoader->planeMaterial);
-	plane->addComponent<Transform>(new Transform(vec3(0,-100,0)));
-	plane->addComponent<MeshRenderer>(new MeshRenderer(renderManager));
-	plane->getComponent<MeshRenderer>()->load();
-	plane->addComponent<RigidBody>(new RigidBody(physicsManager));
-	plane->getComponent<RigidBody>()->setBox(vec3(1000,1,1000), 0);
-
-
+		RenderManager::exemplar()->registerMeshRenderer(myMeshRenderer);
+	
+		
 	//////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -247,137 +180,61 @@ int main(int argc, char** argv)
 
 	SDL_Event event;
 	progEnterTime=SDL_GetTicks();
-	while (systemListener->sysEventType != terminateapplication)
+	//Event polling
+	bool running = true;
+
+	SceneReader::exemplar()->loadScene("ExampleScene2.scn");
+
+
+	Registrator::registerClasses();
+
+	SceneBuilder* builder = new SceneBuilder();
+	builder->buildScene();
+
+
+	builder->entitys[2]->addComponent<MeshRenderer>(myMeshRenderer);
+
+
+
+
+	while(running)
 	{
-		//Event polling
 		while (SDL_PollEvent(&event))
 		{
-			switch(event.type)
-			{
-				case SDL_MOUSEBUTTONDOWN:
-					{
-						inputEvent->buttonCode = event.button.button;
-						inputEvent->inputtype = mousebuttondown;
-						sender->sendEvent(inputEvent);
-					} break;
-				case SDL_MOUSEBUTTONUP:
-					{
-						inputEvent->buttonCode = event.button.button;
-						inputEvent->inputtype = mousebuttonup;
-						sender->sendEvent(inputEvent);
-					} break;
-				case SDL_MOUSEMOTION:
-					{
-						inputEvent->MouseX=event.motion.x;
-						inputEvent->MouseY=event.motion.y;
-						inputEvent->inputtype = mousemotion;
-						sender->sendEvent(inputEvent);
-					} break;
-				case SDL_QUIT: {systemEvent->systemEventType = terminateapplication; sender->sendEvent(systemEvent); } break;
-				case SDL_APP_TERMINATING: { systemEvent->systemEventType = terminateapplication; sender->sendEvent(systemEvent); } break;
-				case SDL_WINDOWEVENT_CLOSE: { systemEvent->systemEventType = terminateapplication; sender->sendEvent(systemEvent); } break;
-
+				switch(event.type)
+				{
+				case SDL_QUIT:
+					running = false;
+					break;
 				case SDL_KEYDOWN:
+					switch(event.key.keysym.sym)
 					{
-					if(event.key.keysym.sym == SDLK_SPACE)
-						{
-							for(unsigned int i = 0; i < cubusses.size(); i++)
-							{
-								cubusses[i]->getComponent<CharacterController>()->move(vec3(0,10,0));
-							}
-						}
-
-					} break;
-				case SDL_KEYUP:
-					{
-
-					} break;
-
-				default: break;
-			}
+					case SDLK_ESCAPE:
+						running = false;
+						break;
+					default:
+						break;
+					}
+					break;
+					default: break;
+				}
 		}
-
-		if (inputEvent->keyState) sender->sendEvent(inputEvent);
 
 
 		curTimeStamp=SDL_GetTicks()-progEnterTime;
 
 		// Update
-
-		SDL_WarpMouseInWindow(SDLwindow,screenwidth / 2,screenheight / 2);
-		physicsManager->DynamicsWorld->stepSimulation(1.0f/60.0f);
-		cubus->getComponent<RigidBody>()->update();
-		//player->getComponent<RigidBody>()->update();
-		// rotate cube
-		/*
-		static float f=0;
-		f++;
-		cubus->getComponent<Transform>()->rotation.x = f;
-		cubus->getComponent<Transform>()->rotation.y = f;
-		cubus->getComponent<Transform>()->rotation.z = f;
-		*/
-
-		int e = randomRange(0,10);
-
-		if(e > 5 && cubusses.size() < 250)
-		{
-		Entity* e = new Entity();
-		e->addComponent<Mesh>(contentLoader->sphere);
-		e->addComponent<Material>(contentLoader->checkerMaterial);
-		e->addComponent<Transform>(new Transform(vec3(randomRange(-500,500),randomRange(0,100),randomRange(-500,500))));
-		e->addComponent<MeshRenderer>(new MeshRenderer(renderManager));
-		e->getComponent<MeshRenderer>()->load();
-		e->addComponent<RigidBody>(new RigidBody(physicsManager));
-		e->getComponent<RigidBody>()->setBox(vec3(2,2,2), 1000);
-		e->addComponent<CharacterController>();
-		cubusses.push_back(e);
-		}
-
-		framesPerScondContainer->getComponent<FramesPerSecond>()->calculateFps();
-
-		for(unsigned int i = 0; i < cubusses.size(); i++)
-		{
-			cubusses[i]->getComponent<RigidBody>()->update();
-		}
-
+		builder->update();
 		// Draw
 
 		glClearColor( 0.0f, 0.0f, 0.0f, 0.0f );
 		glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 
-		renderManager->draw();
-
+		RenderManager::exemplar()->draw();
 
 		SDL_GL_SwapWindow(SDLwindow);
-
 	}
-
-
-	//////////////////////////////////////////////////////////////////////////////////////
-
-	delete eventEngine;
-	delete eventBus;
-	delete sender;
-	delete inputEvent;
-	delete systemEventBus;
-	delete systemListener;
-	delete systemEvent;
-	delete renderManagerContainer;
-	delete renderManager;
-	delete framesPerScondContainer;
-	delete physicsManager;
-
-	contentLoader->freeContent();
-
-	//////////////////////////////////////////////////////////////////////////////////////
-
-
-
-
-
-
-
 
 	TTF_Quit();
 	IMG_Quit();
